@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		28861DC42503E372003F0B88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28861DC32503E372003F0B88 /* AppDelegate.swift */; };
 		28861DC62503E372003F0B88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28861DC52503E372003F0B88 /* SceneDelegate.swift */; };
-		28861DC82503E372003F0B88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28861DC72503E372003F0B88 /* ViewController.swift */; };
 		28861DCB2503E372003F0B88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28861DC92503E372003F0B88 /* Main.storyboard */; };
 		28861DCE2503E372003F0B88 /* CoolCounter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28861DCC2503E372003F0B88 /* CoolCounter.xcdatamodeld */; };
 		28861DD02503E374003F0B88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28861DCF2503E374003F0B88 /* Assets.xcassets */; };
@@ -19,6 +18,17 @@
 		28B5F42A2504016F0031B8FB /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F4292504016F0031B8FB /* CHANGELOG.md */; };
 		28B5F42C250401760031B8FB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F42B250401760031B8FB /* README.md */; };
 		28B5F42F250401F70031B8FB /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F42E250401F70031B8FB /* Config.swift */; };
+		28B5F44525041F580031B8FB /* CreatCounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F44325041F580031B8FB /* CreatCounterViewController.swift */; };
+		28B5F44625041F580031B8FB /* CreatCounterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F44425041F580031B8FB /* CreatCounterViewController.xib */; };
+		28B5F44B25041FB20031B8FB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F44925041FB20031B8FB /* HomeViewController.swift */; };
+		28B5F44C25041FB20031B8FB /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F44A25041FB20031B8FB /* HomeViewController.xib */; };
+		28B5F44E2504212B0031B8FB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F44D2504212B0031B8FB /* HomeViewModel.swift */; };
+		28B5F4502504215C0031B8FB /* CounterWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F44F2504215C0031B8FB /* CounterWorker.swift */; };
+		28B5F452250421720031B8FB /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F451250421720031B8FB /* RequestHandler.swift */; };
+		28B5F454250428120031B8FB /* CounterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F453250428120031B8FB /* CounterModel.swift */; };
+		28B5F457250559510031B8FB /* CounterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F456250559510031B8FB /* CounterInteractor.swift */; };
+		28B5F45925055C8C0031B8FB /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F45825055C8C0031B8FB /* AppModel.swift */; };
+		28B5F45B250562120031B8FB /* UIText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F45A250562120031B8FB /* UIText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +52,6 @@
 		28861DC02503E372003F0B88 /* CoolCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoolCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28861DC32503E372003F0B88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28861DC52503E372003F0B88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		28861DC72503E372003F0B88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		28861DCA2503E372003F0B88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		28861DCD2503E372003F0B88 /* CoolCounter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoolCounter.xcdatamodel; sourceTree = "<group>"; };
 		28861DCF2503E374003F0B88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,6 +66,17 @@
 		28B5F4292504016F0031B8FB /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		28B5F42B250401760031B8FB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		28B5F42E250401F70031B8FB /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		28B5F44325041F580031B8FB /* CreatCounterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatCounterViewController.swift; sourceTree = "<group>"; };
+		28B5F44425041F580031B8FB /* CreatCounterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatCounterViewController.xib; sourceTree = "<group>"; };
+		28B5F44925041FB20031B8FB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		28B5F44A25041FB20031B8FB /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		28B5F44D2504212B0031B8FB /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		28B5F44F2504215C0031B8FB /* CounterWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterWorker.swift; sourceTree = "<group>"; };
+		28B5F451250421720031B8FB /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
+		28B5F453250428120031B8FB /* CounterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterModel.swift; sourceTree = "<group>"; };
+		28B5F456250559510031B8FB /* CounterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterInteractor.swift; sourceTree = "<group>"; };
+		28B5F45825055C8C0031B8FB /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		28B5F45A250562120031B8FB /* UIText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +131,10 @@
 			children = (
 				28B5F43825040D050031B8FB /* System */,
 				28B5F42D250401E40031B8FB /* Config */,
-				28861DC72503E372003F0B88 /* ViewController.swift */,
+				28B5F43B250417290031B8FB /* Model */,
+				28B5F43C250417B30031B8FB /* Workers */,
+				28B5F455250559310031B8FB /* Interactor */,
+				28B5F43A2504171C0031B8FB /* UI */,
 				28861DC92503E372003F0B88 /* Main.storyboard */,
 				28861DCF2503E374003F0B88 /* Assets.xcassets */,
 				28861DD12503E374003F0B88 /* LaunchScreen.storyboard */,
@@ -154,6 +177,61 @@
 				28861DC52503E372003F0B88 /* SceneDelegate.swift */,
 			);
 			path = System;
+			sourceTree = "<group>";
+		};
+		28B5F43A2504171C0031B8FB /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				28B5F44225041F2D0031B8FB /* CreateCounter */,
+				28B5F43D250418120031B8FB /* Home */,
+				28B5F45A250562120031B8FB /* UIText.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		28B5F43B250417290031B8FB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				28B5F45825055C8C0031B8FB /* AppModel.swift */,
+				28B5F453250428120031B8FB /* CounterModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		28B5F43C250417B30031B8FB /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				28B5F44F2504215C0031B8FB /* CounterWorker.swift */,
+				28B5F451250421720031B8FB /* RequestHandler.swift */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
+		28B5F43D250418120031B8FB /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				28B5F44925041FB20031B8FB /* HomeViewController.swift */,
+				28B5F44A25041FB20031B8FB /* HomeViewController.xib */,
+				28B5F44D2504212B0031B8FB /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		28B5F44225041F2D0031B8FB /* CreateCounter */ = {
+			isa = PBXGroup;
+			children = (
+				28B5F44325041F580031B8FB /* CreatCounterViewController.swift */,
+				28B5F44425041F580031B8FB /* CreatCounterViewController.xib */,
+			);
+			path = CreateCounter;
+			sourceTree = "<group>";
+		};
+		28B5F455250559310031B8FB /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				28B5F456250559510031B8FB /* CounterInteractor.swift */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,8 +341,10 @@
 			files = (
 				28861DD32503E374003F0B88 /* LaunchScreen.storyboard in Resources */,
 				28861DD02503E374003F0B88 /* Assets.xcassets in Resources */,
+				28B5F44625041F580031B8FB /* CreatCounterViewController.xib in Resources */,
 				28B5F42C250401760031B8FB /* README.md in Resources */,
 				28861DCB2503E372003F0B88 /* Main.storyboard in Resources */,
+				28B5F44C25041FB20031B8FB /* HomeViewController.xib in Resources */,
 				28B5F42A2504016F0031B8FB /* CHANGELOG.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,11 +391,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28861DC82503E372003F0B88 /* ViewController.swift in Sources */,
+				28B5F4502504215C0031B8FB /* CounterWorker.swift in Sources */,
 				28861DCE2503E372003F0B88 /* CoolCounter.xcdatamodeld in Sources */,
 				28B5F42F250401F70031B8FB /* Config.swift in Sources */,
+				28B5F44E2504212B0031B8FB /* HomeViewModel.swift in Sources */,
+				28B5F45B250562120031B8FB /* UIText.swift in Sources */,
+				28B5F454250428120031B8FB /* CounterModel.swift in Sources */,
+				28B5F457250559510031B8FB /* CounterInteractor.swift in Sources */,
 				28861DC42503E372003F0B88 /* AppDelegate.swift in Sources */,
+				28B5F45925055C8C0031B8FB /* AppModel.swift in Sources */,
+				28B5F452250421720031B8FB /* RequestHandler.swift in Sources */,
+				28B5F44525041F580031B8FB /* CreatCounterViewController.swift in Sources */,
 				28861DC62503E372003F0B88 /* SceneDelegate.swift in Sources */,
+				28B5F44B25041FB20031B8FB /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
