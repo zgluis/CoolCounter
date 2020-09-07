@@ -3,26 +3,85 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="CoolCounter" customModuleProvider="target">
             <connections>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="lblCountersDetail" destination="q2U-Sb-Qfg" id="sJa-NC-BcJ"/>
+                <outlet property="tvCounters" destination="JFq-Zp-7x3" id="ay8-PB-uOe"/>
+                <outlet property="view" destination="Je2-qU-Huf" id="QDS-Ur-gSL"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="i5M-Pr-FkT">
+        <view contentMode="scaleToFill" id="Je2-qU-Huf">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mkm-xk-ybb">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JFq-Zp-7x3" userLabel="tvCounters">
+                            <rect key="frame" x="0.0" y="8" width="414" height="802"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </tableView>
+                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P3E-Zg-hcR">
+                            <rect key="frame" x="-8" y="774" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="tPg-ZU-WbJ"/>
+                                <barButtonItem style="plain" id="vSH-8x-Ee9">
+                                    <view key="customView" contentMode="scaleToFill" id="OQC-2L-5LV">
+                                        <rect key="frame" x="87" y="5.5" width="240" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2U-Sb-Qfg">
+                                                <rect key="frame" x="99" y="6" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="q2U-Sb-Qfg" firstAttribute="centerY" secondItem="OQC-2L-5LV" secondAttribute="centerY" id="Yt3-rw-1Rx"/>
+                                            <constraint firstItem="q2U-Sb-Qfg" firstAttribute="centerX" secondItem="OQC-2L-5LV" secondAttribute="centerX" id="eHC-IJ-uW0"/>
+                                        </constraints>
+                                    </view>
+                                </barButtonItem>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="uRl-I7-IIh"/>
+                                <barButtonItem systemItem="add" id="MXs-Jz-vPV">
+                                    <color key="tintColor" name="AccentColor"/>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="JFq-Zp-7x3" firstAttribute="leading" secondItem="Mkm-xk-ybb" secondAttribute="leading" id="0Q7-GQ-hKr"/>
+                        <constraint firstItem="JFq-Zp-7x3" firstAttribute="top" secondItem="Mkm-xk-ybb" secondAttribute="top" constant="8" id="CgH-95-Xub"/>
+                        <constraint firstAttribute="trailing" secondItem="JFq-Zp-7x3" secondAttribute="trailing" id="GYR-LL-zGl"/>
+                        <constraint firstAttribute="bottom" secondItem="JFq-Zp-7x3" secondAttribute="bottom" constant="8" id="s5R-m6-yNx"/>
+                    </constraints>
+                </view>
+            </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-            <viewLayoutGuide key="safeArea" id="vLr-E1-eTs"/>
-            <connections>
-                <outlet property="dataSource" destination="-1" id="Tng-2m-Rnh"/>
-                <outlet property="delegate" destination="-1" id="9aC-8N-iBw"/>
-            </connections>
-            <point key="canvasLocation" x="139" y="99"/>
-        </tableView>
+            <constraints>
+                <constraint firstItem="6Ub-a2-rKm" firstAttribute="trailing" secondItem="Mkm-xk-ybb" secondAttribute="trailing" id="BqO-Rl-oQe"/>
+                <constraint firstItem="Mkm-xk-ybb" firstAttribute="width" secondItem="6Ub-a2-rKm" secondAttribute="width" id="Hum-k4-uTr"/>
+                <constraint firstItem="6Ub-a2-rKm" firstAttribute="bottom" secondItem="Mkm-xk-ybb" secondAttribute="bottom" id="JOr-0M-4S2"/>
+                <constraint firstItem="Mkm-xk-ybb" firstAttribute="leading" secondItem="6Ub-a2-rKm" secondAttribute="leading" id="Np1-pk-9u9"/>
+                <constraint firstItem="Mkm-xk-ybb" firstAttribute="top" secondItem="6Ub-a2-rKm" secondAttribute="top" id="lwB-8G-mDE"/>
+                <constraint firstItem="Mkm-xk-ybb" firstAttribute="height" secondItem="6Ub-a2-rKm" secondAttribute="height" id="o4h-1T-k9I"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="6Ub-a2-rKm"/>
+            <point key="canvasLocation" x="-26" y="70"/>
+        </view>
     </objects>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

@@ -19,26 +19,38 @@ enum CounterModel {
     
     // MARK: - Specifics
     enum Create {
-        struct Request {
+        struct Request: AppRequest {
             let title: String
+            func toParameters() -> [String: Any] {
+                return ["title": title]
+            }
         }
     }
     
     enum Increment {
-        struct Request {
+        struct Request: AppRequest {
             let id: String
+            func toParameters() -> [String: Any] {
+                return ["id": id]
+            }
         }
     }
     
     enum Decrement {
-        struct Request {
+        struct Request: AppRequest {
             let id: String
+            func toParameters() -> [String: Any] {
+                return ["id": id]
+            }
         }
     }
     
     enum Delete {
-        struct Request {
+        struct Request: AppRequest {
             let id: String
+            func toParameters() -> [String: Any] {
+                return ["id": id]
+            }
         }
     }
 }

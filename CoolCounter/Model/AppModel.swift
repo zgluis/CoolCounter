@@ -10,6 +10,10 @@
 
 import Foundation
 
+protocol AppRequest {
+    func toParameters() -> [String: Any]
+}
+
 struct AppError: Error {
     /// User frendly message
     private let message: String
