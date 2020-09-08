@@ -22,8 +22,6 @@
 		28B5F42A2504016F0031B8FB /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F4292504016F0031B8FB /* CHANGELOG.md */; };
 		28B5F42C250401760031B8FB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F42B250401760031B8FB /* README.md */; };
 		28B5F42F250401F70031B8FB /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F42E250401F70031B8FB /* Config.swift */; };
-		28B5F44525041F580031B8FB /* CreatCounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F44325041F580031B8FB /* CreatCounterViewController.swift */; };
-		28B5F44625041F580031B8FB /* CreatCounterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F44425041F580031B8FB /* CreatCounterViewController.xib */; };
 		28B5F44B25041FB20031B8FB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F44925041FB20031B8FB /* HomeViewController.swift */; };
 		28B5F44C25041FB20031B8FB /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F44A25041FB20031B8FB /* HomeViewController.xib */; };
 		28B5F44E2504212B0031B8FB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F44D2504212B0031B8FB /* HomeViewModel.swift */; };
@@ -34,6 +32,14 @@
 		28B5F45925055C8C0031B8FB /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F45825055C8C0031B8FB /* AppModel.swift */; };
 		28B5F45B250562120031B8FB /* UIText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F45A250562120031B8FB /* UIText.swift */; };
 		28C144BD2506871000E3BABB /* CounterCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144BC2506871000E3BABB /* CounterCellViewModel.swift */; };
+		28C144C02506DD0A00E3BABB /* CreateCounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144BE2506DD0A00E3BABB /* CreateCounterViewController.swift */; };
+		28C144C12506DD0A00E3BABB /* CreateCounterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28C144BF2506DD0A00E3BABB /* CreateCounterViewController.xib */; };
+		28C144C32506F77400E3BABB /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144C22506F77400E3BABB /* UITextFieldExtensions.swift */; };
+		28C144C52507106600E3BABB /* UINavigationControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144C42507106600E3BABB /* UINavigationControllerExtensions.swift */; };
+		28C144C72507C17C00E3BABB /* UIVIewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144C62507C17C00E3BABB /* UIVIewExtensions.swift */; };
+		28C144C92507C34E00E3BABB /* CreateCounterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144C82507C34E00E3BABB /* CreateCounterViewModel.swift */; };
+		28C144CB2507D41000E3BABB /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144CA2507D41000E3BABB /* Observable.swift */; };
+		28C144CD2507E1B400E3BABB /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144CC2507E1B400E3BABB /* UITapGestureRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,8 +81,6 @@
 		28B5F4292504016F0031B8FB /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		28B5F42B250401760031B8FB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		28B5F42E250401F70031B8FB /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		28B5F44325041F580031B8FB /* CreatCounterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatCounterViewController.swift; sourceTree = "<group>"; };
-		28B5F44425041F580031B8FB /* CreatCounterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatCounterViewController.xib; sourceTree = "<group>"; };
 		28B5F44925041FB20031B8FB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		28B5F44A25041FB20031B8FB /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		28B5F44D2504212B0031B8FB /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -87,6 +91,14 @@
 		28B5F45825055C8C0031B8FB /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		28B5F45A250562120031B8FB /* UIText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIText.swift; sourceTree = "<group>"; };
 		28C144BC2506871000E3BABB /* CounterCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterCellViewModel.swift; sourceTree = "<group>"; };
+		28C144BE2506DD0A00E3BABB /* CreateCounterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCounterViewController.swift; sourceTree = "<group>"; };
+		28C144BF2506DD0A00E3BABB /* CreateCounterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateCounterViewController.xib; sourceTree = "<group>"; };
+		28C144C22506F77400E3BABB /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
+		28C144C42507106600E3BABB /* UINavigationControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtensions.swift; sourceTree = "<group>"; };
+		28C144C62507C17C00E3BABB /* UIVIewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewExtensions.swift; sourceTree = "<group>"; };
+		28C144C82507C34E00E3BABB /* CreateCounterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCounterViewModel.swift; sourceTree = "<group>"; };
+		28C144CA2507D41000E3BABB /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		28C144CC2507E1B400E3BABB /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +131,10 @@
 			children = (
 				280538992505D8E300994904 /* UIFontExtensions.swift */,
 				2805389B2505E02500994904 /* UIColorExtensions.swift */,
+				28C144C22506F77400E3BABB /* UITextFieldExtensions.swift */,
+				28C144C42507106600E3BABB /* UINavigationControllerExtensions.swift */,
+				28C144C62507C17C00E3BABB /* UIVIewExtensions.swift */,
+				28C144CC2507E1B400E3BABB /* UITapGestureRecognizer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -225,6 +241,7 @@
 			children = (
 				28B5F45825055C8C0031B8FB /* AppModel.swift */,
 				28B5F453250428120031B8FB /* CounterModel.swift */,
+				28C144CA2507D41000E3BABB /* Observable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -251,8 +268,9 @@
 		28B5F44225041F2D0031B8FB /* CreateCounter */ = {
 			isa = PBXGroup;
 			children = (
-				28B5F44325041F580031B8FB /* CreatCounterViewController.swift */,
-				28B5F44425041F580031B8FB /* CreatCounterViewController.xib */,
+				28C144BE2506DD0A00E3BABB /* CreateCounterViewController.swift */,
+				28C144BF2506DD0A00E3BABB /* CreateCounterViewController.xib */,
+				28C144C82507C34E00E3BABB /* CreateCounterViewModel.swift */,
 			);
 			path = CreateCounter;
 			sourceTree = "<group>";
@@ -373,7 +391,7 @@
 				287A9B612505838D00326890 /* CounterCellView.xib in Resources */,
 				28861DD32503E374003F0B88 /* LaunchScreen.storyboard in Resources */,
 				28861DD02503E374003F0B88 /* Assets.xcassets in Resources */,
-				28B5F44625041F580031B8FB /* CreatCounterViewController.xib in Resources */,
+				28C144C12506DD0A00E3BABB /* CreateCounterViewController.xib in Resources */,
 				28B5F42C250401760031B8FB /* README.md in Resources */,
 				28861DCB2503E372003F0B88 /* Main.storyboard in Resources */,
 				28B5F44C25041FB20031B8FB /* HomeViewController.xib in Resources */,
@@ -423,12 +441,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28C144CD2507E1B400E3BABB /* UITapGestureRecognizer.swift in Sources */,
+				28C144CB2507D41000E3BABB /* Observable.swift in Sources */,
 				28B5F4502504215C0031B8FB /* CounterWorker.swift in Sources */,
 				28861DCE2503E372003F0B88 /* CoolCounter.xcdatamodeld in Sources */,
+				28C144C72507C17C00E3BABB /* UIVIewExtensions.swift in Sources */,
 				2805389A2505D8E300994904 /* UIFontExtensions.swift in Sources */,
+				28C144C92507C34E00E3BABB /* CreateCounterViewModel.swift in Sources */,
+				28C144C32506F77400E3BABB /* UITextFieldExtensions.swift in Sources */,
 				287A9B602505838D00326890 /* CounterCellView.swift in Sources */,
 				28B5F42F250401F70031B8FB /* Config.swift in Sources */,
 				28C144BD2506871000E3BABB /* CounterCellViewModel.swift in Sources */,
+				28C144C02506DD0A00E3BABB /* CreateCounterViewController.swift in Sources */,
 				28B5F44E2504212B0031B8FB /* HomeViewModel.swift in Sources */,
 				28B5F45B250562120031B8FB /* UIText.swift in Sources */,
 				28B5F454250428120031B8FB /* CounterModel.swift in Sources */,
@@ -436,9 +460,9 @@
 				28861DC42503E372003F0B88 /* AppDelegate.swift in Sources */,
 				28B5F45925055C8C0031B8FB /* AppModel.swift in Sources */,
 				28B5F452250421720031B8FB /* RequestHandler.swift in Sources */,
-				28B5F44525041F580031B8FB /* CreatCounterViewController.swift in Sources */,
 				28861DC62503E372003F0B88 /* SceneDelegate.swift in Sources */,
 				28B5F44B25041FB20031B8FB /* HomeViewController.swift in Sources */,
+				28C144C52507106600E3BABB /* UINavigationControllerExtensions.swift in Sources */,
 				2805389C2505E02500994904 /* UIColorExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

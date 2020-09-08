@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +24,13 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2et-em-dt2">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="NavBarColor"/>
                     </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                            <color key="value" name="NavBarColor"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="ZhU-BS-P7A" kind="relationship" relationship="rootViewController" id="eJB-RT-9cV"/>
                     </connections>
@@ -32,10 +39,10 @@
             </objects>
             <point key="canvasLocation" x="-529" y="50"/>
         </scene>
-        <!--Creat Counter View Controller-->
+        <!--Create Counter View Controller-->
         <scene sceneID="5fr-OV-0fP">
             <objects>
-                <viewController id="eEF-df-CmC" customClass="CreatCounterViewController" customModule="CoolCounter" customModuleProvider="target" sceneMemberID="viewController"/>
+                <viewController storyboardIdentifier="createCounterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eEF-df-CmC" customClass="CreateCounterViewController" customModule="CoolCounter" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZpG-Up-3lY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="993" y="50"/>
@@ -45,6 +52,9 @@
     <resources>
         <namedColor name="AccentColor">
             <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="NavBarColor">
+            <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="0.94623161764705888" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

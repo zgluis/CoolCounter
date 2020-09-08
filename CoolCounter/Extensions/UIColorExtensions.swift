@@ -11,21 +11,24 @@ import UIKit
 enum AppColor {
     case silver
     case gray
+    case grayLight
     case whitePearl
     case accent
 }
 
 extension UIColor {
-    convenience init?(appColor: AppColor) {
+    convenience init(appColor: AppColor) {
         switch appColor {
         case .silver:
-            self.init(named: "SilverColor")
+            self.init(named: "SilverColor")!
         case .gray:
-            self.init(named: "GrayColor")
+            self.init(named: "GrayColor")!
+        case .grayLight:
+            self.init(named: "GrayLightColor")!
         case .whitePearl:
-            self.init(named: "WhitePearlColor")
+            self.init(named: "WhitePearlColor")!
         case .accent:
-            self.init(named: "AccentColor")
+            self.init(named: "AccentColor")!
         }
     }
 }

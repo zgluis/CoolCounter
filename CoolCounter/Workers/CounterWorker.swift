@@ -13,6 +13,7 @@ protocol CounterWorkerProtocol {
     func incrementCount(request: CounterModel.Increment.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void)
     func decrementCount(request: CounterModel.Decrement.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void)
     func deleteCounter(request: CounterModel.Delete.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void)
+    func createCounter(request: CounterModel.Create.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void)
 }
 
 class CounterWorker: CounterWorkerProtocol {
@@ -31,6 +32,10 @@ class CounterWorker: CounterWorkerProtocol {
     
     func deleteCounter(request: CounterModel.Delete.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void) {
         requestHandler.delete(resource: "counter", parameters: request.toParameters(), completion: completion)
+    }
+    
+    func createCounter(request: CounterModel.Create.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void) {
+        requestHandler.post(resource: "counter", parameters: request.toParameters(), completion: completion)
     }
     
 }

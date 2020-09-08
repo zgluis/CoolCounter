@@ -13,6 +13,7 @@ protocol CounterBusinessLogic {
     func incrementCount(counterId: String, _ completion: @escaping (Result<Void, AppError>) -> Void)
     func decrementCount(counterId: String, _ completion: @escaping (Result<Void, AppError>) -> Void)
     func deleteCounter(counterId: String, _ completion: @escaping (Result<Void, AppError>) -> Void)
+    func createCounter(title: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void)
 }
 
 class CounterInteractor: CounterBusinessLogic {
@@ -57,6 +58,17 @@ class CounterInteractor: CounterBusinessLogic {
             switch result {
             case .success:
                 completion(.success(()))
+            case .failure:
+                completion(.failure(AppError(message: UIText.loremShort)))
+            }
+        }
+    }
+    
+    func createCounter(title: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void) {
+        counterWorker.createCounter(request: CounterModel.Create.Request(title: title)) { result in
+            switch result {
+            case .success(let counters):
+                completion(.success(counters))
             case .failure:
                 completion(.failure(AppError(message: UIText.loremShort)))
             }

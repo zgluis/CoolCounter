@@ -11,18 +11,15 @@ import UIKit
 class HomeViewController: UIViewController {
     
     private var viewModel: HomeViewModel!
-    
+    //TODO: Pass viewController
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var refreshControl: UIRefreshControl?
     @IBOutlet weak var tvCounters: UITableView!
     @IBOutlet weak var lblCountersDetail: UILabel!
+    @IBOutlet weak var btnAddToolbar: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationItem.title = UIText.loremShort
-        
-        let newBtn = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(didTapEdit))
-        self.navigationItem.leftItemsSupplementBackButton = true
-        self.navigationItem.leftBarButtonItem = newBtn//self.navigationItem.leftBarButtonItems = [newBtn,anotherBtn]
         
         self.viewModel = HomeViewModel()
         self.viewModel.bindCounters = {
@@ -31,15 +28,30 @@ class HomeViewController: UIViewController {
                 self.reloadCountersDetail()
             }
         }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        setupNavigationBar()
         
+        //Table View
         self.tvCounters.register(UINib.init(nibName: "CounterCellView", bundle: nil), forCellReuseIdentifier: "counterCell")
         self.tvCounters.delegate = self
         self.tvCounters.dataSource = self
+        
+        //Toolbar
+        btnAddToolbar.action = #selector(didTapAdd)
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        //TODO: Change statusBar color, fix; status bar is overlapping navigation bar
+        //navigationController?.setStatusBarColor(UIColor(appColor: .grayLight))
+        self.navigationItem.title = UIText.loremShort
+        
+        //Buttons
+        self.editButtonItem.action = #selector(didTapEdit)
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        
+        //Search
+        navigationItem.searchController = searchController
     }
     
     func reloadCountersDetail() {
@@ -54,6 +66,13 @@ class HomeViewController: UIViewController {
     
     @objc func didTapEdit() {
         
+    }
+    
+    @objc func didTapAdd() {        
+        if let createCounterVC = self.storyboard?
+            .instantiateViewController(withIdentifier: "createCounterViewController") as? CreateCounterViewController {
+            self.present(createCounterVC, animated: true, completion: nil)
+        }
     }
     
 }

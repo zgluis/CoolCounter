@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="CoolCounter" customModuleProvider="target">
             <connections>
+                <outlet property="btnAddToolbar" destination="MXs-Jz-vPV" id="dKb-oQ-Qg6"/>
                 <outlet property="lblCountersDetail" destination="q2U-Sb-Qfg" id="sJa-NC-BcJ"/>
                 <outlet property="tvCounters" destination="JFq-Zp-7x3" id="ay8-PB-uOe"/>
                 <outlet property="view" destination="Je2-qU-Huf" id="QDS-Ur-gSL"/>
@@ -24,17 +25,16 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JFq-Zp-7x3" userLabel="tvCounters">
-                            <rect key="frame" x="0.0" y="8" width="414" height="802"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <rect key="frame" x="0.0" y="8" width="414" height="766"/>
+                            <color key="backgroundColor" name="GrayLightColor"/>
                         </tableView>
-                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P3E-Zg-hcR">
-                            <rect key="frame" x="-8" y="774" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3E-Zg-hcR">
+                            <rect key="frame" x="0.0" y="774" width="414" height="44"/>
                             <items>
                                 <barButtonItem style="plain" systemItem="flexibleSpace" id="tPg-ZU-WbJ"/>
                                 <barButtonItem style="plain" id="vSH-8x-Ee9">
                                     <view key="customView" contentMode="scaleToFill" id="OQC-2L-5LV">
-                                        <rect key="frame" x="87" y="5.5" width="240" height="33"/>
+                                        <rect key="frame" x="87" y="18" width="240" height="8"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2U-Sb-Qfg">
@@ -57,12 +57,15 @@
                             </items>
                         </toolbar>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" name="GrayLightColor"/>
                     <constraints>
-                        <constraint firstItem="JFq-Zp-7x3" firstAttribute="leading" secondItem="Mkm-xk-ybb" secondAttribute="leading" id="0Q7-GQ-hKr"/>
-                        <constraint firstItem="JFq-Zp-7x3" firstAttribute="top" secondItem="Mkm-xk-ybb" secondAttribute="top" constant="8" id="CgH-95-Xub"/>
-                        <constraint firstAttribute="trailing" secondItem="JFq-Zp-7x3" secondAttribute="trailing" id="GYR-LL-zGl"/>
-                        <constraint firstAttribute="bottom" secondItem="JFq-Zp-7x3" secondAttribute="bottom" constant="8" id="s5R-m6-yNx"/>
+                        <constraint firstAttribute="bottom" secondItem="P3E-Zg-hcR" secondAttribute="bottom" id="HqU-id-Nkq"/>
+                        <constraint firstAttribute="trailing" secondItem="P3E-Zg-hcR" secondAttribute="trailing" id="QTI-wK-ViB"/>
+                        <constraint firstItem="P3E-Zg-hcR" firstAttribute="top" secondItem="JFq-Zp-7x3" secondAttribute="bottom" id="WmC-MN-V7S"/>
+                        <constraint firstItem="JFq-Zp-7x3" firstAttribute="top" secondItem="Mkm-xk-ybb" secondAttribute="top" constant="8" id="g5A-Jd-lBm"/>
+                        <constraint firstItem="P3E-Zg-hcR" firstAttribute="leading" secondItem="Mkm-xk-ybb" secondAttribute="leading" id="gkN-33-ZaP"/>
+                        <constraint firstItem="JFq-Zp-7x3" firstAttribute="leading" secondItem="Mkm-xk-ybb" secondAttribute="leading" id="hvX-xP-U6g"/>
+                        <constraint firstAttribute="trailing" secondItem="JFq-Zp-7x3" secondAttribute="trailing" id="nAr-T8-xNU"/>
                     </constraints>
                 </view>
             </subviews>
@@ -76,12 +79,15 @@
                 <constraint firstItem="Mkm-xk-ybb" firstAttribute="height" secondItem="6Ub-a2-rKm" secondAttribute="height" id="o4h-1T-k9I"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="6Ub-a2-rKm"/>
-            <point key="canvasLocation" x="-26" y="70"/>
+            <point key="canvasLocation" x="-26.086956521739133" y="69.642857142857139"/>
         </view>
     </objects>
     <resources>
         <namedColor name="AccentColor">
             <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="GrayLightColor">
+            <color red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

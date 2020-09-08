@@ -24,4 +24,5 @@ struct UIText {
                             Sed faucibus porttitor placerat. Mauris nec mauris ullamcorper, sodales mauris \
                             non, ultricies augue. Maecenas eu diam quis velit efficitur eleifend.
                             """
+    static let createCounterCaption = "Give it a name. Creative block? See examples."
 }
