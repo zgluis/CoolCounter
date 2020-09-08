@@ -12,7 +12,11 @@ class HomeViewController: UIViewController {
     
     private var viewModel: HomeViewModel!
     //TODO: Pass viewController
-    private let searchController = UISearchController(searchResultsController: nil)
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        return searchController
+    }()
     private var refreshControl: UIRefreshControl?
     @IBOutlet weak var tvCounters: UITableView!
     @IBOutlet weak var lblCountersDetail: UILabel!
@@ -24,6 +28,7 @@ class HomeViewController: UIViewController {
         self.viewModel = HomeViewModel()
         self.viewModel.bindCounters = {
             DispatchQueue.main.async {
+                self.refreshControl?.endRefreshing()
                 self.tvCounters.reloadData()
                 self.reloadCountersDetail()
             }
@@ -38,10 +43,15 @@ class HomeViewController: UIViewController {
         
         //Toolbar
         btnAddToolbar.action = #selector(didTapAdd)
+        
+        refreshControl = UIRefreshControl()
+        refreshControl!.addTarget(self, action:
+            #selector(handleRefresh),
+                                 for: UIControl.Event.valueChanged)
+        tvCounters.refreshControl = refreshControl
     }
     
     private func setupNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
         //TODO: Change statusBar color, fix; status bar is overlapping navigation bar
         //navigationController?.setStatusBarColor(UIColor(appColor: .grayLight))
         self.navigationItem.title = UIText.loremShort
@@ -51,7 +61,15 @@ class HomeViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         
         //Search
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+
         navigationItem.searchController = searchController
+    }
+    
+    @objc func handleRefresh() {
+        viewModel.fetchCounters()
     }
     
     func reloadCountersDetail() {
@@ -91,4 +109,10 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         cell?.setData(counter: viewModel.counters[indexPath.row])
         return cell ?? UITableViewCell()
     }
+}
+
+extension HomeViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    // TODO
+  }
 }

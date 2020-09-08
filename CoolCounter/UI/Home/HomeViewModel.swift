@@ -9,9 +9,9 @@
 import Foundation
 
 class HomeViewModel {
-    var counterInteractor: CounterBusinessLogic?
+    private var counterInteractor: CounterBusinessLogic?
     
-    var bindCounters : (() -> Void) = {}
+    var bindCounters: (() -> Void) = {}
     private(set) var counters: [CounterModel.Counter]! {
         didSet {
             self.bindCounters()
