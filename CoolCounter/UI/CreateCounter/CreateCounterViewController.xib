@@ -61,7 +61,7 @@
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pdX-mt-Pvk" userLabel="viewActivityIndicatorContainer">
                             <rect key="frame" x="339" y="69" width="55" height="55"/>
                             <subviews>
-                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="OCb-Cs-s92">
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="OCb-Cs-s92">
                                     <rect key="frame" x="27" y="17.5" width="20" height="20"/>
                                 </activityIndicatorView>
                             </subviews>

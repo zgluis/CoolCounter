@@ -38,7 +38,6 @@
 		28C144C52507106600E3BABB /* UINavigationControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144C42507106600E3BABB /* UINavigationControllerExtensions.swift */; };
 		28C144C72507C17C00E3BABB /* UIVIewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144C62507C17C00E3BABB /* UIVIewExtensions.swift */; };
 		28C144C92507C34E00E3BABB /* CreateCounterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144C82507C34E00E3BABB /* CreateCounterViewModel.swift */; };
-		28C144CB2507D41000E3BABB /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144CA2507D41000E3BABB /* Observable.swift */; };
 		28C144CD2507E1B400E3BABB /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144CC2507E1B400E3BABB /* UITapGestureRecognizer.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,7 +96,6 @@
 		28C144C42507106600E3BABB /* UINavigationControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtensions.swift; sourceTree = "<group>"; };
 		28C144C62507C17C00E3BABB /* UIVIewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewExtensions.swift; sourceTree = "<group>"; };
 		28C144C82507C34E00E3BABB /* CreateCounterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCounterViewModel.swift; sourceTree = "<group>"; };
-		28C144CA2507D41000E3BABB /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		28C144CC2507E1B400E3BABB /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -241,7 +239,6 @@
 			children = (
 				28B5F45825055C8C0031B8FB /* AppModel.swift */,
 				28B5F453250428120031B8FB /* CounterModel.swift */,
-				28C144CA2507D41000E3BABB /* Observable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -442,7 +439,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				28C144CD2507E1B400E3BABB /* UITapGestureRecognizer.swift in Sources */,
-				28C144CB2507D41000E3BABB /* Observable.swift in Sources */,
 				28B5F4502504215C0031B8FB /* CounterWorker.swift in Sources */,
 				28861DCE2503E372003F0B88 /* CoolCounter.xcdatamodeld in Sources */,
 				28C144C72507C17C00E3BABB /* UIVIewExtensions.swift in Sources */,

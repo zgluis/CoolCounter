@@ -70,7 +70,7 @@ class CounterInteractor: CounterBusinessLogic {
             case .success(let counters):
                 completion(.success(counters))
             case .failure:
-                completion(.failure(AppError(message: UIText.loremShort)))
+                completion(.failure(AppError(message: UIText.errorNetwork)))
             }
         }
     }

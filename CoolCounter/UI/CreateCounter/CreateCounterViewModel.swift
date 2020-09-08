@@ -11,17 +11,25 @@ import Foundation
 class CreateCounterViewModel {
     private lazy var counterInteractor: CounterBusinessLogic = CounterInteractor()
     
-    var createCounterSucceeded: Observable<Bool> = Observable(false)
-    var createCounterError: Observable<AppError?> = Observable(nil)
+    var isLoadingChanged: ((Bool) -> Void)?
+    private(set) var isLoading = false {
+        didSet {
+            isLoadingChanged?(isLoading)
+        }
+    }
+    var createCounterSucceeded: ((Bool) -> Void)?
+    var createCounterError: ((AppError) -> Void)?
     
     func createCounter(title: String) {
+        isLoading = true
         counterInteractor.createCounter(title: title) { [weak self] result in
             guard let self = self else { return }
+            self.isLoading = false
             switch result {
             case .success:
-                self.createCounterSucceeded = Observable(true)
+                self.createCounterSucceeded?(true)
             case .failure(let error):
-                self.createCounterError = Observable(error)
+                self.createCounterError?(error)
             }
         }
     }

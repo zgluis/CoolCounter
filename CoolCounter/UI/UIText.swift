@@ -25,4 +25,8 @@ struct UIText {
                             non, ultricies augue. Maecenas eu diam quis velit efficitur eleifend.
                             """
     static let createCounterCaption = "Give it a name. Creative block? See examples."
+    
+    static let errorCreateCounterFailedTitle = "Couln't create the counter"
+    static let errorNetwork = "The Internet connection appears to be offline."
+    static let btnDismiss = "Dismiss"
 }

@@ -31,7 +31,6 @@ class CreateCounterViewController: UIViewController {
         }
     }
     
-    //@IBOutlet weak var tvCaption: UITextView!
     @IBOutlet weak var lblCaption: UILabel! {
         didSet {
             let attributedCaption = NSMutableAttributedString(string: UIText.createCounterCaption)
@@ -52,8 +51,8 @@ class CreateCounterViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel = CreateCounterViewModel()
-        
-        viewModel.createCounterSucceeded.bind { success in
+        viewModel.createCounterSucceeded = { [weak self] success in
+            guard let self = self else { return }
             if success {
                 DispatchQueue.main.async {
                     self.dismiss(animated: true)
@@ -61,28 +60,52 @@ class CreateCounterViewController: UIViewController {
             }
         }
         
-        viewModel.createCounterError.bind { (_) in
-            self.tfCounterTitle.isEnabled = true
-            //TODO: show error
+        viewModel.createCounterError = { [weak self] error in
+            guard let self = self else { return }
+            let alert = UIAlertController(title: UIText.errorCreateCounterFailedTitle,
+                                          message: error.localizedDescription,
+                                          preferredStyle: .alert)
+
+            DispatchQueue.main.async {
+                alert.view.tintColor = UIColor(appColor: .accent)
+                alert.addAction(UIAlertAction(title: UIText.btnDismiss, style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            }
+        }
+        
+        viewModel.isLoadingChanged = { [weak self] isLoading in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.enableForm(!isLoading)
+                if isLoading {
+                    self.viewActivityIndicatorContainer.fadeIn()
+                } else {
+                    self.viewActivityIndicatorContainer.fadeOut()
+                }
+            }
         }
         
     }
     
-    @objc func textFieldTitleDidChange() {
+    @objc private func textFieldTitleDidChange() {
         btnSave.isEnabled = tfCounterTitle.text?.count ?? 0 > 0
     }
     
-    @objc func didTapCaption(_ gesture: UITapGestureRecognizer) {
+    @objc private func didTapCaption(_ gesture: UITapGestureRecognizer) {
         if gesture.didTapAttributedTextInLabel(label: lblCaption, inRange: NSRange(location: 36, length: 8)) {
             print("example tapped")
         }
     }
     
     @IBAction func didTapSave(_ sender: UIBarButtonItem) {
-        if let title = tfCounterTitle.text {
-            tfCounterTitle.isEnabled = false
-            viewModel.createCounter(title: title)
+        if tfCounterTitle.text != nil && !viewModel.isLoading {
+            viewModel.createCounter(title: tfCounterTitle.text!)
         }
+    }
+    
+    private func enableForm(_ enable: Bool) {
+        tfCounterTitle.isEnabled = enable
+        btnSave.isEnabled = enable
     }
     
     @IBAction func didTapCancel(_ sender: Any) {
