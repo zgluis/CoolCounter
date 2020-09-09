@@ -39,19 +39,53 @@
             </objects>
             <point key="canvasLocation" x="-529" y="50"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="KbJ-Ii-O6l">
+            <objects>
+                <navigationController storyboardIdentifier="createCounterNavController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BbX-nu-QNV" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6B9-Xl-tLH">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                            <color key="value" name="NavBarColor"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="eEF-df-CmC" kind="relationship" relationship="rootViewController" id="V60-UW-vJr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7ro-a9-g2e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-530" y="751"/>
+        </scene>
         <!--Create Counter View Controller-->
         <scene sceneID="5fr-OV-0fP">
             <objects>
-                <viewController storyboardIdentifier="createCounterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eEF-df-CmC" customClass="CreateCounterViewController" customModule="CoolCounter" customModuleProvider="target" sceneMemberID="viewController"/>
+                <viewController storyboardIdentifier="createCounterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eEF-df-CmC" customClass="CreateCounterViewController" customModule="CoolCounter" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Ra0-kH-qVG"/>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZpG-Up-3lY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="993" y="50"/>
+            <point key="canvasLocation" x="299" y="751"/>
+        </scene>
+        <!--Counter Examples View Controller-->
+        <scene sceneID="apz-Iu-Gp2">
+            <objects>
+                <viewController storyboardIdentifier="counterExamplesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gSc-6E-x2r" customClass="CounterExamplesViewController" customModule="CoolCounter" customModuleProvider="target" sceneMemberID="viewController">
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J00-Yo-fmq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1151" y="751"/>
         </scene>
     </scenes>
     <color key="tintColor" name="AccentColor"/>
     <resources>
         <namedColor name="AccentColor">
-            <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="NavBarColor">
             <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="0.94623161764705888" colorSpace="custom" customColorSpace="sRGB"/>

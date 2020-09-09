@@ -10,11 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateCounterViewController" customModule="CoolCounter" customModuleProvider="target">
             <connections>
-                <outlet property="btnCancel" destination="vt5-DF-VeE" id="QcD-Nm-WMN"/>
-                <outlet property="btnSave" destination="Sin-yh-4kt" id="Ui2-PY-ozt"/>
                 <outlet property="lblCaption" destination="e5g-Ty-8bf" id="PUi-4t-eh8"/>
-                <outlet property="navBar" destination="raO-vx-Tso" id="Ygs-wg-rr6"/>
-                <outlet property="navBarTitle" destination="uHY-Z1-a0D" id="Fil-KX-BPQ"/>
                 <outlet property="tfCounterTitle" destination="vRn-dB-TEa" id="Vm1-CG-XKC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewActivityIndicatorContainer" destination="pdX-mt-Pvk" id="x6J-sO-yc1"/>
@@ -28,28 +24,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCs-Pq-3tO">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
-                        <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="raO-vx-Tso">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                            <color key="backgroundColor" name="GrayLightColor"/>
-                            <color key="tintColor" name="AccentColor"/>
-                            <color key="barTintColor" name="GrayLightColor"/>
-                            <items>
-                                <navigationItem title="Create a counter" id="uHY-Z1-a0D">
-                                    <barButtonItem key="leftBarButtonItem" title="Cancel" id="vt5-DF-VeE">
-                                        <connections>
-                                            <action selector="didTapCancel:" destination="-1" id="qwd-Fo-rWP"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem key="rightBarButtonItem" enabled="NO" title="Save" id="Sin-yh-4kt">
-                                        <connections>
-                                            <action selector="didTapSave:" destination="-1" id="zRn-ef-rt9"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cups of coffee" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vRn-dB-TEa">
-                            <rect key="frame" x="12" y="69" width="390" height="55"/>
+                            <rect key="frame" x="12" y="25" width="390" height="55"/>
                             <color key="backgroundColor" name="WhitePearlColor"/>
                             <color key="tintColor" name="AccentColor"/>
                             <constraints>
@@ -59,7 +35,7 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textField>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pdX-mt-Pvk" userLabel="viewActivityIndicatorContainer">
-                            <rect key="frame" x="339" y="69" width="55" height="55"/>
+                            <rect key="frame" x="339" y="25" width="55" height="55"/>
                             <subviews>
                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="OCb-Cs-s92">
                                     <rect key="frame" x="27" y="17.5" width="20" height="20"/>
@@ -72,25 +48,28 @@
                                 <constraint firstAttribute="width" constant="55" id="xN5-pF-eZw"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give it a name. Creative block? See examples" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5g-Ty-8bf">
-                            <rect key="frame" x="24" y="137" width="366" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" name="SilverDarkColor"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5g-Ty-8bf">
+                            <rect key="frame" x="24" y="93" width="309.5" height="18"/>
+                            <attributedString key="attributedText">
+                                <fragment content="Give it a name. Creative block? See examples">
+                                    <attributes>
+                                        <color key="NSColor" name="SilverDarkColor"/>
+                                        <font key="NSFont" metaFont="system" size="15"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" name="GrayLightColor"/>
                     <constraints>
-                        <constraint firstItem="raO-vx-Tso" firstAttribute="top" secondItem="ZCs-Pq-3tO" secondAttribute="top" id="4rx-tG-NOd"/>
                         <constraint firstItem="e5g-Ty-8bf" firstAttribute="leading" secondItem="vRn-dB-TEa" secondAttribute="leading" constant="12" id="5Q4-y2-vPj"/>
                         <constraint firstItem="e5g-Ty-8bf" firstAttribute="top" secondItem="vRn-dB-TEa" secondAttribute="bottom" constant="13" id="7eq-0R-85t"/>
                         <constraint firstItem="pdX-mt-Pvk" firstAttribute="centerY" secondItem="vRn-dB-TEa" secondAttribute="centerY" id="96i-eY-XpK"/>
                         <constraint firstItem="pdX-mt-Pvk" firstAttribute="trailing" secondItem="vRn-dB-TEa" secondAttribute="trailing" constant="-8" id="DfR-OP-k1K"/>
-                        <constraint firstItem="e5g-Ty-8bf" firstAttribute="trailing" secondItem="vRn-dB-TEa" secondAttribute="trailing" constant="-12" id="FQ6-zn-TWb"/>
-                        <constraint firstItem="raO-vx-Tso" firstAttribute="leading" secondItem="ZCs-Pq-3tO" secondAttribute="leading" id="HeP-5e-BT7"/>
-                        <constraint firstAttribute="trailing" secondItem="raO-vx-Tso" secondAttribute="trailing" id="L01-eR-lLQ"/>
+                        <constraint firstItem="e5g-Ty-8bf" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="vRn-dB-TEa" secondAttribute="trailing" constant="-12" id="FQ6-zn-TWb"/>
+                        <constraint firstItem="vRn-dB-TEa" firstAttribute="top" secondItem="ZCs-Pq-3tO" secondAttribute="top" constant="25" id="VVj-mX-Bwn"/>
                         <constraint firstItem="vRn-dB-TEa" firstAttribute="leading" secondItem="ZCs-Pq-3tO" secondAttribute="leading" constant="12" id="eKw-47-mg3"/>
-                        <constraint firstItem="vRn-dB-TEa" firstAttribute="top" secondItem="raO-vx-Tso" secondAttribute="bottom" constant="25" id="gmr-aL-gju"/>
                         <constraint firstAttribute="trailing" secondItem="vRn-dB-TEa" secondAttribute="trailing" constant="12" id="zKi-ZZ-kO5"/>
                     </constraints>
                 </view>
@@ -108,7 +87,7 @@
     </objects>
     <resources>
         <namedColor name="AccentColor">
-            <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="GrayLightColor">
             <color red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

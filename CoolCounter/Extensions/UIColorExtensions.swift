@@ -14,6 +14,7 @@ enum AppColor {
     case grayLight
     case whitePearl
     case accent
+    case navBar
 }
 
 extension UIColor {
@@ -29,6 +30,8 @@ extension UIColor {
             self.init(named: "WhitePearlColor")!
         case .accent:
             self.init(named: "AccentColor")!
+        case .navBar:
+            self.init(named: "NavBarColor")!
         }
     }
 }

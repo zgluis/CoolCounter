@@ -39,6 +39,11 @@
 		28C144C72507C17C00E3BABB /* UIVIewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144C62507C17C00E3BABB /* UIVIewExtensions.swift */; };
 		28C144C92507C34E00E3BABB /* CreateCounterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144C82507C34E00E3BABB /* CreateCounterViewModel.swift */; };
 		28C144CD2507E1B400E3BABB /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144CC2507E1B400E3BABB /* UITapGestureRecognizer.swift */; };
+		28C144D12509041700E3BABB /* CounterExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144CF2509041700E3BABB /* CounterExamplesViewController.swift */; };
+		28C144D22509041700E3BABB /* CounterExamplesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28C144D02509041700E3BABB /* CounterExamplesViewController.xib */; };
+		28C144D42509043600E3BABB /* CounterExamplesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144D32509043600E3BABB /* CounterExamplesViewModel.swift */; };
+		28C144D7250914AC00E3BABB /* CounterExampleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C144D6250914AC00E3BABB /* CounterExampleItem.swift */; };
+		28C144D9250914F700E3BABB /* CounterExampleItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28C144D8250914F700E3BABB /* CounterExampleItem.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +102,11 @@
 		28C144C62507C17C00E3BABB /* UIVIewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewExtensions.swift; sourceTree = "<group>"; };
 		28C144C82507C34E00E3BABB /* CreateCounterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCounterViewModel.swift; sourceTree = "<group>"; };
 		28C144CC2507E1B400E3BABB /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
+		28C144CF2509041700E3BABB /* CounterExamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterExamplesViewController.swift; sourceTree = "<group>"; };
+		28C144D02509041700E3BABB /* CounterExamplesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CounterExamplesViewController.xib; sourceTree = "<group>"; };
+		28C144D32509043600E3BABB /* CounterExamplesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterExamplesViewModel.swift; sourceTree = "<group>"; };
+		28C144D6250914AC00E3BABB /* CounterExampleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterExampleItem.swift; sourceTree = "<group>"; };
+		28C144D8250914F700E3BABB /* CounterExampleItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CounterExampleItem.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				287A9B55250579B200326890 /* CounterCell */,
+				28C144CE2509034B00E3BABB /* CounterExamples */,
 				28B5F44225041F2D0031B8FB /* CreateCounter */,
 				28B5F43D250418120031B8FB /* Home */,
 				28B5F45A250562120031B8FB /* UIText.swift */,
@@ -278,6 +289,26 @@
 				28B5F456250559510031B8FB /* CounterInteractor.swift */,
 			);
 			path = Interactor;
+			sourceTree = "<group>";
+		};
+		28C144CE2509034B00E3BABB /* CounterExamples */ = {
+			isa = PBXGroup;
+			children = (
+				28C144D52509147400E3BABB /* CounterExampleItem */,
+				28C144CF2509041700E3BABB /* CounterExamplesViewController.swift */,
+				28C144D02509041700E3BABB /* CounterExamplesViewController.xib */,
+				28C144D32509043600E3BABB /* CounterExamplesViewModel.swift */,
+			);
+			path = CounterExamples;
+			sourceTree = "<group>";
+		};
+		28C144D52509147400E3BABB /* CounterExampleItem */ = {
+			isa = PBXGroup;
+			children = (
+				28C144D6250914AC00E3BABB /* CounterExampleItem.swift */,
+				28C144D8250914F700E3BABB /* CounterExampleItem.xib */,
+			);
+			path = CounterExampleItem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,7 +420,9 @@
 				28861DD32503E374003F0B88 /* LaunchScreen.storyboard in Resources */,
 				28861DD02503E374003F0B88 /* Assets.xcassets in Resources */,
 				28C144C12506DD0A00E3BABB /* CreateCounterViewController.xib in Resources */,
+				28C144D22509041700E3BABB /* CounterExamplesViewController.xib in Resources */,
 				28B5F42C250401760031B8FB /* README.md in Resources */,
+				28C144D9250914F700E3BABB /* CounterExampleItem.xib in Resources */,
 				28861DCB2503E372003F0B88 /* Main.storyboard in Resources */,
 				28B5F44C25041FB20031B8FB /* HomeViewController.xib in Resources */,
 				28B5F42A2504016F0031B8FB /* CHANGELOG.md in Resources */,
@@ -444,6 +477,7 @@
 				28C144C72507C17C00E3BABB /* UIVIewExtensions.swift in Sources */,
 				2805389A2505D8E300994904 /* UIFontExtensions.swift in Sources */,
 				28C144C92507C34E00E3BABB /* CreateCounterViewModel.swift in Sources */,
+				28C144D7250914AC00E3BABB /* CounterExampleItem.swift in Sources */,
 				28C144C32506F77400E3BABB /* UITextFieldExtensions.swift in Sources */,
 				287A9B602505838D00326890 /* CounterCellView.swift in Sources */,
 				28B5F42F250401F70031B8FB /* Config.swift in Sources */,
@@ -457,6 +491,8 @@
 				28B5F45925055C8C0031B8FB /* AppModel.swift in Sources */,
 				28B5F452250421720031B8FB /* RequestHandler.swift in Sources */,
 				28861DC62503E372003F0B88 /* SceneDelegate.swift in Sources */,
+				28C144D12509041700E3BABB /* CounterExamplesViewController.swift in Sources */,
+				28C144D42509043600E3BABB /* CounterExamplesViewModel.swift in Sources */,
 				28B5F44B25041FB20031B8FB /* HomeViewController.swift in Sources */,
 				28C144C52507106600E3BABB /* UINavigationControllerExtensions.swift in Sources */,
 				2805389C2505E02500994904 /* UIColorExtensions.swift in Sources */,

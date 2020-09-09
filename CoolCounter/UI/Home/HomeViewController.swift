@@ -89,7 +89,10 @@ class HomeViewController: UIViewController {
     @objc func didTapAdd() {        
         if let createCounterVC = self.storyboard?
             .instantiateViewController(withIdentifier: "createCounterViewController") as? CreateCounterViewController {
-            self.present(createCounterVC, animated: true, completion: nil)
+            let navController = UINavigationController(rootViewController: createCounterVC)
+            navController.view.backgroundColor = UIColor(appColor: .navBar)
+            navController.view.tintColor = UIColor(appColor: .accent)
+            self.present(navController, animated: true, completion: nil)
         }
     }
     

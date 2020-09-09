@@ -28,7 +28,6 @@ class HomeViewModel {
             guard let self = self else { return }
             switch result {
             case .success(let counters):
-                print("Counters: \(counters)")
                 self.counters = counters
             case .failure(let error):
                 print("Error: \(error)")

@@ -11,10 +11,7 @@ import UIKit
 class CreateCounterViewController: UIViewController {
     
     private var viewModel: CreateCounterViewModel!
-    @IBOutlet weak var navBar: UINavigationBar!
-    @IBOutlet weak var navBarTitle: UINavigationItem!
-    @IBOutlet weak var btnSave: UIBarButtonItem!
-    @IBOutlet weak var btnCancel: UIBarButtonItem!
+    
     @IBOutlet weak var viewActivityIndicatorContainer: UIView! {
         didSet {
             viewActivityIndicatorContainer.applyHorizontalGradient(colours:
@@ -49,6 +46,7 @@ class CreateCounterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
         
         viewModel = CreateCounterViewModel()
         viewModel.createCounterSucceeded = { [weak self] success in
@@ -87,13 +85,36 @@ class CreateCounterViewController: UIViewController {
         
     }
     
+    private func setupNavigationBar() {
+        self.navigationItem.title = UIText.createCounterNavTitle
+        //Buttons
+        let cancelBtn = UIBarButtonItem(title: UIText.btnCancel, style: .plain, target: self, action: #selector(didTapCancel(_:)))
+        self.navigationItem.leftBarButtonItem = cancelBtn
+
+        let saveBtn = UIBarButtonItem(title: UIText.btnSave, style: .plain, target: self, action: #selector(didTapSave(_:)))
+        saveBtn.isEnabled = false
+        self.navigationItem.rightBarButtonItem = saveBtn
+    }
+    
     @objc private func textFieldTitleDidChange() {
-        btnSave.isEnabled = tfCounterTitle.text?.count ?? 0 > 0
+        navigationItem.rightBarButtonItem?.isEnabled = tfCounterTitle.text?.count ?? 0 > 0
     }
     
     @objc private func didTapCaption(_ gesture: UITapGestureRecognizer) {
-        if gesture.didTapAttributedTextInLabel(label: lblCaption, inRange: NSRange(location: 36, length: 8)) {
-            print("example tapped")
+        //TODO: fix; underline text is not tappable in landscape mode
+        /*if gesture.didTapAttributedTextInLabel(label: lblCaption, inRange: NSRange(location: 36, length: 8)) {
+            navToExamples()
+        }*/
+         navToExamples()
+    }
+    
+    func navToExamples() {
+        if let counterExamplesVC = self.storyboard?
+            .instantiateViewController(withIdentifier: "counterExamplesViewController") as? CounterExamplesViewController {
+            if let navigator = navigationController {
+                counterExamplesVC.delegate = self
+                navigator.pushViewController(counterExamplesVC, animated: true)
+            }
         }
     }
     
@@ -105,11 +126,18 @@ class CreateCounterViewController: UIViewController {
     
     private func enableForm(_ enable: Bool) {
         tfCounterTitle.isEnabled = enable
-        btnSave.isEnabled = enable
+        navigationItem.rightBarButtonItem?.isEnabled = enable
     }
     
     @IBAction func didTapCancel(_ sender: Any) {
         dismiss(animated: true)
     }
     
+}
+
+extension CreateCounterViewController: CounterExamplesViewDelegate {
+    func userSelectedExample(title: String) {
+        self.tfCounterTitle.text = title
+        self.textFieldTitleDidChange()
+    }
 }

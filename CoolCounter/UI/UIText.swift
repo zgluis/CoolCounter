@@ -24,9 +24,14 @@ struct UIText {
                             Sed faucibus porttitor placerat. Mauris nec mauris ullamcorper, sodales mauris \
                             non, ultricies augue. Maecenas eu diam quis velit efficitur eleifend.
                             """
+    static let createCounterNavTitle = "Create a counter"
     static let createCounterCaption = "Give it a name. Creative block? See examples."
+    
+    static let counterExamplesNavTitle = "Examples"
     
     static let errorCreateCounterFailedTitle = "Couln't create the counter"
     static let errorNetwork = "The Internet connection appears to be offline."
     static let btnDismiss = "Dismiss"
+    static let btnCancel = "Cancel"
+    static let btnSave = "Save"
 }
