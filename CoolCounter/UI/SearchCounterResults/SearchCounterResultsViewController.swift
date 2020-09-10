@@ -20,7 +20,7 @@ class SearchCounterResultsViewController: UIViewController {
     private var viewState: SearchCounterResultsViewState = .noContent
     @IBOutlet weak var tvResults: UITableView!
     @IBOutlet weak var lblNoResult: UILabel!
-    
+    @IBOutlet weak var constraintCenterYLblNoResult: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +46,25 @@ class SearchCounterResultsViewController: UIViewController {
         
         updateViewState(state: .noContent)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardDidShow),
+                                               name: UIResponder.keyboardDidShowNotification,
+                                               object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
+    }
+    private var updated = false
+    @objc fileprivate func keyboardDidShow(notification: NSNotification) {
+        if let keyboardRectValue = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            //TODO: animate, specially on device rotation
+            self.constraintCenterYLblNoResult.constant = (keyboardRectValue.height / 2) * -1
+        }
+    }
+    
     func updateViewState(state: SearchCounterResultsViewState) {
         switch state {
         case .hasContent:

@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchCounterResultsViewController" customModule="CoolCounter" customModuleProvider="target">
             <connections>
+                <outlet property="constraintCenterYLblNoResult" destination="OzS-bm-Zak" id="YOz-5T-UVS"/>
                 <outlet property="lblNoResult" destination="vj9-ab-67c" id="EyD-FT-pPz"/>
                 <outlet property="tvResults" destination="rJo-xy-WSu" id="oVA-Yf-WkW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
