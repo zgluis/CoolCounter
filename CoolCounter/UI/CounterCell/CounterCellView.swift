@@ -42,11 +42,7 @@ class CounterCellView: UITableViewCell {
     }
     
     func setCountColor(countValue: Int) {
-        if countValue == 0 {
-            lblCount.textColor = UIColor(appColor: .silver)
-        } else if countValue == 1 {
-            lblCount.textColor = UIColor(appColor: .accent)
-        }
+        lblCount.textColor = countValue == 0 ? UIColor(appColor: .silver) : UIColor(appColor: .accent)
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
