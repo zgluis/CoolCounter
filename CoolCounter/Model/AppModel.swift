@@ -14,14 +14,23 @@ protocol AppRequest {
     func toParameters() -> [String: Any]
 }
 
+enum AppErrorId {
+    case standard
+    case noData
+    case network
+}
+
 struct AppError: Error {
+    
+    let id: AppErrorId
     /// User frendly message
     private let message: String
     var localizedDescription: String {
         return message
     }
 
-    init(message: String) {
+    init(id: AppErrorId = .standard, message: String) {
+        self.id = id
         self.message = message
     }
 }

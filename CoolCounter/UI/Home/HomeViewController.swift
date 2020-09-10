@@ -8,6 +8,14 @@
 
 import UIKit
 
+enum HomeViewState {
+    case loading
+    case hasContent
+    case noContent
+    case error
+    case refreshing
+}
+
 class HomeViewController: UIViewController {
     
     private var viewModel: HomeViewModel!
@@ -18,19 +26,29 @@ class HomeViewController: UIViewController {
         return searchController
     }()
     private var refreshControl: UIRefreshControl?
+    private var viewState: HomeViewState = .loading
+    
     @IBOutlet weak var tvCounters: UITableView!
     @IBOutlet weak var lblCountersDetail: UILabel!
     @IBOutlet weak var btnAddToolbar: UIBarButtonItem!
-    
+    @IBOutlet weak var aiFetch: UIActivityIndicatorView!
+    @IBOutlet weak var viewInsetMessage: InsetMessageView!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.viewModel = HomeViewModel()
-        self.viewModel.bindCounters = {
+        self.viewModel.bindCounters = { [weak self] in
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                self.refreshControl?.endRefreshing()
-                self.tvCounters.reloadData()
-                self.reloadCountersDetail()
+                self.updateViewState(state: .hasContent)
+            }
+        }
+        
+        self.viewModel.bindFetchCountersError = { [weak self] in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.updateViewState(state: .error)
             }
         }
         
@@ -49,12 +67,13 @@ class HomeViewController: UIViewController {
             #selector(handleRefresh),
                                  for: UIControl.Event.valueChanged)
         tvCounters.refreshControl = refreshControl
+        fetchCounters()
     }
     
     private func setupNavigationBar() {
         //TODO: Change statusBar color, fix; status bar is overlapping navigation bar
         //navigationController?.setStatusBarColor(UIColor(appColor: .grayLight))
-        self.navigationItem.title = UIText.loremShort
+        self.navigationItem.title = UIText.homeNavTitle
         
         //Buttons
         self.editButtonItem.action = #selector(didTapEdit)
@@ -64,19 +83,62 @@ class HomeViewController: UIViewController {
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
-
+        
         navigationItem.searchController = searchController
     }
     
-    @objc func handleRefresh() {
+    func fetchCounters(isRefresh: Bool = false) {
+        updateViewState(state: isRefresh ? .refreshing : .loading)
         viewModel.fetchCounters()
     }
     
+    func updateViewState(state: HomeViewState) {
+        switch state {
+        case .loading:
+            tvCounters.isHidden = true
+            viewInsetMessage.isHidden = true
+            aiFetch.isHidden = false
+            aiFetch.startAnimating()
+        case .hasContent:
+            tvCounters.isHidden = false
+            viewInsetMessage.isHidden = true
+            aiFetch.stopAnimating()
+            refreshControl?.endRefreshing()
+            tvCounters.reloadData()
+            reloadCountersDetail()
+        case .noContent, .error:
+            setMessage()
+            tvCounters.isHidden = true
+            viewInsetMessage.isHidden = false
+            aiFetch.stopAnimating()
+            refreshControl?.endRefreshing()
+            tvCounters.reloadData()
+            reloadCountersDetail()
+        case .refreshing:
+            break
+        }
+    }
+    
+    func setMessage() {
+        if let appError = self.viewModel.fetchError {
+            if appError.id == .noData {
+                self.viewInsetMessage.setUpView(insetMessage: .emptyCounters, delegate: self)
+            } else {
+                self.viewInsetMessage.setUpView(insetMessage: .error, delegate: self)
+            }
+        }
+    }
+    
+    @objc func handleRefresh() {
+        fetchCounters(isRefresh: true)
+    }
+    
     func reloadCountersDetail() {
-        if viewModel.counters?.count ?? 0 > 0 {
+        if viewModel.counters?.count ?? 0 > 0  && viewModel.fetchError == nil {
             lblCountersDetail.isHidden = false
-            let counted = viewModel.counters.reduce(0) { $0 + $1.count}
-            lblCountersDetail.text = "\(viewModel.counters.count) items ᛫ Counted \(counted) times"
+            if let counted = viewModel.counters?.reduce(0, { $0 + $1.count}) {
+                lblCountersDetail.text = "\(viewModel.counters!.count) items ᛫ Counted \(counted) times"
+            }
         } else {
             lblCountersDetail.isHidden = true
         }
@@ -109,13 +171,27 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         if cell == nil {
             cell = CounterCellView.createCell()
         }
-        cell?.setData(counter: viewModel.counters[indexPath.row])
+        
+        if let counter = viewModel.counters?[indexPath.row] {
+            cell?.setData(counter: counter)
+        }
+        
         return cell ?? UITableViewCell()
     }
 }
 
 extension HomeViewController: UISearchResultsUpdating {
-  func updateSearchResults(for searchController: UISearchController) {
-    // TODO
-  }
+    func updateSearchResults(for searchController: UISearchController) {
+        // TODO
+    }
+}
+
+extension HomeViewController: InsetMessageDelegate {
+    func didTapActionButton() {
+        if viewModel.fetchError?.id == .noData {
+            didTapAdd()
+        } else {
+            fetchCounters()
+        }
+    }
 }

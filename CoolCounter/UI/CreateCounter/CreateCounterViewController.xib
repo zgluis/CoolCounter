@@ -76,10 +76,10 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="ZCs-Pq-3tO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="1cl-rh-YEr"/>
+                <constraint firstItem="ZCs-Pq-3tO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1cl-rh-YEr"/>
                 <constraint firstItem="ZCs-Pq-3tO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="EX1-30-GCP"/>
                 <constraint firstItem="ZCs-Pq-3tO" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="fnK-lR-rd1"/>
-                <constraint firstItem="ZCs-Pq-3tO" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="y8a-Fa-eQp"/>
+                <constraint firstItem="ZCs-Pq-3tO" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="y8a-Fa-eQp"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="140.57971014492756" y="98.4375"/>

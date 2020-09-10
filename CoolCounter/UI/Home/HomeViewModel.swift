@@ -12,15 +12,21 @@ class HomeViewModel {
     private var counterInteractor: CounterBusinessLogic?
     
     var bindCounters: (() -> Void) = {}
-    private(set) var counters: [CounterModel.Counter]! {
+    private(set) var counters: [CounterModel.Counter]? {
         didSet {
             self.bindCounters()
         }
     }
     
+    var bindFetchCountersError: (() -> Void) = {}
+    private(set) var fetchError: AppError? {
+        didSet {
+            self.bindFetchCountersError()
+        }
+    }
+    
     init() {
         counterInteractor = CounterInteractor()
-        fetchCounters()
     }
     
     func fetchCounters() {
@@ -28,9 +34,14 @@ class HomeViewModel {
             guard let self = self else { return }
             switch result {
             case .success(let counters):
-                self.counters = counters
+                if counters.count == 0 {
+                    self.fetchError = AppError(id: .noData, message: "")
+                } else {
+                    self.fetchError = nil
+                    self.counters = counters
+                }
             case .failure(let error):
-                print("Error: \(error)")
+                self.fetchError = error
             }
         }
     }

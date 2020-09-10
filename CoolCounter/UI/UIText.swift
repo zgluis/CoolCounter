@@ -24,6 +24,8 @@ struct UIText {
                             Sed faucibus porttitor placerat. Mauris nec mauris ullamcorper, sodales mauris \
                             non, ultricies augue. Maecenas eu diam quis velit efficitur eleifend.
                             """
+    
+    static let homeNavTitle = "Counters"
     static let createCounterNavTitle = "Create a counter"
     static let createCounterCaption = "Give it a name. Creative block? See examples."
     
@@ -34,4 +36,12 @@ struct UIText {
     static let btnDismiss = "Dismiss"
     static let btnCancel = "Cancel"
     static let btnSave = "Save"
+    
+    static let messageEmptyCountersTitle = "No counters yet"
+    static let messageEmptyCountersSubtitle = "\"When I started counting my blessings, my whole life turned around.\" —Willie Nelson"
+    static let messageEmptyCountersButton = "Create a counter"
+    
+    static let messageErrorCountersTitle = "Couldn't load the counters"
+    static let messageErrorCountersSubtitle = "The internet connection appears to be offline"
+    static let messageErrorCountersButton = "Retry"
 }

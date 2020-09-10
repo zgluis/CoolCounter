@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -18,11 +18,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select an example to add it yo your counters." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAk-Gw-PRm">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+                    <rect key="frame" x="0.0" y="0.0" width="896" height="51"/>
                     <color key="backgroundColor" name="GrayUltraLightColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="51" id="yng-1n-E02"/>
@@ -32,29 +32,29 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qm4-7A-Loz" userLabel="viewBorderLine">
-                    <rect key="frame" x="0.0" y="49" width="414" height="2"/>
+                    <rect key="frame" x="0.0" y="49" width="896" height="2"/>
                     <color key="backgroundColor" name="SilverColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="2" id="CrY-F1-afD"/>
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7p-Ks-oXT">
-                    <rect key="frame" x="0.0" y="51" width="414" height="685"/>
+                    <rect key="frame" x="44" y="51" width="808" height="342"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yMn-NE-rDe" userLabel="contentView">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="375"/>
+                            <rect key="frame" x="0.0" y="0.0" width="808" height="375"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DRINKS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JzG-z0-Fmi">
-                                    <rect key="frame" x="22.999999999999996" y="32" width="47.666666666666657" height="16"/>
+                                    <rect key="frame" x="23" y="32" width="47.5" height="16"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" name="CarbonColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ML-mU-E04" userLabel="scrollViewDrinks">
-                                    <rect key="frame" x="0.0" y="58" width="414" height="55"/>
+                                    <rect key="frame" x="0.0" y="58" width="808" height="55"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="GuU-sx-AVf">
-                                            <rect key="frame" x="16" y="0.0" width="414" height="55"/>
+                                            <rect key="frame" x="16" y="0.0" width="808" height="55"/>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -74,10 +74,10 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsn-5z-y5T" userLabel="scrollViewFood">
-                                    <rect key="frame" x="0.0" y="173" width="414" height="55"/>
+                                    <rect key="frame" x="0.0" y="173" width="808" height="55"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nJW-hP-mSN">
-                                            <rect key="frame" x="16" y="0.0" width="414" height="55"/>
+                                            <rect key="frame" x="16" y="0.0" width="808" height="55"/>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -97,10 +97,10 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbf-PV-JAQ" userLabel="scrollViewMisc">
-                                    <rect key="frame" x="0.0" y="288" width="414" height="55"/>
+                                    <rect key="frame" x="0.0" y="288" width="808" height="55"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BBa-D8-Hjw">
-                                            <rect key="frame" x="16" y="0.0" width="414" height="55"/>
+                                            <rect key="frame" x="16" y="0.0" width="808" height="55"/>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -146,16 +146,16 @@
             </subviews>
             <color key="backgroundColor" name="GrayLightColor"/>
             <constraints>
-                <constraint firstItem="R7p-Ks-oXT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="53l-Zd-sV6"/>
+                <constraint firstItem="R7p-Ks-oXT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="53l-Zd-sV6"/>
                 <constraint firstItem="R7p-Ks-oXT" firstAttribute="top" secondItem="Qm4-7A-Loz" secondAttribute="bottom" id="8sY-RQ-L7z"/>
                 <constraint firstItem="XAk-Gw-PRm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="F6i-LI-c4T"/>
-                <constraint firstAttribute="trailing" secondItem="R7p-Ks-oXT" secondAttribute="trailing" id="FMd-ri-36e"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="R7p-Ks-oXT" secondAttribute="trailing" id="FMd-ri-36e"/>
                 <constraint firstItem="Qm4-7A-Loz" firstAttribute="bottom" secondItem="XAk-Gw-PRm" secondAttribute="bottom" id="Gg1-S5-X4k"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XAk-Gw-PRm" secondAttribute="trailing" id="Miy-LM-aIo"/>
+                <constraint firstAttribute="trailing" secondItem="XAk-Gw-PRm" secondAttribute="trailing" id="Miy-LM-aIo"/>
                 <constraint firstItem="Qm4-7A-Loz" firstAttribute="leading" secondItem="XAk-Gw-PRm" secondAttribute="leading" id="NtQ-50-qzo"/>
                 <constraint firstItem="Qm4-7A-Loz" firstAttribute="trailing" secondItem="XAk-Gw-PRm" secondAttribute="trailing" id="eKs-pl-sbn"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="R7p-Ks-oXT" secondAttribute="bottom" id="emf-Kl-vDG"/>
-                <constraint firstItem="XAk-Gw-PRm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vNw-QM-JSR"/>
+                <constraint firstItem="XAk-Gw-PRm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vNw-QM-JSR"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="138.75" y="142.5"/>
