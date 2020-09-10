@@ -29,7 +29,7 @@ struct AppError: Error {
         return message
     }
 
-    init(id: AppErrorId = .standard, message: String) {
+    init(id: AppErrorId = .standard, message: String = UIText.errorStandard) {
         self.id = id
         self.message = message
     }

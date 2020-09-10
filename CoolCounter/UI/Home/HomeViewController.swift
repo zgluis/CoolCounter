@@ -19,12 +19,16 @@ enum HomeViewState {
 class HomeViewController: UIViewController {
     
     private var viewModel: HomeViewModel!
-    //TODO: Pass viewController
+    private lazy var searchViewController = SearchCounterResultsViewController()
     private lazy var searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
+        let searchController = UISearchController(searchResultsController: searchViewController)
+        searchController.searchResultsUpdater = searchViewController
+        definesPresentationContext = true
         return searchController
     }()
+    private var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
     private var refreshControl: UIRefreshControl?
     private var viewState: HomeViewState = .loading
     
@@ -177,12 +181,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         return cell ?? UITableViewCell()
-    }
-}
-
-extension HomeViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        // TODO
     }
 }
 

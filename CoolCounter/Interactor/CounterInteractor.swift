@@ -14,11 +14,12 @@ protocol CounterBusinessLogic {
     func decrementCount(counterId: String, _ completion: @escaping (Result<Void, AppError>) -> Void)
     func deleteCounter(counterId: String, _ completion: @escaping (Result<Void, AppError>) -> Void)
     func createCounter(title: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void)
+    func searchCounter(term: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void)
 }
 
 class CounterInteractor: CounterBusinessLogic {
     
-    var counterWorker = CounterWorker()
+    private var counterWorker = CounterWorker()
     
     func fetchCounters(_ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void) {
         counterWorker.getRemoteCounters { result in
@@ -73,6 +74,10 @@ class CounterInteractor: CounterBusinessLogic {
                 completion(.failure(AppError(message: UIText.errorNetwork)))
             }
         }
+    }
+    
+    func searchCounter(term: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void) {
+        completion(.success([CounterModel.Counter(id: "123", title: "Prueba", count: 1)]))
     }
     
 }

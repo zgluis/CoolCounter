@@ -44,4 +44,6 @@ struct UIText {
     static let messageErrorCountersTitle = "Couldn't load the counters"
     static let messageErrorCountersSubtitle = "The internet connection appears to be offline"
     static let messageErrorCountersButton = "Retry"
+    
+    static let errorStandard = "¡Ups! Something went wrong"
 }
