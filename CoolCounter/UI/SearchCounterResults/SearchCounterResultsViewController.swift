@@ -16,7 +16,7 @@ enum SearchCounterResultsViewState {
 
 class SearchCounterResultsViewController: UIViewController {
 
-    private var viewModel: SearchCounterResultsViewModel?
+    var viewModel: SearchCounterResultsViewModel = SearchCounterResultsViewModel()
     private var viewState: SearchCounterResultsViewState = .noContent
     @IBOutlet weak var tvResults: UITableView!
     @IBOutlet weak var lblNoResult: UILabel!
@@ -24,15 +24,14 @@ class SearchCounterResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = SearchCounterResultsViewModel()
-        viewModel?.bindFilteredCounters = { [weak self] in
+        viewModel.bindFilteredCounters = { [weak self] in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.updateViewState(state: .hasContent)
             }
         }
         
-        viewModel?.bindSearchError = { [weak self] in
+        viewModel.bindSearchError = { [weak self] in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.updateViewState(state: .noResult)
@@ -82,13 +81,13 @@ class SearchCounterResultsViewController: UIViewController {
 
 extension SearchCounterResultsViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        viewModel?.search(term: searchController.searchBar.text!)
+        viewModel.search(term: searchController.searchBar.text!)
     }
 }
 
 extension SearchCounterResultsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.filteredCounters.count ?? 0
+        return viewModel.filteredCounters.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,9 +97,8 @@ extension SearchCounterResultsViewController: UITableViewDataSource, UITableView
             cell = CounterCellView.createCell()
         }
         
-        if let counter = viewModel?.filteredCounters[indexPath.row] {
-            cell?.setData(counter: counter)
-        }
+        let counter = viewModel.filteredCounters[indexPath.row]
+        cell?.setData(counter: counter, interactor: viewModel.counterInteractor)
         
         return cell ?? UITableViewCell()
     }

@@ -9,7 +9,7 @@
 import Foundation
 
 class CreateCounterViewModel {
-    private lazy var counterInteractor: CounterBusinessLogic = CounterInteractor()
+    var counterInteractor: CounterBusinessLogic?
     
     var isLoadingChanged: ((Bool) -> Void)?
     private(set) var isLoading = false {
@@ -22,7 +22,7 @@ class CreateCounterViewModel {
     
     func createCounter(title: String) {
         isLoading = true
-        counterInteractor.createCounter(title: title) { [weak self] result in
+        counterInteractor?.createCounter(title: title) { [weak self] result in
             guard let self = self else { return }
             self.isLoading = false
             switch result {

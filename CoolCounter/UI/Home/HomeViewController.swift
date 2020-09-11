@@ -19,15 +19,10 @@ enum HomeViewState {
 class HomeViewController: UIViewController {
     
     private var viewModel: HomeViewModel!
-    private lazy var searchViewController = SearchCounterResultsViewController()
-    private lazy var searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: searchViewController)
-        searchController.searchResultsUpdater = searchViewController
-        definesPresentationContext = true
-        return searchController
-    }()
+    private var searchViewController: SearchCounterResultsViewController?
+    private var searchController: UISearchController?
     private var isSearchBarEmpty: Bool {
-      return searchController.searchBar.text?.isEmpty ?? true
+      return searchController?.searchBar.text?.isEmpty ?? true
     }
     private var refreshControl: UIRefreshControl?
     private var viewState: HomeViewState = .loading
@@ -56,8 +51,6 @@ class HomeViewController: UIViewController {
             }
         }
         
-        setupNavigationBar()
-        
         //Table View
         self.tvCounters.register(UINib.init(nibName: "CounterCellView", bundle: nil), forCellReuseIdentifier: "counterCell")
         self.tvCounters.delegate = self
@@ -72,6 +65,16 @@ class HomeViewController: UIViewController {
                                  for: UIControl.Event.valueChanged)
         tvCounters.refreshControl = refreshControl
         fetchCounters()
+        
+        //Search
+        searchViewController = SearchCounterResultsViewController()
+        searchViewController?.viewModel.counterInteractor = self.viewModel.counterInteractor
+        
+        searchController = UISearchController(searchResultsController: searchViewController)
+        searchController?.searchResultsUpdater = searchViewController
+        definesPresentationContext = true
+        
+        setupNavigationBar()
     }
     
     private func setupNavigationBar() {
@@ -155,6 +158,7 @@ class HomeViewController: UIViewController {
     @objc func didTapAdd() {        
         if let createCounterVC = self.storyboard?
             .instantiateViewController(withIdentifier: "createCounterViewController") as? CreateCounterViewController {
+            createCounterVC.viewModel.counterInteractor = self.viewModel.counterInteractor
             let navController = UINavigationController(rootViewController: createCounterVC)
             navController.view.backgroundColor = UIColor(appColor: .navBar)
             navController.view.tintColor = UIColor(appColor: .accent)
@@ -177,7 +181,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         if let counter = viewModel.counters?[indexPath.row] {
-            cell?.setData(counter: counter)
+            cell?.setData(counter: counter, interactor: viewModel.counterInteractor)
         }
         
         return cell ?? UITableViewCell()

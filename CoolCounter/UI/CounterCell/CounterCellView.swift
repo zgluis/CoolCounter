@@ -33,8 +33,8 @@ class CounterCellView: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    public func setData(counter: CounterModel.Counter) {
-        self.viewModel = CounterCellViewModel(counter: counter)
+    public func setData(counter: CounterModel.Counter, interactor: CounterBusinessLogic?) {
+        self.viewModel = CounterCellViewModel(counter: counter, interactor: interactor)
         lblTitle.text = counter.title
         lblCount.text = counter.count.description
         stpCount.value = Double(counter.count)

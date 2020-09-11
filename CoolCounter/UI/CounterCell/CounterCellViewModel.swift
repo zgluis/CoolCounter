@@ -10,13 +10,14 @@ import Foundation
 
 class CounterCellViewModel {
     
-    lazy var counterInteractor: CounterBusinessLogic? = CounterInteractor()
+    var counterInteractor: CounterBusinessLogic?
     let counter: CounterModel.Counter
     var stepperValue: Int = 0
     
-    init(counter: CounterModel.Counter) {
+    init(counter: CounterModel.Counter, interactor: CounterBusinessLogic?) {
         self.counter = counter
         self.stepperValue = counter.count
+        self.counterInteractor = interactor
     }
     
     func incrementCount() {

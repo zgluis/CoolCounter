@@ -9,7 +9,7 @@
 import Foundation
 
 class SearchCounterResultsViewModel {
-    lazy private var counterInteractor: CounterBusinessLogic? = CounterInteractor()
+    var counterInteractor: CounterBusinessLogic?
 
     var bindFilteredCounters: (() -> Void) = {}
     private(set) var filteredCounters: [CounterModel.Counter] = [] {
@@ -23,10 +23,6 @@ class SearchCounterResultsViewModel {
         didSet {
             self.bindSearchError()
         }
-    }
-    
-    init() {
-        counterInteractor = CounterInteractor()
     }
     
     func search(term: String) {

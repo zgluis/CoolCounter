@@ -10,7 +10,7 @@ import UIKit
 
 class CreateCounterViewController: UIViewController {
     
-    private var viewModel: CreateCounterViewModel!
+    var viewModel: CreateCounterViewModel = CreateCounterViewModel()
     
     @IBOutlet weak var viewActivityIndicatorContainer: UIView! {
         didSet {
@@ -47,8 +47,6 @@ class CreateCounterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
-        
-        viewModel = CreateCounterViewModel()
         viewModel.createCounterSucceeded = { [weak self] success in
             guard let self = self else { return }
             if success {

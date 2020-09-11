@@ -9,7 +9,7 @@
 import Foundation
 
 class HomeViewModel {
-    private var counterInteractor: CounterBusinessLogic?
+    var counterInteractor: CounterBusinessLogic = CounterInteractor()
     
     var bindCounters: (() -> Void) = {}
     private(set) var counters: [CounterModel.Counter]? {
@@ -25,12 +25,8 @@ class HomeViewModel {
         }
     }
     
-    init() {
-        counterInteractor = CounterInteractor()
-    }
-    
     func fetchCounters() {
-        counterInteractor?.fetchCounters { [weak self] result in
+        counterInteractor.fetchCounters { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let counters):
