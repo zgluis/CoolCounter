@@ -20,7 +20,7 @@ class CounterCellViewModel {
     }
     
     func incrementCount() {
-        counterInteractor?.incrementCount(counterId: counter.id) { result in
+        counterInteractor?.incrementCount(counter: counter) { result in
             switch result {
             case .success :
                 break
@@ -31,7 +31,7 @@ class CounterCellViewModel {
     }
     
     func decrementCount() {
-        counterInteractor?.decrementCount(counterId: counter.id) { result in
+        counterInteractor?.decrementCount(counter: counter) { result in
             switch result {
             case .success :
                 break

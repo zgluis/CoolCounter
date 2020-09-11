@@ -12,6 +12,8 @@
 		28171B8F250A745D00DE88E6 /* SearchCounterResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28171B8D250A745D00DE88E6 /* SearchCounterResultsViewController.swift */; };
 		28171B90250A745D00DE88E6 /* SearchCounterResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28171B8E250A745D00DE88E6 /* SearchCounterResultsViewController.xib */; };
 		28171B92250A7CE800DE88E6 /* SearchCounterResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28171B91250A7CE800DE88E6 /* SearchCounterResultsViewModel.swift */; };
+		28171B94250BE77A00DE88E6 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28171B93250BE77900DE88E6 /* Defaults.swift */; };
+		28171B96250BE7C700DE88E6 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28171B95250BE7C700DE88E6 /* DefaultsKeys.swift */; };
 		287A9B602505838D00326890 /* CounterCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287A9B5E2505838D00326890 /* CounterCellView.swift */; };
 		287A9B612505838D00326890 /* CounterCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 287A9B5F2505838D00326890 /* CounterCellView.xib */; };
 		28861DC42503E372003F0B88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28861DC32503E372003F0B88 /* AppDelegate.swift */; };
@@ -74,6 +76,8 @@
 		28171B8D250A745D00DE88E6 /* SearchCounterResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCounterResultsViewController.swift; sourceTree = "<group>"; };
 		28171B8E250A745D00DE88E6 /* SearchCounterResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCounterResultsViewController.xib; sourceTree = "<group>"; };
 		28171B91250A7CE800DE88E6 /* SearchCounterResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCounterResultsViewModel.swift; sourceTree = "<group>"; };
+		28171B93250BE77900DE88E6 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		28171B95250BE7C700DE88E6 /* DefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
 		287A9B5E2505838D00326890 /* CounterCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterCellView.swift; sourceTree = "<group>"; };
 		287A9B5F2505838D00326890 /* CounterCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CounterCellView.xib; sourceTree = "<group>"; };
 		28861DC02503E372003F0B88 /* CoolCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoolCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -257,8 +261,8 @@
 			isa = PBXGroup;
 			children = (
 				287A9B55250579B200326890 /* CounterCell */,
-				28C144CE2509034B00E3BABB /* CounterExamples */,
 				28B5F44225041F2D0031B8FB /* CreateCounter */,
+				28C144CE2509034B00E3BABB /* CounterExamples */,
 				28B5F43D250418120031B8FB /* Home */,
 				28C144DA2509739F00E3BABB /* InsetMessage */,
 				28171B88250A73C400DE88E6 /* SearchCounterResults */,
@@ -272,6 +276,7 @@
 			children = (
 				28B5F45825055C8C0031B8FB /* AppModel.swift */,
 				28B5F453250428120031B8FB /* CounterModel.swift */,
+				28171B95250BE7C700DE88E6 /* DefaultsKeys.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 			children = (
 				28B5F44F2504215C0031B8FB /* CounterWorker.swift */,
 				28B5F451250421720031B8FB /* RequestHandler.swift */,
+				28171B93250BE77900DE88E6 /* Defaults.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -529,7 +535,9 @@
 				28861DC62503E372003F0B88 /* SceneDelegate.swift in Sources */,
 				28C144D12509041700E3BABB /* CounterExamplesViewController.swift in Sources */,
 				28C144D42509043600E3BABB /* CounterExamplesViewModel.swift in Sources */,
+				28171B96250BE7C700DE88E6 /* DefaultsKeys.swift in Sources */,
 				28B5F44B25041FB20031B8FB /* HomeViewController.swift in Sources */,
+				28171B94250BE77A00DE88E6 /* Defaults.swift in Sources */,
 				28C144C52507106600E3BABB /* UINavigationControllerExtensions.swift in Sources */,
 				2805389C2505E02500994904 /* UIColorExtensions.swift in Sources */,
 			);

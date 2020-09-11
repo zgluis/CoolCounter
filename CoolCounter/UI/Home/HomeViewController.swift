@@ -99,12 +99,12 @@ class HomeViewController: UIViewController {
     func updateViewState(state: HomeViewState) {
         switch state {
         case .loading:
-            tvCounters.isHidden = true
+            tvCounters.alpha = CGFloat(0)
             viewInsetMessage.isHidden = true
             aiFetch.isHidden = false
             aiFetch.startAnimating()
         case .hasContent:
-            tvCounters.isHidden = false
+            tvCounters.alpha = CGFloat(1)
             viewInsetMessage.isHidden = true
             aiFetch.stopAnimating()
             refreshControl?.endRefreshing()
@@ -112,7 +112,7 @@ class HomeViewController: UIViewController {
             reloadCountersDetail()
         case .noContent, .error:
             setMessage()
-            tvCounters.isHidden = true
+            tvCounters.alpha = CGFloat(0)
             viewInsetMessage.isHidden = false
             aiFetch.stopAnimating()
             refreshControl?.endRefreshing()

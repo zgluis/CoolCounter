@@ -10,6 +10,7 @@ import Foundation
 
 enum CounterModel {
     
+    static let counterEntityName = "Counter"
     // MARK: - General
     struct Counter: Codable {
         let id: String

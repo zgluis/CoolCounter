@@ -18,6 +18,7 @@ enum AppErrorId {
     case standard
     case noData
     case network
+    case coreData
 }
 
 struct AppError: Error {

@@ -60,11 +60,10 @@ class CreateCounterViewController: UIViewController {
         
         viewModel.createCounterError = { [weak self] error in
             guard let self = self else { return }
-            let alert = UIAlertController(title: UIText.errorCreateCounterFailedTitle,
-                                          message: error.localizedDescription,
-                                          preferredStyle: .alert)
-
             DispatchQueue.main.async {
+                let alert = UIAlertController(title: UIText.errorCreateCounterFailedTitle,
+                                              message: error.localizedDescription,
+                                              preferredStyle: .alert)
                 alert.view.tintColor = UIColor(appColor: .accent)
                 alert.addAction(UIAlertAction(title: UIText.btnDismiss, style: .cancel, handler: nil))
                 self.present(alert, animated: true)
