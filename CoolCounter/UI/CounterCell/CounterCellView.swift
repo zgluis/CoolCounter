@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CounterCellViewDelegate: class {
+    func countUpdated(atIndex: Int, newValue: Int)
+}
+
 class CounterCellView: UITableViewCell {
     
     private var viewModel: CounterCellViewModel?
@@ -16,6 +20,12 @@ class CounterCellView: UITableViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var stpCount: UIStepper!
     @IBOutlet weak var viewContainer: UIView!
+    @IBOutlet weak var aiUpdate: UIActivityIndicatorView!
+    @IBOutlet weak var constraintActivityIndicatorWidth: NSLayoutConstraint!
+    
+    weak var delegate: CounterCellViewDelegate?
+    private var backgroundUpdated = false
+    private var indexAt: Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,14 +41,103 @@ class CounterCellView: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        if selected && !backgroundUpdated {
+            let newBackgroundView = UIView()
+            newBackgroundView.backgroundColor = UIColor(appColor: .grayLight)
+            selectedBackgroundView = newBackgroundView
+            backgroundUpdated = true
+        }
     }
     
-    public func setData(counter: CounterModel.Counter, interactor: CounterBusinessLogic?) {
+    @objc func showLoading() {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.5) { [weak self] in
+                self?.aiUpdate.startAnimating()
+                self?.stpCount.isEnabled = false
+                self?.aiUpdate.isHidden = false
+                self?.constraintActivityIndicatorWidth.constant = CGFloat(20)
+                self?.contentView.layoutIfNeeded()
+            }
+        }
+    }
+    
+    func hideLoading() {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.5) { [weak self] in
+                self?.stpCount.isEnabled = true
+                self?.aiUpdate.isHidden = true
+                self?.constraintActivityIndicatorWidth.constant = CGFloat(0)
+                self?.contentView.layoutIfNeeded()
+            }
+        }
+    }
+    
+    public func setData(indexAt: Int, counter: CounterModel.Counter, interactor: CounterBusinessLogic?) {
         self.viewModel = CounterCellViewModel(counter: counter, interactor: interactor)
         lblTitle.text = counter.title
         lblCount.text = counter.count.description
         stpCount.value = Double(counter.count)
         setCountColor(countValue: counter.count)
+        self.indexAt = indexAt
+        
+        viewModel?.isLoadingChanged = { [weak self] isLoading in
+            if isLoading {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    //Is still loading?
+                    if self?.viewModel?.isLoading ?? false {
+                        self?.showLoading()
+                    }
+                }
+            } else {
+                self?.hideLoading()
+            }
+        }
+        
+        viewModel?.incrementSucceeded = { [weak self] in
+            self?.handleSuccess(isIncrement: true)
+        }
+        
+        viewModel?.incrementError = { [weak self] error in
+            self?.handleError(error: error, isIncrement: true)
+        }
+        
+        viewModel?.decrementSucceeded = { [weak self] in
+            self?.handleSuccess(isIncrement: false)
+        }
+        
+        viewModel?.decrementError = { [weak self] error in
+            self?.handleError(error: error, isIncrement: false)
+        }
+    }
+    
+    func handleSuccess(isIncrement: Bool) {
+        DispatchQueue.main.async {
+            let newValue = isIncrement ? self.getCurrentValue() + 1 : self.getCurrentValue() - 1
+            self.lblCount.text = newValue.description
+            if let index = self.indexAt {
+                self.delegate?.countUpdated(atIndex: index, newValue: newValue)
+            }
+        }
+    }
+    
+    func handleError(error: AppError, isIncrement: Bool) {
+        DispatchQueue.main.async {
+            let newValue = isIncrement ? self.getCurrentValue() + 1 : self.getCurrentValue() - 1
+            let alert = UIAlertController(title: "Couldn't update the \(self.lblTitle.text ?? "") counter to \(newValue)",
+                message: error.localizedDescription,
+                preferredStyle: .alert)
+            alert.view.tintColor = UIColor(appColor: .accent)
+            //TODO: check if it would be better to swap the styles
+            alert.addAction(UIAlertAction(title: UIText.btnRetry, style: .cancel, handler: { _ in
+                if isIncrement {
+                    self.viewModel?.incrementCount()
+                } else {
+                    self.viewModel?.decrementCount()
+                }
+            }))
+            alert.addAction(UIAlertAction(title: UIText.btnDismiss, style: .default, handler: nil))
+            self.parentViewController?.present(alert, animated: true, completion: nil)
+        }
     }
     
     func setCountColor(countValue: Int) {
@@ -46,17 +145,16 @@ class CounterCellView: UITableViewCell {
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
-        let newValue = Int(sender.value)
-        setCountColor(countValue: newValue)
-        lblCount.text = newValue.description
-        
-        if newValue > viewModel?.stepperValue ?? 0 {
+        setCountColor(countValue: Int(sender.value))
+        if sender.value > Double(getCurrentValue()) {
             viewModel?.incrementCount()
         } else {
             viewModel?.decrementCount()
         }
-        
-        viewModel?.stepperValue = newValue
+    }
+    
+    func getCurrentValue() -> Int {
+        return Int(lblCount.text ?? "0") ?? 0
     }
     
     class func createCell() -> CounterCellView? {

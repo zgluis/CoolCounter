@@ -36,7 +36,8 @@ struct UIText {
     static let btnDismiss = "Dismiss"
     static let btnCancel = "Cancel"
     static let btnSave = "Save"
-    
+    static let btnRetry = "Retry"
+
     static let messageEmptyCountersTitle = "No counters yet"
     static let messageEmptyCountersSubtitle = "\"When I started counting my blessings, my whole life turned around.\" —Willie Nelson"
     static let messageEmptyCountersButton = "Create a counter"

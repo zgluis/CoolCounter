@@ -12,31 +12,48 @@ class CounterCellViewModel {
     
     var counterInteractor: CounterBusinessLogic?
     let counter: CounterModel.Counter
-    var stepperValue: Int = 0
+
+    var isLoadingChanged: ((Bool) -> Void)?
+    private(set) var isLoading = false {
+        didSet {
+            isLoadingChanged?(isLoading)
+        }
+    }
+    
+    var incrementSucceeded: (() -> Void)?
+    var incrementError: ((AppError) -> Void)?
+    
+    var decrementSucceeded: (() -> Void)?
+    var decrementError: ((AppError) -> Void)?
     
     init(counter: CounterModel.Counter, interactor: CounterBusinessLogic?) {
         self.counter = counter
-        self.stepperValue = counter.count
         self.counterInteractor = interactor
     }
     
     func incrementCount() {
-        counterInteractor?.incrementCount(counter: counter) { result in
+        self.isLoading = true
+        counterInteractor?.incrementCount(counter: counter) { [weak self] result in
+            self?.isLoading = false
             switch result {
             case .success :
-                break
+                self?.incrementSucceeded?()
             case .failure(let error):
+                self?.incrementError?(error)
                 print("error: \(error.localizedDescription)")
             }
         }
     }
     
     func decrementCount() {
-        counterInteractor?.decrementCount(counter: counter) { result in
+        isLoading = true
+        counterInteractor?.decrementCount(counter: counter) { [weak self] result in
+            self?.isLoading = false
             switch result {
             case .success :
-                break
+                self?.decrementSucceeded?()
             case .failure(let error):
+                self?.decrementError?(error)
                 print("error: \(error.localizedDescription)")
             }
         }

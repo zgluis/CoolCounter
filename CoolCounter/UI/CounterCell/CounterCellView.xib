@@ -46,6 +46,12 @@
                                     <action selector="stepperValueChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="JYQ-76-xt5"/>
                                 </connections>
                             </stepper>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="2zv-Qh-huT">
+                                <rect key="frame" x="296" y="62" width="0.0" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" id="peh-cP-IJJ"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" name="WhitePearlColor"/>
                         <constraints>
@@ -55,12 +61,14 @@
                             <constraint firstItem="z8o-SX-4Iq" firstAttribute="leading" secondItem="Hdb-z8-dEC" secondAttribute="leading" constant="72" id="C9t-xe-pEf"/>
                             <constraint firstItem="z8o-SX-4Iq" firstAttribute="top" secondItem="Hdb-z8-dEC" secondAttribute="top" id="FUl-c4-Qsh"/>
                             <constraint firstItem="SCQ-x8-kej" firstAttribute="leading" secondItem="Hdb-z8-dEC" secondAttribute="leading" constant="20" id="KBg-Ek-iN6"/>
-                            <constraint firstAttribute="trailing" secondItem="Tca-hW-fJp" secondAttribute="trailing" constant="16" id="OYb-4o-CEN"/>
                             <constraint firstItem="2nu-fT-Xc4" firstAttribute="top" secondItem="Hdb-z8-dEC" secondAttribute="top" constant="16" id="W7i-XZ-5gn"/>
                             <constraint firstItem="SCQ-x8-kej" firstAttribute="centerY" secondItem="2nu-fT-Xc4" secondAttribute="centerY" id="a3w-0k-wh5"/>
                             <constraint firstItem="z8o-SX-4Iq" firstAttribute="leading" secondItem="SCQ-x8-kej" secondAttribute="trailing" constant="10" id="bky-m7-lwq"/>
                             <constraint firstAttribute="bottom" secondItem="z8o-SX-4Iq" secondAttribute="bottom" id="dJf-is-A0T"/>
+                            <constraint firstAttribute="trailing" secondItem="2zv-Qh-huT" secondAttribute="trailing" constant="8" id="ezG-2e-4M0"/>
+                            <constraint firstItem="2zv-Qh-huT" firstAttribute="leading" secondItem="Tca-hW-fJp" secondAttribute="trailing" constant="8" id="twM-k9-DYX"/>
                             <constraint firstItem="2nu-fT-Xc4" firstAttribute="leading" secondItem="z8o-SX-4Iq" secondAttribute="trailing" constant="8" id="uUb-av-mEQ"/>
+                            <constraint firstItem="2zv-Qh-huT" firstAttribute="centerY" secondItem="Tca-hW-fJp" secondAttribute="centerY" id="usm-Wa-AXM"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -74,6 +82,8 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="aiUpdate" destination="2zv-Qh-huT" id="yyj-Ql-1MX"/>
+                <outlet property="constraintActivityIndicatorWidth" destination="peh-cP-IJJ" id="wW8-hf-hOB"/>
                 <outlet property="lblCount" destination="SCQ-x8-kej" id="fgf-dd-mwz"/>
                 <outlet property="lblTitle" destination="2nu-fT-Xc4" id="JnT-gZ-Roa"/>
                 <outlet property="stpCount" destination="Tca-hW-fJp" id="lCK-IA-2qH"/>
@@ -84,13 +94,13 @@
     </objects>
     <resources>
         <namedColor name="AccentColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="GrayColor">
-            <color red="0.76862745098039209" green="0.76862745098039209" blue="0.76862745098039209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.76899999380111694" green="0.76899999380111694" blue="0.76899999380111694" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="WhitePearlColor">
-            <color red="0.99215686274509807" green="0.99215686274509807" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.99199998378753662" green="0.99199998378753662" blue="0.99199998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

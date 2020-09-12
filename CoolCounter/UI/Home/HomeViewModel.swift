@@ -41,4 +41,12 @@ class HomeViewModel {
             }
         }
     }
+    
+    func updateCounter(atIndex: Int, newValue: Int) {
+        counters?[atIndex].count = newValue
+    }
+    
+    func addCounter(counter: CounterModel.Counter) {
+        counters?.append(counter)
+    }
 }

@@ -83,8 +83,7 @@ class HomeViewController: UIViewController {
         self.navigationItem.title = UIText.homeNavTitle
         
         //Buttons
-        self.editButtonItem.action = #selector(didTapEdit)
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        navigationItem.leftBarButtonItem = editButtonItem
         
         //Search
         self.navigationItem.hidesSearchBarWhenScrolling = false
@@ -151,14 +150,16 @@ class HomeViewController: UIViewController {
         }
     }
     
-    @objc func didTapEdit() {
-        
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: true)
+        tvCounters.setEditing(editing, animated: true)
     }
     
     @objc func didTapAdd() {        
         if let createCounterVC = self.storyboard?
             .instantiateViewController(withIdentifier: "createCounterViewController") as? CreateCounterViewController {
             createCounterVC.viewModel.counterInteractor = self.viewModel.counterInteractor
+            createCounterVC.delegate = self
             let navController = UINavigationController(rootViewController: createCounterVC)
             navController.view.backgroundColor = UIColor(appColor: .navBar)
             navController.view.tintColor = UIColor(appColor: .accent)
@@ -181,7 +182,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         if let counter = viewModel.counters?[indexPath.row] {
-            cell?.setData(counter: counter, interactor: viewModel.counterInteractor)
+            cell?.setData(indexAt: indexPath.row, counter: counter, interactor: viewModel.counterInteractor)
+            cell?.delegate = self
         }
         
         return cell ?? UITableViewCell()
@@ -195,5 +197,17 @@ extension HomeViewController: InsetMessageDelegate {
         } else {
             fetchCounters()
         }
+    }
+}
+
+extension HomeViewController: CounterCellViewDelegate {
+    func countUpdated(atIndex: Int, newValue: Int) {
+        viewModel.updateCounter(atIndex: atIndex, newValue: newValue)
+    }
+}
+
+extension HomeViewController: CreateCounterDelegate {
+    func counterCreated(counter: CounterModel.Counter) {
+        viewModel.addCounter(counter: counter)
     }
 }

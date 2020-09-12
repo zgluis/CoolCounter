@@ -17,7 +17,7 @@ class CreateCounterViewModel {
             isLoadingChanged?(isLoading)
         }
     }
-    var createCounterSucceeded: ((Bool) -> Void)?
+    var createCounterSucceeded: ((CounterModel.Counter) -> Void)?
     var createCounterError: ((AppError) -> Void)?
     
     func createCounter(title: String) {
@@ -26,8 +26,8 @@ class CreateCounterViewModel {
             guard let self = self else { return }
             self.isLoading = false
             switch result {
-            case .success:
-                self.createCounterSucceeded?(true)
+            case .success(let counter):
+                self.createCounterSucceeded?(counter)
             case .failure(let error):
                 self.createCounterError?(error)
             }

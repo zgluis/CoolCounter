@@ -23,7 +23,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JFq-Zp-7x3" userLabel="tvCounters">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JFq-Zp-7x3" userLabel="tvCounters">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                     <color key="backgroundColor" name="GrayLightColor"/>
                 </tableView>
@@ -66,6 +66,7 @@
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" name="GrayLightColor"/>
+            <color key="tintColor" name="AccentColor"/>
             <constraints>
                 <constraint firstItem="6Ub-a2-rKm" firstAttribute="bottom" secondItem="P3E-Zg-hcR" secondAttribute="bottom" id="1Ls-Mk-04C"/>
                 <constraint firstItem="P3E-Zg-hcR" firstAttribute="top" secondItem="JFq-Zp-7x3" secondAttribute="bottom" id="5r3-cd-Svl"/>

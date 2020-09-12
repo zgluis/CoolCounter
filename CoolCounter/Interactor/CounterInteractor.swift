@@ -13,7 +13,7 @@ protocol CounterBusinessLogic {
     func incrementCount(counter: CounterModel.Counter, _ completion: @escaping (Result<Void, AppError>) -> Void)
     func decrementCount(counter: CounterModel.Counter, _ completion: @escaping (Result<Void, AppError>) -> Void)
     func deleteCounter(counterId: String, _ completion: @escaping (Result<Void, AppError>) -> Void)
-    func createCounter(title: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void)
+    func createCounter(title: String, _ completion: @escaping (Result<CounterModel.Counter, AppError>) -> Void)
     func searchCounter(term: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void)
 }
 
@@ -65,7 +65,7 @@ class CounterInteractor: CounterBusinessLogic {
                     self.counterWorker.updateLocalCounter(counter: counter, increment: true)
                 }
             case .failure:
-                completion(.failure(AppError()))
+                completion(.failure(AppError(id: .network, message: UIText.errorNetwork)))
             }
         }
     }
@@ -79,7 +79,7 @@ class CounterInteractor: CounterBusinessLogic {
                     self.counterWorker.updateLocalCounter(counter: counter, increment: false)
                 }
             case .failure:
-                completion(.failure(AppError()))
+                completion(.failure(AppError(id: .network, message: UIText.errorNetwork)))
             }
         }
     }
@@ -100,7 +100,7 @@ class CounterInteractor: CounterBusinessLogic {
         }
     }
     
-    func createCounter(title: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void) {
+    func createCounter(title: String, _ completion: @escaping (Result<CounterModel.Counter, AppError>) -> Void) {
         counterWorker.createCounter(request: CounterModel.Create.Request(title: title)) { [weak self] result in
             switch result {
             case .success(let counters):
@@ -110,8 +110,10 @@ class CounterInteractor: CounterBusinessLogic {
                     if self.hasLocalCounters == nil || !self.hasLocalCounters! {
                         self.userDefaults.set(key: .hasLocalCounters, value: true)
                     }
+                    completion(.success(counter))
+                } else {
+                    completion(.failure(AppError()))
                 }
-                completion(.success(counters))
             case .failure:
                 completion(.failure(AppError()))
             }

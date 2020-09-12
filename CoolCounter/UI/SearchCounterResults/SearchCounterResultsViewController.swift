@@ -98,7 +98,7 @@ extension SearchCounterResultsViewController: UITableViewDataSource, UITableView
         }
         
         let counter = viewModel.filteredCounters[indexPath.row]
-        cell?.setData(counter: counter, interactor: viewModel.counterInteractor)
+        cell?.setData(indexAt: indexPath.row, counter: counter, interactor: viewModel.counterInteractor)
         
         return cell ?? UITableViewCell()
     }

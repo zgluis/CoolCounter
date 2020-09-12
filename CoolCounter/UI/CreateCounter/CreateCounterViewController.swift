@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol CreateCounterDelegate: class {
+    func counterCreated(counter: CounterModel.Counter)
+}
+
 class CreateCounterViewController: UIViewController {
     
     var viewModel: CreateCounterViewModel = CreateCounterViewModel()
+    weak var delegate: CreateCounterDelegate?
     
     @IBOutlet weak var viewActivityIndicatorContainer: UIView! {
         didSet {
@@ -34,7 +39,7 @@ class CreateCounterViewController: UIViewController {
             attributedCaption.addAttribute(NSAttributedString.Key.underlineStyle,
                                            value: NSUnderlineStyle.single.rawValue,
                                            range: NSRange(location: 36, length: 8))
-
+            
             lblCaption.attributedText = attributedCaption
             lblCaption.isUserInteractionEnabled = true
             lblCaption.lineBreakMode = .byWordWrapping
@@ -47,12 +52,11 @@ class CreateCounterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
-        viewModel.createCounterSucceeded = { [weak self] success in
+        viewModel.createCounterSucceeded = { [weak self] counter in
             guard let self = self else { return }
-            if success {
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true)
-                }
+            DispatchQueue.main.async {
+                self.delegate?.counterCreated(counter: counter)
+                self.dismiss(animated: true)
             }
         }
         
@@ -87,7 +91,7 @@ class CreateCounterViewController: UIViewController {
         //Buttons
         let cancelBtn = UIBarButtonItem(title: UIText.btnCancel, style: .plain, target: self, action: #selector(didTapCancel(_:)))
         self.navigationItem.leftBarButtonItem = cancelBtn
-
+        
         let saveBtn = UIBarButtonItem(title: UIText.btnSave, style: .plain, target: self, action: #selector(didTapSave(_:)))
         saveBtn.isEnabled = false
         self.navigationItem.rightBarButtonItem = saveBtn
@@ -100,9 +104,9 @@ class CreateCounterViewController: UIViewController {
     @objc private func didTapCaption(_ gesture: UITapGestureRecognizer) {
         //TODO: fix; underline text is not tappable in landscape mode
         /*if gesture.didTapAttributedTextInLabel(label: lblCaption, inRange: NSRange(location: 36, length: 8)) {
-            navToExamples()
-        }*/
          navToExamples()
+         }*/
+        navToExamples()
     }
     
     func navToExamples() {
