@@ -47,6 +47,10 @@ class HomeViewModel {
     }
     
     func addCounter(counter: CounterModel.Counter) {
-        counters?.append(counter)
+        if counters == nil {
+            counters = [counter]
+        } else {
+            counters!.append(counter)
+        }
     }
 }
