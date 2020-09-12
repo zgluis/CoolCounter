@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -20,26 +20,23 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="Je2-qU-Huf">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JFq-Zp-7x3" userLabel="tvCounters">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
                     <color key="backgroundColor" name="GrayLightColor"/>
                 </tableView>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VUI-1D-yLX" customClass="InsetMessageView" customModule="CoolCounter" customModuleProvider="target">
-                    <rect key="frame" x="24" y="357" width="366" height="128"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="128" id="kgO-9G-dNu"/>
-                    </constraints>
+                    <rect key="frame" x="24" y="99" width="272" height="218"/>
                 </view>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3E-Zg-hcR">
-                    <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                    <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="tPg-ZU-WbJ"/>
                         <barButtonItem style="plain" id="vSH-8x-Ee9">
                             <view key="customView" contentMode="scaleToFill" id="OQC-2L-5LV">
-                                <rect key="frame" x="87" y="23" width="240" height="8"/>
+                                <rect key="frame" x="37.5" y="18" width="240" height="8"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2U-Sb-Qfg">
@@ -62,13 +59,14 @@
                     </items>
                 </toolbar>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="oUr-97-ogb">
-                    <rect key="frame" x="197" y="411" width="20" height="20"/>
+                    <rect key="frame" x="150" y="198" width="20" height="20"/>
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" name="GrayLightColor"/>
             <color key="tintColor" name="AccentColor"/>
             <constraints>
                 <constraint firstItem="6Ub-a2-rKm" firstAttribute="bottom" secondItem="P3E-Zg-hcR" secondAttribute="bottom" id="1Ls-Mk-04C"/>
+                <constraint firstItem="VUI-1D-yLX" firstAttribute="height" secondItem="JFq-Zp-7x3" secondAttribute="height" multiplier="0.5" id="3c0-16-5BU"/>
                 <constraint firstItem="P3E-Zg-hcR" firstAttribute="top" secondItem="JFq-Zp-7x3" secondAttribute="bottom" id="5r3-cd-Svl"/>
                 <constraint firstItem="JFq-Zp-7x3" firstAttribute="top" secondItem="Je2-qU-Huf" secondAttribute="top" id="CZh-bF-eov"/>
                 <constraint firstItem="oUr-97-ogb" firstAttribute="centerX" secondItem="6Ub-a2-rKm" secondAttribute="centerX" id="Eqi-Fr-N8A"/>

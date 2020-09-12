@@ -24,8 +24,7 @@ class InsetMessageView: UIView {
     @IBOutlet weak var btnAction: UIButton! {
         didSet {
             btnAction.layer.cornerRadius = 8
-            //button.layer.borderWidth = 1
-            //button.layer.borderColor = UIColor.black.cgColor
+            btnAction.titleEdgeInsets = UIEdgeInsets(top: -8, left: -16, bottom: -8, right: -16)
             btnAction.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
         }
     }
@@ -62,24 +61,6 @@ class InsetMessageView: UIView {
             self.lblSubtitle.text = UIText.messageErrorCountersSubtitle
         }
     }
-    
-//    static func instantiate(insetMessage: InsetMessage, delegate: InsetMessageDelegate) -> InsetMessageView? {
-//        let view: InsetMessageView? = initFromNib()
-//        view?.delegate = delegate
-//
-//        switch insetMessage {
-//        case .emptyCounters:
-//            view?.btnAction.setTitle(UIText.messageEmptyCountersButton, for: .normal)
-//            view?.lblTitle.text = UIText.messageEmptyCountersTitle
-//            view?.lblSubtitle.text = UIText.messageEmptyCountersSubtitle
-//        case .error:
-//            view?.btnAction.setTitle(UIText.messageErrorCountersButton, for: .normal)
-//            view?.lblTitle.text = UIText.messageErrorCountersTitle
-//            view?.lblSubtitle.text = UIText.messageErrorCountersSubtitle
-//        }
-//
-//        return view
-//    }
     
     @IBAction func didTapActionButton(_ sender: Any) {
         delegate?.didTapActionButton()
