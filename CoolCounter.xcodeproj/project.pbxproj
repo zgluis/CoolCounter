@@ -24,6 +24,7 @@
 		28861DD32503E374003F0B88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28861DD12503E374003F0B88 /* LaunchScreen.storyboard */; };
 		28861DDE2503E375003F0B88 /* CoolCounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28861DDD2503E375003F0B88 /* CoolCounterTests.swift */; };
 		28861DE92503E375003F0B88 /* CoolCounterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28861DE82503E375003F0B88 /* CoolCounterUITests.swift */; };
+		28A5712D250E8B060040FC3B /* UIActivityViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A5712C250E8B060040FC3B /* UIActivityViewControllerExtensions.swift */; };
 		28B5F42A2504016F0031B8FB /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F4292504016F0031B8FB /* CHANGELOG.md */; };
 		28B5F42C250401760031B8FB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F42B250401760031B8FB /* README.md */; };
 		28B5F42F250401F70031B8FB /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F42E250401F70031B8FB /* Config.swift */; };
@@ -94,6 +95,7 @@
 		28861DE42503E375003F0B88 /* CoolCounterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoolCounterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28861DE82503E375003F0B88 /* CoolCounterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolCounterUITests.swift; sourceTree = "<group>"; };
 		28861DEA2503E375003F0B88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28A5712C250E8B060040FC3B /* UIActivityViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityViewControllerExtensions.swift; sourceTree = "<group>"; };
 		28B5F4292504016F0031B8FB /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		28B5F42B250401760031B8FB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		28B5F42E250401F70031B8FB /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		280538982505D87800994904 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				28A5712C250E8B060040FC3B /* UIActivityViewControllerExtensions.swift */,
 				280538992505D8E300994904 /* UIFontExtensions.swift */,
 				2805389B2505E02500994904 /* UIColorExtensions.swift */,
 				28C144C22506F77400E3BABB /* UITextFieldExtensions.swift */,
@@ -530,6 +533,7 @@
 				28B5F454250428120031B8FB /* CounterModel.swift in Sources */,
 				28B5F457250559510031B8FB /* CounterInteractor.swift in Sources */,
 				28861DC42503E372003F0B88 /* AppDelegate.swift in Sources */,
+				28A5712D250E8B060040FC3B /* UIActivityViewControllerExtensions.swift in Sources */,
 				28B5F45925055C8C0031B8FB /* AppModel.swift in Sources */,
 				28B5F452250421720031B8FB /* RequestHandler.swift in Sources */,
 				28861DC62503E372003F0B88 /* SceneDelegate.swift in Sources */,

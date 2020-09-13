@@ -21,9 +21,6 @@ class HomeViewController: UIViewController {
     private var viewModel: HomeViewModel!
     private var searchViewController: SearchCounterResultsViewController?
     private var searchController: UISearchController?
-    private var isSearchBarEmpty: Bool {
-      return searchController?.searchBar.text?.isEmpty ?? true
-    }
     private var refreshControl: UIRefreshControl?
     private var viewState: HomeViewState = .loading
     
@@ -32,7 +29,17 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var btnAddToolbar: UIBarButtonItem!
     @IBOutlet weak var aiFetch: UIActivityIndicatorView!
     @IBOutlet weak var viewInsetMessage: InsetMessageView!
-        
+    @IBOutlet weak var toolbarEdit: UIToolbar!
+    @IBOutlet weak var toolbarAdd: UIToolbar!
+    @IBOutlet weak var btnShare: UIBarButtonItem!
+    @IBOutlet weak var btnDelete: UIBarButtonItem!
+    
+    private lazy var btnSelectAll = UIBarButtonItem(title: UIText.btnSelectAll, style: .plain, target: self,
+                                                       action: #selector(didTapSelectAll(sender:)))
+    private lazy var btnUnselectAll = UIBarButtonItem(title: UIText.btnUnselectAll, style: .plain, target: self,
+                                                    action: #selector(didTapSelectAll(sender:)))
+    private var didSelectAllRows = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,8 +85,6 @@ class HomeViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        //TODO: Change statusBar color, fix; status bar is overlapping navigation bar
-        //navigationController?.setStatusBarColor(UIColor(appColor: .grayLight))
         self.navigationItem.title = UIText.homeNavTitle
         
         //Buttons
@@ -89,7 +94,6 @@ class HomeViewController: UIViewController {
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
-        
         navigationItem.searchController = searchController
     }
     
@@ -105,13 +109,19 @@ class HomeViewController: UIViewController {
             viewInsetMessage.isHidden = true
             aiFetch.isHidden = false
             aiFetch.startAnimating()
+            navigationItem.leftBarButtonItem?.isEnabled = false
         case .hasContent:
             tvCounters.alpha = CGFloat(1)
             viewInsetMessage.isHidden = true
             aiFetch.stopAnimating()
             refreshControl?.endRefreshing()
+            let selectedRows = tvCounters.indexPathsForSelectedRows
             tvCounters.reloadData()
+            selectedRows?.forEach({ (selectedRow) in
+                tvCounters.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
+            })
             reloadCountersDetail()
+            navigationItem.leftBarButtonItem?.isEnabled = true
         case .noContent, .error:
             setMessage()
             tvCounters.alpha = CGFloat(0)
@@ -120,6 +130,7 @@ class HomeViewController: UIViewController {
             refreshControl?.endRefreshing()
             tvCounters.reloadData()
             reloadCountersDetail()
+            navigationItem.leftBarButtonItem?.isEnabled = false
         case .refreshing:
             break
         }
@@ -153,8 +164,22 @@ class HomeViewController: UIViewController {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: true)
         tvCounters.setEditing(editing, animated: true)
+        toolbarAdd.isHidden = editing
+        toolbarEdit.isHidden = !editing
+        if editing {
+            btnShare.isEnabled = false
+            btnDelete.isEnabled = false
+            didSelectAllRows = false
+            navigationItem.rightBarButtonItem = btnSelectAll
+        } else {
+            navigationItem.rightBarButtonItem = nil
+        }
     }
     
+}
+
+// MARK: Toolbars controlls
+extension HomeViewController {
     @objc func didTapAdd() {        
         if let createCounterVC = self.storyboard?
             .instantiateViewController(withIdentifier: "createCounterViewController") as? CreateCounterViewController {
@@ -167,6 +192,42 @@ class HomeViewController: UIViewController {
         }
     }
     
+    @IBAction func didTapDelete(_ sender: Any) {
+        
+    }
+    
+    @IBAction func didTapSearch(_ sender: Any) {
+        if tvCounters.indexPathsForSelectedRows == nil || tvCounters.indexPathsForSelectedRows!.count < 1 {
+           return
+        }
+        var shareItems: [String] = []
+        if tvCounters.indexPathsForSelectedRows!.count > 1 {
+            shareItems.append(UIText.shareMultipleTitle)
+            for indexPath in tvCounters.indexPathsForSelectedRows! {
+                if let cell = tvCounters.cellForRow(at: indexPath) as? CounterCellView,
+                    let title = cell.lblTitle.text,
+                    let count = cell.lblCount.text {
+                    shareItems.append("· \(count) x \(title)")
+                }
+            }
+        } else {
+            if let cell = tvCounters.cellForRow(at: tvCounters.indexPathsForSelectedRows!.first!) as? CounterCellView,
+                    let title = cell.lblTitle.text,
+                    let count = cell.lblCount.text {
+                    shareItems.append("\(count) x \(title)")
+            }
+        }
+                
+        let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: shareItems,
+                                                                                        applicationActivities: nil)
+        activityViewController.setDefaultStyle(sourceView: self.view)
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    func refreshEditButtons() {
+        btnShare.isEnabled = tvCounters.indexPathsForSelectedRows?.count ?? 0 > 0
+        btnDelete.isEnabled = btnShare.isEnabled
+    }
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -175,7 +236,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         var cell = tableView.dequeueReusableCell(withIdentifier: "counterCell") as? CounterCellView
         if cell == nil {
             cell = CounterCellView.createCell()
@@ -187,6 +247,14 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         return cell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        refreshEditButtons()
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        refreshEditButtons()
     }
 }
 
@@ -209,5 +277,24 @@ extension HomeViewController: CounterCellViewDelegate {
 extension HomeViewController: CreateCounterDelegate {
     func counterCreated(counter: CounterModel.Counter) {
         viewModel.addCounter(counter: counter)
+    }
+}
+
+extension HomeViewController {
+    @objc func didTapSelectAll(sender: UIBarButtonItem) {
+        didSelectAllRows = !didSelectAllRows
+        print("didSelectAllRows: \(didSelectAllRows)")
+        if didSelectAllRows {
+            navigationItem.rightBarButtonItem = btnUnselectAll
+            for row in 0..<tvCounters.numberOfRows(inSection: 0) {
+                tvCounters.selectRow(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: .none)
+            }
+        } else {
+            navigationItem.rightBarButtonItem = btnSelectAll
+            for row in 0..<tvCounters.numberOfRows(inSection: 0) {
+                tvCounters.deselectRow(at: IndexPath(row: row, section: 0), animated: false)
+            }
+        }
+        refreshEditButtons()
     }
 }

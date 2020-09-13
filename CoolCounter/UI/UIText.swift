@@ -26,6 +26,7 @@ struct UIText {
                             """
     
     static let homeNavTitle = "Counters"
+    static let shareMultipleTitle = "Hey! Take a look at these counts:\n"
     static let createCounterNavTitle = "Create a counter"
     static let createCounterCaption = "Give it a name. Creative block? See examples."
     
@@ -37,6 +38,8 @@ struct UIText {
     static let btnCancel = "Cancel"
     static let btnSave = "Save"
     static let btnRetry = "Retry"
+    static let btnSelectAll = "Select All"
+    static let btnUnselectAll = "Unselect All"
 
     static let messageEmptyCountersTitle = "No counters yet"
     static let messageEmptyCountersSubtitle = "\"When I started counting my blessings, my whole life turned around.\" —Willie Nelson"

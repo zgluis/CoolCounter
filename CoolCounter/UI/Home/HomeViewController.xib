@@ -11,8 +11,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="CoolCounter" customModuleProvider="target">
             <connections>
                 <outlet property="aiFetch" destination="oUr-97-ogb" id="k2p-XX-Cgj"/>
-                <outlet property="btnAddToolbar" destination="MXs-Jz-vPV" id="dKb-oQ-Qg6"/>
+                <outlet property="btnAddToolbar" destination="MXs-Jz-vPV" id="dR6-P2-gcB"/>
+                <outlet property="btnDelete" destination="tPi-Qp-5xB" id="wJd-gx-COb"/>
+                <outlet property="btnShare" destination="Xzg-ur-I5L" id="49v-9F-KbA"/>
                 <outlet property="lblCountersDetail" destination="q2U-Sb-Qfg" id="sJa-NC-BcJ"/>
+                <outlet property="toolbarAdd" destination="P3E-Zg-hcR" id="9rn-Qd-Udw"/>
+                <outlet property="toolbarEdit" destination="bRh-Mb-hyI" id="MSA-43-TYo"/>
                 <outlet property="tvCounters" destination="JFq-Zp-7x3" id="ay8-PB-uOe"/>
                 <outlet property="view" destination="Je2-qU-Huf" id="QDS-Ur-gSL"/>
                 <outlet property="viewInsetMessage" destination="VUI-1D-yLX" id="8Zk-Tx-8bO"/>
@@ -30,13 +34,13 @@
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VUI-1D-yLX" customClass="InsetMessageView" customModule="CoolCounter" customModuleProvider="target">
                     <rect key="frame" x="24" y="99" width="272" height="218"/>
                 </view>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3E-Zg-hcR">
+                <toolbar opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3E-Zg-hcR" userLabel="toolbarAdd">
                     <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                     <items>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="tPg-ZU-WbJ"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="sTT-jH-ng8"/>
                         <barButtonItem style="plain" id="vSH-8x-Ee9">
                             <view key="customView" contentMode="scaleToFill" id="OQC-2L-5LV">
-                                <rect key="frame" x="37.5" y="18" width="240" height="8"/>
+                                <rect key="frame" x="37.5" y="22" width="240" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2U-Sb-Qfg">
@@ -52,9 +56,27 @@
                                 </constraints>
                             </view>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="uRl-I7-IIh"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="61l-xg-qBq"/>
                         <barButtonItem systemItem="add" id="MXs-Jz-vPV">
                             <color key="tintColor" name="AccentColor"/>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+                <toolbar hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRh-Mb-hyI" userLabel="toolbarEdit">
+                    <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                    <items>
+                        <barButtonItem systemItem="trash" id="tPi-Qp-5xB">
+                            <color key="tintColor" name="AccentColor"/>
+                            <connections>
+                                <action selector="didTapDelete:" destination="-1" id="4jH-pR-jeg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="KUN-uD-PtP"/>
+                        <barButtonItem systemItem="action" id="Xzg-ur-I5L">
+                            <color key="tintColor" name="AccentColor"/>
+                            <connections>
+                                <action selector="didTapSearch:" destination="-1" id="fHh-K0-LPT"/>
+                            </connections>
                         </barButtonItem>
                     </items>
                 </toolbar>
@@ -75,10 +97,13 @@
                 <constraint firstItem="6Ub-a2-rKm" firstAttribute="trailing" secondItem="VUI-1D-yLX" secondAttribute="trailing" constant="24" id="LmY-wc-hYg"/>
                 <constraint firstItem="VUI-1D-yLX" firstAttribute="leading" secondItem="6Ub-a2-rKm" secondAttribute="leading" constant="24" id="PdB-wT-M1r"/>
                 <constraint firstItem="JFq-Zp-7x3" firstAttribute="trailing" secondItem="Je2-qU-Huf" secondAttribute="trailing" id="U65-6k-1Z0"/>
+                <constraint firstItem="6Ub-a2-rKm" firstAttribute="bottom" secondItem="bRh-Mb-hyI" secondAttribute="bottom" id="b03-ur-uyv"/>
                 <constraint firstItem="oUr-97-ogb" firstAttribute="centerY" secondItem="6Ub-a2-rKm" secondAttribute="centerY" constant="-32" id="b4a-9y-wmM"/>
                 <constraint firstItem="P3E-Zg-hcR" firstAttribute="leading" secondItem="Je2-qU-Huf" secondAttribute="leading" id="e0S-vD-1bh"/>
                 <constraint firstItem="VUI-1D-yLX" firstAttribute="centerX" secondItem="JFq-Zp-7x3" secondAttribute="centerX" id="eDM-y7-5sX"/>
+                <constraint firstItem="bRh-Mb-hyI" firstAttribute="trailing" secondItem="Je2-qU-Huf" secondAttribute="trailing" id="oz9-FD-Uyf"/>
                 <constraint firstItem="JFq-Zp-7x3" firstAttribute="leading" secondItem="Je2-qU-Huf" secondAttribute="leading" id="wYk-7O-MpJ"/>
+                <constraint firstItem="bRh-Mb-hyI" firstAttribute="leading" secondItem="Je2-qU-Huf" secondAttribute="leading" id="x5s-Lg-Dx1"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="6Ub-a2-rKm"/>
             <point key="canvasLocation" x="-26.086956521739133" y="69.642857142857139"/>
