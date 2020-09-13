@@ -283,7 +283,6 @@ extension HomeViewController: CreateCounterDelegate {
 extension HomeViewController {
     @objc func didTapSelectAll(sender: UIBarButtonItem) {
         didSelectAllRows = !didSelectAllRows
-        print("didSelectAllRows: \(didSelectAllRows)")
         if didSelectAllRows {
             navigationItem.rightBarButtonItem = btnUnselectAll
             for row in 0..<tvCounters.numberOfRows(inSection: 0) {
