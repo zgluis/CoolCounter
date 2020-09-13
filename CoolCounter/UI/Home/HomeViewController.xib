@@ -75,7 +75,7 @@
                         <barButtonItem systemItem="action" id="Xzg-ur-I5L">
                             <color key="tintColor" name="AccentColor"/>
                             <connections>
-                                <action selector="didTapSearch:" destination="-1" id="fHh-K0-LPT"/>
+                                <action selector="didTapShare:" destination="-1" id="fHh-K0-LPT"/>
                             </connections>
                         </barButtonItem>
                     </items>

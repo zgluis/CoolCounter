@@ -12,9 +12,10 @@ protocol CounterBusinessLogic {
     func fetchCounters(_ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void)
     func incrementCount(counter: CounterModel.Counter, _ completion: @escaping (Result<Void, AppError>) -> Void)
     func decrementCount(counter: CounterModel.Counter, _ completion: @escaping (Result<Void, AppError>) -> Void)
-    func deleteCounter(counterId: String, _ completion: @escaping (Result<Void, AppError>) -> Void)
+    func deleteCounter(counterId: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void)
     func createCounter(title: String, _ completion: @escaping (Result<CounterModel.Counter, AppError>) -> Void)
     func searchCounter(term: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void)
+    func deleteLocalCounters(counterIds: [String], _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void)
 }
 
 class CounterInteractor: CounterBusinessLogic {
@@ -84,7 +85,7 @@ class CounterInteractor: CounterBusinessLogic {
         }
     }
     
-    func deleteCounter(counterId: String, _ completion: @escaping (Result<Void, AppError>) -> Void) {
+    func deleteCounter(counterId: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void) {
         let request = CounterModel.Delete.Request(id: counterId)
         counterWorker.deleteCounter(request: request) { result in
             switch result {
@@ -93,7 +94,7 @@ class CounterInteractor: CounterBusinessLogic {
                     self.userDefaults.set(key: .hasLocalCounters, value: false)
                     self.hasLocalCounters = false
                 }
-                completion(.success(()))
+                completion(.success(counters))
             case .failure:
                 completion(.failure(AppError()))
             }
@@ -124,4 +125,7 @@ class CounterInteractor: CounterBusinessLogic {
         completion(.success([CounterModel.Counter(id: "123", title: "Prueba", count: 1)]))
     }
     
+    func deleteLocalCounters(counterIds: [String], _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void) {
+        counterWorker.deleteLocalCounters(countersIds: counterIds)
+    }
 }

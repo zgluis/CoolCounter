@@ -35,9 +35,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var btnDelete: UIBarButtonItem!
     
     private lazy var btnSelectAll = UIBarButtonItem(title: UIText.btnSelectAll, style: .plain, target: self,
-                                                       action: #selector(didTapSelectAll(sender:)))
-    private lazy var btnUnselectAll = UIBarButtonItem(title: UIText.btnUnselectAll, style: .plain, target: self,
                                                     action: #selector(didTapSelectAll(sender:)))
+    private lazy var btnUnselectAll = UIBarButtonItem(title: UIText.btnUnselectAll, style: .plain, target: self,
+                                                      action: #selector(didTapSelectAll(sender:)))
     private var didSelectAllRows = false
     
     override func viewDidLoad() {
@@ -47,7 +47,9 @@ class HomeViewController: UIViewController {
         self.viewModel.bindCounters = { [weak self] in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.updateViewState(state: .hasContent)
+                if self.viewModel.counters?.count ?? 0 > 0 {
+                    self.updateViewState(state: .hasContent)
+                }
             }
         }
         
@@ -69,7 +71,7 @@ class HomeViewController: UIViewController {
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action:
             #selector(handleRefresh),
-                                 for: UIControl.Event.valueChanged)
+                                  for: UIControl.Event.valueChanged)
         tvCounters.refreshControl = refreshControl
         fetchCounters()
         
@@ -88,6 +90,8 @@ class HomeViewController: UIViewController {
         self.navigationItem.title = UIText.homeNavTitle
         
         //Buttons
+        //TODO: Check with designer if editButton is ok on the left
+        //iOS guidelines: "Sometimes, the right side of a navigation bar contains a control, like an Edit or a Done button"
         navigationItem.leftBarButtonItem = editButtonItem
         
         //Search
@@ -131,6 +135,7 @@ class HomeViewController: UIViewController {
             tvCounters.reloadData()
             reloadCountersDetail()
             navigationItem.leftBarButtonItem?.isEnabled = false
+            self.setEditing(false, animated: false)
         case .refreshing:
             break
         }
@@ -163,6 +168,7 @@ class HomeViewController: UIViewController {
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: true)
+        refreshCounterSelection()
         tvCounters.setEditing(editing, animated: true)
         toolbarAdd.isHidden = editing
         toolbarEdit.isHidden = !editing
@@ -174,6 +180,10 @@ class HomeViewController: UIViewController {
         } else {
             navigationItem.rightBarButtonItem = nil
         }
+    }
+    
+    func refreshCounterSelection(checked: Bool = false) {
+        viewModel.counterSelection = Array(repeating: checked, count: viewModel.counters?.count ?? 0)
     }
     
 }
@@ -193,31 +203,57 @@ extension HomeViewController {
     }
     
     @IBAction func didTapDelete(_ sender: Any) {
+        if tvCounters.indexPathsForSelectedRows == nil || tvCounters.indexPathsForSelectedRows!.count < 1 {
+            return
+        }
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.view.tintColor = UIColor(appColor: .accent)
         
+        let count = tvCounters.indexPathsForSelectedRows!.count
+        let title = "\(UIText.btnDelete) \(count) counter"
+        
+        alert.addAction(UIAlertAction(title: title,
+                                      style: .destructive,
+                                      handler: { [weak self] (_) in
+                                        var selectedIds: [String] = []
+                                        for (index, selection) in self!.viewModel.counterSelection.enumerated() {
+                                            if !selection {
+                                                continue
+                                            }
+                                            if let counter = self!.viewModel.counters?[safe: index] {
+                                                selectedIds.append(counter.id)
+                                            }
+                                        }
+                                        self?.viewModel.deleteCounters(selectedIds: selectedIds)
+        }))
+        alert.addAction(UIAlertAction(title: UIText.btnCancel,
+                                      style: .cancel,
+                                      handler: nil))
+        self.present(alert, animated: true)
     }
     
-    @IBAction func didTapSearch(_ sender: Any) {
-        if tvCounters.indexPathsForSelectedRows == nil || tvCounters.indexPathsForSelectedRows!.count < 1 {
-           return
+    @IBAction func didTapShare(_ sender: Any) {
+        if viewModel.counterSelection.count < 0 {
+            return
         }
+        
         var shareItems: [String] = []
-        if tvCounters.indexPathsForSelectedRows!.count > 1 {
-            shareItems.append(UIText.shareMultipleTitle)
-            for indexPath in tvCounters.indexPathsForSelectedRows! {
-                if let cell = tvCounters.cellForRow(at: indexPath) as? CounterCellView,
-                    let title = cell.lblTitle.text,
-                    let count = cell.lblCount.text {
-                    shareItems.append("· \(count) x \(title)")
-                }
+        if viewModel.counterSelection.count == 1 {
+            if let counter = viewModel.counters?[safe: 1] {
+                shareItems.append("\(counter.count) x \(counter.title)")
             }
         } else {
-            if let cell = tvCounters.cellForRow(at: tvCounters.indexPathsForSelectedRows!.first!) as? CounterCellView,
-                    let title = cell.lblTitle.text,
-                    let count = cell.lblCount.text {
-                    shareItems.append("\(count) x \(title)")
+            shareItems.append(UIText.shareMultipleTitle)
+            for (index, selection) in viewModel.counterSelection.enumerated() {
+                if !selection {
+                    continue
+                }
+                if let counter = viewModel.counters?[safe: index] {
+                    shareItems.append("· \(counter.count) x \(counter.title)")
+                }
             }
         }
-                
+        
         let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: shareItems,
                                                                                         applicationActivities: nil)
         activityViewController.setDefaultStyle(sourceView: self.view)
@@ -227,6 +263,12 @@ extension HomeViewController {
     func refreshEditButtons() {
         btnShare.isEnabled = tvCounters.indexPathsForSelectedRows?.count ?? 0 > 0
         btnDelete.isEnabled = btnShare.isEnabled
+    }
+}
+
+extension Collection {
+    subscript (safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
     }
 }
 
@@ -241,7 +283,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             cell = CounterCellView.createCell()
         }
         
-        if let counter = viewModel.counters?[indexPath.row] {
+        if let counter = viewModel.counters?[safe: indexPath.row] {
             cell?.setData(indexAt: indexPath.row, counter: counter, interactor: viewModel.counterInteractor)
             cell?.delegate = self
         }
@@ -250,10 +292,12 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.counterSelection[indexPath.item] = true
         refreshEditButtons()
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        viewModel.counterSelection[indexPath.item] = false
         refreshEditButtons()
     }
 }
@@ -288,11 +332,13 @@ extension HomeViewController {
             for row in 0..<tvCounters.numberOfRows(inSection: 0) {
                 tvCounters.selectRow(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: .none)
             }
+            refreshCounterSelection(checked: true)
         } else {
             navigationItem.rightBarButtonItem = btnSelectAll
             for row in 0..<tvCounters.numberOfRows(inSection: 0) {
                 tvCounters.deselectRow(at: IndexPath(row: row, section: 0), animated: false)
             }
+            refreshCounterSelection(checked: false)
         }
         refreshEditButtons()
     }

@@ -40,6 +40,7 @@ struct UIText {
     static let btnRetry = "Retry"
     static let btnSelectAll = "Select All"
     static let btnUnselectAll = "Unselect All"
+    static let btnDelete = "Delete"
 
     static let messageEmptyCountersTitle = "No counters yet"
     static let messageEmptyCountersSubtitle = "\"When I started counting my blessings, my whole life turned around.\" —Willie Nelson"

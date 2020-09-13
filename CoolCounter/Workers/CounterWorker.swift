@@ -15,7 +15,7 @@ protocol CounterWorkerProtocol {
     func incrementCount(request: CounterModel.Increment.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void)
     func decrementCount(request: CounterModel.Decrement.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void)
     func deleteCounter(request: CounterModel.Delete.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void)
-    func deleteLocalCounters(counters: [CounterModel.Counter])
+    func deleteLocalCounters(countersIds: [String])
     func createCounter(request: CounterModel.Create.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void)
     func storeCounter(counter: CounterModel.Counter)
     func updateLocalCounter(counter: CounterModel.Counter, increment: Bool)
@@ -45,7 +45,7 @@ class CounterWorker: CounterWorkerProtocol {
                     if arr.count > 0 {
                         completion(.success(arr))
                     } else {
-                        completion(.failure(AppError(id: .coreData)))
+                        completion(.failure(AppError(id: .noData)))
                     }
                 } else {
                     completion(.failure(AppError(id: .coreData)))
@@ -72,19 +72,17 @@ class CounterWorker: CounterWorkerProtocol {
         requestHandler.post(resource: "counter", parameters: request.toParameters(), completion: completion)
     }
     
-    // TODO: Implement batch delete
-    func deleteLocalCounters(counters: [CounterModel.Counter]) {
+    func deleteLocalCounters(countersIds: [String]) {
         guard let managedContext = CounterWorker.getManagedContext() else { return }
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CounterModel.counterEntityName)
+        fetchRequest.predicate = NSPredicate(format: "id IN %@", countersIds)
+        
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        deleteRequest.resultType = .resultTypeObjectIDs
         do {
-            if let result = try managedContext.fetch(fetchRequest) as? [NSManagedObject] {
-                if result.count > 0 {
-                    managedContext.delete(result[0])
-                    try managedContext.save()
-                }
-            }
+            try managedContext.executeAndMergeChanges(using: deleteRequest)
         } catch let error as NSError {
-            print("Detele failed \(error.userInfo)")
+            print("Delete failed \(error.userInfo)")
         }
     }
     
@@ -98,7 +96,6 @@ class CounterWorker: CounterWorkerProtocol {
             counterManagedObj.setValue(counter.title, forKey: "title")
             do {
                 try managedContext.save()
-                print("Saved")
             } catch let error {
                 print("[CoreData error] \(error)")
             }

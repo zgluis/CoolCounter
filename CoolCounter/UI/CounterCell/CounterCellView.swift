@@ -26,6 +26,7 @@ class CounterCellView: UITableViewCell {
     weak var delegate: CounterCellViewDelegate?
     private var backgroundUpdated = false
     private var indexAt: Int?
+    var counterId: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -76,10 +77,10 @@ class CounterCellView: UITableViewCell {
         self.viewModel = CounterCellViewModel(counter: counter, interactor: interactor)
         lblTitle.text = counter.title
         lblCount.text = counter.count.description
+        refreshCountColor()
         stpCount.value = Double(counter.count)
-        setCountColor(countValue: counter.count)
         self.indexAt = indexAt
-        
+        counterId = counter.id
         viewModel?.isLoadingChanged = { [weak self] isLoading in
             if isLoading {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -114,6 +115,7 @@ class CounterCellView: UITableViewCell {
         DispatchQueue.main.async {
             let newValue = isIncrement ? self.getCurrentValue() + 1 : self.getCurrentValue() - 1
             self.lblCount.text = newValue.description
+            self.refreshCountColor()
             if let index = self.indexAt {
                 self.delegate?.countUpdated(atIndex: index, newValue: newValue)
             }
@@ -140,12 +142,11 @@ class CounterCellView: UITableViewCell {
         }
     }
     
-    func setCountColor(countValue: Int) {
-        lblCount.textColor = countValue == 0 ? UIColor(appColor: .silver) : UIColor(appColor: .accent)
+    func refreshCountColor() {
+        lblCount.textColor = getCurrentValue() == 0 ? UIColor(appColor: .silver) : UIColor(appColor: .accent)
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
-        setCountColor(countValue: Int(sender.value))
         if sender.value > Double(getCurrentValue()) {
             viewModel?.incrementCount()
         } else {

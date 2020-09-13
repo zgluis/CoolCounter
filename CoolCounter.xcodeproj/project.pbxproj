@@ -25,6 +25,7 @@
 		28861DDE2503E375003F0B88 /* CoolCounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28861DDD2503E375003F0B88 /* CoolCounterTests.swift */; };
 		28861DE92503E375003F0B88 /* CoolCounterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28861DE82503E375003F0B88 /* CoolCounterUITests.swift */; };
 		28A5712D250E8B060040FC3B /* UIActivityViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A5712C250E8B060040FC3B /* UIActivityViewControllerExtensions.swift */; };
+		28A5712F250ED8B50040FC3B /* NSManagedObjectContextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A5712E250ED8B50040FC3B /* NSManagedObjectContextExtension.swift */; };
 		28B5F42A2504016F0031B8FB /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F4292504016F0031B8FB /* CHANGELOG.md */; };
 		28B5F42C250401760031B8FB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F42B250401760031B8FB /* README.md */; };
 		28B5F42F250401F70031B8FB /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F42E250401F70031B8FB /* Config.swift */; };
@@ -96,6 +97,7 @@
 		28861DE82503E375003F0B88 /* CoolCounterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolCounterUITests.swift; sourceTree = "<group>"; };
 		28861DEA2503E375003F0B88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28A5712C250E8B060040FC3B /* UIActivityViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityViewControllerExtensions.swift; sourceTree = "<group>"; };
+		28A5712E250ED8B50040FC3B /* NSManagedObjectContextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtension.swift; sourceTree = "<group>"; };
 		28B5F4292504016F0031B8FB /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		28B5F42B250401760031B8FB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		28B5F42E250401F70031B8FB /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				28C144C42507106600E3BABB /* UINavigationControllerExtensions.swift */,
 				28C144C62507C17C00E3BABB /* UIVIewExtensions.swift */,
 				28C144CC2507E1B400E3BABB /* UITapGestureRecognizer.swift */,
+				28A5712E250ED8B50040FC3B /* NSManagedObjectContextExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				28C144C72507C17C00E3BABB /* UIVIewExtensions.swift in Sources */,
 				2805389A2505D8E300994904 /* UIFontExtensions.swift in Sources */,
 				28171B92250A7CE800DE88E6 /* SearchCounterResultsViewModel.swift in Sources */,
+				28A5712F250ED8B50040FC3B /* NSManagedObjectContextExtension.swift in Sources */,
 				28C144C92507C34E00E3BABB /* CreateCounterViewModel.swift in Sources */,
 				28C144D7250914AC00E3BABB /* CounterExampleItem.swift in Sources */,
 				28C144C32506F77400E3BABB /* UITextFieldExtensions.swift in Sources */,
