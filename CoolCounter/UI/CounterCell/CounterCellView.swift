@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CounterCellViewDelegate: class {
-    func countUpdated(atIndex: Int, newValue: Int)
+    func countUpdated(id: String, newValue: Int)
 }
 
 class CounterCellView: UITableViewCell {
@@ -25,7 +25,6 @@ class CounterCellView: UITableViewCell {
     
     weak var delegate: CounterCellViewDelegate?
     private var backgroundUpdated = false
-    private var indexAt: Int?
     var counterId: String?
     
     override func awakeFromNib() {
@@ -79,7 +78,6 @@ class CounterCellView: UITableViewCell {
         lblCount.text = counter.count.description
         refreshCountColor()
         stpCount.value = Double(counter.count)
-        self.indexAt = indexAt
         counterId = counter.id
         viewModel?.isLoadingChanged = { [weak self] isLoading in
             if isLoading {
@@ -116,8 +114,8 @@ class CounterCellView: UITableViewCell {
             let newValue = isIncrement ? self.getCurrentValue() + 1 : self.getCurrentValue() - 1
             self.lblCount.text = newValue.description
             self.refreshCountColor()
-            if let index = self.indexAt {
-                self.delegate?.countUpdated(atIndex: index, newValue: newValue)
+            if let id = self.counterId {
+                self.delegate?.countUpdated(id: id, newValue: newValue)
             }
         }
     }

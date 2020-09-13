@@ -77,8 +77,7 @@ class HomeViewController: UIViewController {
         
         //Search
         searchViewController = SearchCounterResultsViewController()
-        searchViewController?.viewModel.counterInteractor = self.viewModel.counterInteractor
-        
+        searchViewController?.viewModel = self.viewModel
         searchController = UISearchController(searchResultsController: searchViewController)
         searchController?.searchResultsUpdater = searchViewController
         definesPresentationContext = true
@@ -313,8 +312,8 @@ extension HomeViewController: InsetMessageDelegate {
 }
 
 extension HomeViewController: CounterCellViewDelegate {
-    func countUpdated(atIndex: Int, newValue: Int) {
-        viewModel.updateCounter(atIndex: atIndex, newValue: newValue)
+    func countUpdated(id: String, newValue: Int) {
+        viewModel.updateCounter(id: id, newValue: newValue)
     }
 }
 

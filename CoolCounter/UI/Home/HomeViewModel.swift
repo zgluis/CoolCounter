@@ -26,6 +26,20 @@ class HomeViewModel {
         }
     }
     
+    var bindFilteredCounters: (() -> Void) = {}
+    private(set) var filteredCounters: [CounterModel.Counter] = [] {
+        didSet {
+            self.bindFilteredCounters()
+        }
+    }
+    
+    var bindSearchError: (() -> Void) = {}
+    private(set) var searchError: AppError? {
+        didSet {
+            self.bindSearchError()
+        }
+    }
+    
     func fetchCounters() {
         counterInteractor.fetchCounters { [weak self] result in
             guard let self = self else { return }
@@ -82,8 +96,10 @@ class HomeViewModel {
         }
     }
     
-    func updateCounter(atIndex: Int, newValue: Int) {
-        counters?[atIndex].count = newValue
+    func updateCounter(id: String, newValue: Int) {
+        if let indexUpdated = counters?.firstIndex(where: { $0.id == id}) {
+            counters?[indexUpdated].count = newValue
+        }
     }
     
     func addCounter(counter: CounterModel.Counter) {
@@ -91,6 +107,17 @@ class HomeViewModel {
             counters = [counter]
         } else {
             counters!.append(counter)
+        }
+    }
+}
+
+// MARK: SearchExtension
+extension HomeViewModel {
+    func search(term: String) {
+        if counters != nil {
+            filteredCounters = counters!.filter({ counter in
+                return counter.title.lowercased().contains(term.lowercased())
+            })
         }
     }
 }
