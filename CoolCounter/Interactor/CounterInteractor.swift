@@ -19,11 +19,11 @@ protocol CounterBusinessLogic {
 }
 
 class CounterInteractor: CounterBusinessLogic {
-    
+
     private var counterWorker: CounterWorkerProtocol = CounterWorker()
     private var userDefaults = Defaults()
     private var hasLocalCounters: Bool?
-    
+
     func fetchCounters(_ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void) {
         counterWorker.getRemoteCounters { [weak self] result in
             switch result {
@@ -35,19 +35,19 @@ class CounterInteractor: CounterBusinessLogic {
                     completion(.failure(AppError()))
                     return
                 }
-                
+
                 // dosn't have local counter? -> return same error
                 if self.hasLocalCounters != nil && !self.hasLocalCounters! {
                     completion(.failure(AppError()))
                     return
                 }
-                                
+
                 self.counterWorker.getLocalCounters { result in
                     switch result {
                     case .success(let counters):
                         self.userDefaults.set(key: .hasLocalCounters, value: counters.count > 0)
                         self.hasLocalCounters = counters.count > 0
-                        
+
                         completion(.success(counters))
                     case .failure:
                         completion(.failure(AppError()))
@@ -56,7 +56,7 @@ class CounterInteractor: CounterBusinessLogic {
             }
         }
     }
-    
+
     func incrementCount(counter: CounterModel.Counter, _ completion: @escaping (Result<Void, AppError>) -> Void) {
         counterWorker.incrementCount(request: CounterModel.Increment.Request(id: counter.id)) { [weak self] result in
             switch result {
@@ -70,7 +70,7 @@ class CounterInteractor: CounterBusinessLogic {
             }
         }
     }
-    
+
     func decrementCount(counter: CounterModel.Counter, _ completion: @escaping (Result<Void, AppError>) -> Void) {
         counterWorker.decrementCount(request: CounterModel.Decrement.Request(id: counter.id)) { [weak self] result in
             switch result {
@@ -84,7 +84,7 @@ class CounterInteractor: CounterBusinessLogic {
             }
         }
     }
-    
+
     func deleteCounter(counterId: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void) {
         let request = CounterModel.Delete.Request(id: counterId)
         counterWorker.deleteCounter(request: request) { result in
@@ -100,7 +100,7 @@ class CounterInteractor: CounterBusinessLogic {
             }
         }
     }
-    
+
     func createCounter(title: String, _ completion: @escaping (Result<CounterModel.Counter, AppError>) -> Void) {
         counterWorker.createCounter(request: CounterModel.Create.Request(title: title)) { [weak self] result in
             switch result {
@@ -120,11 +120,11 @@ class CounterInteractor: CounterBusinessLogic {
             }
         }
     }
-    
+
     func searchCounter(term: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void) {
         completion(.success([CounterModel.Counter(id: "123", title: "Prueba", count: 1)]))
     }
-    
+
     func deleteLocalCounters(counterIds: [String], _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void) {
         counterWorker.deleteLocalCounters(countersIds: counterIds)
     }

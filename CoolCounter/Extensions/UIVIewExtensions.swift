@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIView {
-    
+
     @discardableResult
     func applyHorizontalGradient(colours: [UIColor]) -> CAGradientLayer {
         let gradient: CAGradientLayer = CAGradientLayer()
@@ -20,7 +20,7 @@ extension UIView {
         self.layer.insertSublayer(gradient, at: 0)
         return gradient
     }
-    
+
     func fadeIn(_ duration: TimeInterval? = 0.2, onCompletion: (() -> Void)? = nil) {
         self.alpha = 0
         self.isHidden = false
@@ -30,7 +30,7 @@ extension UIView {
                         if let complete = onCompletion { complete() }
         })
     }
-    
+
     func fadeOut(_ duration: TimeInterval? = 0.2, onCompletion: (() -> Void)? = nil) {
         UIView.animate(withDuration: duration!,
                        animations: { self.alpha = 0 },

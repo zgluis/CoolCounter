@@ -16,18 +16,18 @@ class CounterExampleItem: UIView {
 
     @IBOutlet weak var btnItem: UIButton!
     weak var delegate: CounterExampleDelegate?
-    
+
     static func instantiate(title: String, delegate: CounterExampleDelegate) -> CounterExampleItem? {
         let view: CounterExampleItem? = initFromNib()
         view?.btnItem.setTitle(title, for: .normal)
         view?.delegate = delegate
         return view
     }
-    
+
     @IBAction func didTapExample(_ sender: UIButton) {
         if let title = sender.titleLabel?.text {
             delegate?.didTapExample(title: title)
         }
     }
-    
+
 }

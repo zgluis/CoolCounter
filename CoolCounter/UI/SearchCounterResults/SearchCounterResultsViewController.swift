@@ -20,7 +20,7 @@ class SearchCounterResultsViewController: UIViewController {
     @IBOutlet weak var tvResults: UITableView!
     @IBOutlet weak var lblNoResult: UILabel!
     @IBOutlet weak var constraintCenterYLblNoResult: NSLayoutConstraint!
-    
+
     //TODO: avoid coupling
     weak var viewModel: HomeViewModel? {
         didSet {
@@ -30,7 +30,7 @@ class SearchCounterResultsViewController: UIViewController {
                     self.updateViewState(state: .hasContent)
                 }
             }
-            
+
             viewModel?.bindSearchError = { [weak self] in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
@@ -39,24 +39,24 @@ class SearchCounterResultsViewController: UIViewController {
             }
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //Table View
         self.tvResults.register(UINib.init(nibName: "CounterCellView", bundle: nil), forCellReuseIdentifier: "counterCell")
         self.tvResults.delegate = self
         self.tvResults.dataSource = self
-        
+
         updateViewState(state: .noContent)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardDidShow),
                                                name: UIResponder.keyboardDidShowNotification,
                                                object: nil)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
     }
@@ -67,7 +67,7 @@ class SearchCounterResultsViewController: UIViewController {
             self.constraintCenterYLblNoResult.constant = (keyboardRectValue.height / 2) * -1
         }
     }
-    
+
     func updateViewState(state: SearchCounterResultsViewState) {
         switch state {
         case .hasContent:
@@ -80,7 +80,7 @@ class SearchCounterResultsViewController: UIViewController {
             lblNoResult.isHidden = false
         }
     }
-    
+
 }
 
 extension SearchCounterResultsViewController: UISearchResultsUpdating {
@@ -93,19 +93,19 @@ extension SearchCounterResultsViewController: UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.filteredCounters.count ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         var cell = tableView.dequeueReusableCell(withIdentifier: "counterCell") as? CounterCellView
         if cell == nil {
             cell = CounterCellView.createCell()
         }
-        
+
         if let counter = viewModel?.filteredCounters[safe: indexPath.row] {
             cell?.setData(indexAt: indexPath.row, counter: counter, interactor: viewModel?.counterInteractor)
             cell?.delegate = self
         }
-        
+
         return cell ?? UITableViewCell()
     }
 }

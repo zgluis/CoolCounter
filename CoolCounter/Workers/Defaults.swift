@@ -16,7 +16,7 @@ class Defaults {
     func set(key: DefaultsKeys, value: Any) {
         def.set(value, forKey: key.rawValue)
     }
-    
+
     func getBool(key: DefaultsKeys) -> Bool {
         return def.bool(forKey: key.rawValue)
     }

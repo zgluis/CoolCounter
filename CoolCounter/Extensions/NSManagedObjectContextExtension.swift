@@ -9,7 +9,7 @@
 import CoreData
 
 extension NSManagedObjectContext {
-    
+
     /// Executes the given `NSBatchDeleteRequest` and directly merges the changes to bring the given managed object context up to date.
     ///
     /// - Parameter batchDeleteRequest: The `NSBatchDeleteRequest` to execute.

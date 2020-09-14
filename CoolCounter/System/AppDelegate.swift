@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         newbackgroundContext.automaticallyMergesChangesFromParent = true
         return newbackgroundContext
     }()
-    
+
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation

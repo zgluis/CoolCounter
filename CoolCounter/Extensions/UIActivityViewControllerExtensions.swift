@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIActivityViewController {
-    
+
     func setDefaultStyle(sourceView: UIView) {
         if let popoverController = self.popoverPresentationController {
             popoverController.sourceView = self.view
@@ -19,7 +19,7 @@ extension UIActivityViewController {
                                                   height: 0)
             popoverController.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
         } else {
-            
+
             self.isModalInPresentation = true
         }
         self.activityItemsConfiguration = [UIActivity.ActivityType.message] as? UIActivityItemsConfigurationReading

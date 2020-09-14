@@ -9,7 +9,7 @@
 import Foundation
 
 enum CounterModel {
-    
+
     static let counterEntityName = "Counter"
     // MARK: - General
     struct Counter: Codable {
@@ -17,7 +17,7 @@ enum CounterModel {
         let title: String
         var count: Int
     }
-    
+
     // MARK: - Specifics
     enum Create {
         struct Request: AppRequest {
@@ -27,7 +27,7 @@ enum CounterModel {
             }
         }
     }
-    
+
     enum Increment {
         struct Request: AppRequest {
             let id: String
@@ -36,7 +36,7 @@ enum CounterModel {
             }
         }
     }
-    
+
     enum Decrement {
         struct Request: AppRequest {
             let id: String
@@ -45,7 +45,7 @@ enum CounterModel {
             }
         }
     }
-    
+
     enum Delete {
         struct Request: AppRequest {
             let id: String

@@ -13,17 +13,17 @@ protocol CreateCounterDelegate: class {
 }
 
 class CreateCounterViewController: UIViewController {
-    
+
     var viewModel: CreateCounterViewModel = CreateCounterViewModel()
     weak var delegate: CreateCounterDelegate?
-    
+
     @IBOutlet weak var viewActivityIndicatorContainer: UIView! {
         didSet {
             viewActivityIndicatorContainer.applyHorizontalGradient(colours:
                 [UIColor.white.withAlphaComponent(0), UIColor(appColor: .whitePearl)])
         }
     }
-    
+
     @IBOutlet weak var tfCounterTitle: UITextField! {
         didSet {
             tfCounterTitle.layer.cornerRadius = 8
@@ -32,14 +32,14 @@ class CreateCounterViewController: UIViewController {
             tfCounterTitle.addTarget(self, action: #selector(textFieldTitleDidChange), for: .editingChanged)
         }
     }
-    
+
     @IBOutlet weak var lblCaption: UILabel! {
         didSet {
             let attributedCaption = NSMutableAttributedString(string: UIText.createCounterCaption)
             attributedCaption.addAttribute(NSAttributedString.Key.underlineStyle,
                                            value: NSUnderlineStyle.single.rawValue,
                                            range: NSRange(location: 36, length: 8))
-            
+
             lblCaption.attributedText = attributedCaption
             lblCaption.isUserInteractionEnabled = true
             lblCaption.lineBreakMode = .byWordWrapping
@@ -48,7 +48,7 @@ class CreateCounterViewController: UIViewController {
             lblCaption.addGestureRecognizer(tapGesture)
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -59,7 +59,7 @@ class CreateCounterViewController: UIViewController {
                 self.dismiss(animated: true)
             }
         }
-        
+
         viewModel.createCounterError = { [weak self] error in
             guard let self = self else { return }
             DispatchQueue.main.async {
@@ -71,7 +71,7 @@ class CreateCounterViewController: UIViewController {
                 self.present(alert, animated: true)
             }
         }
-        
+
         viewModel.isLoadingChanged = { [weak self] isLoading in
             guard let self = self else { return }
             DispatchQueue.main.async {
@@ -83,24 +83,24 @@ class CreateCounterViewController: UIViewController {
                 }
             }
         }
-        
+
     }
-    
+
     private func setupNavigationBar() {
         self.navigationItem.title = UIText.createCounterNavTitle
         //Buttons
         let cancelBtn = UIBarButtonItem(title: UIText.btnCancel, style: .plain, target: self, action: #selector(didTapCancel(_:)))
         self.navigationItem.leftBarButtonItem = cancelBtn
-        
+
         let saveBtn = UIBarButtonItem(title: UIText.btnSave, style: .plain, target: self, action: #selector(didTapSave(_:)))
         saveBtn.isEnabled = false
         self.navigationItem.rightBarButtonItem = saveBtn
     }
-    
+
     @objc private func textFieldTitleDidChange() {
         navigationItem.rightBarButtonItem?.isEnabled = tfCounterTitle.text?.count ?? 0 > 0
     }
-    
+
     @objc private func didTapCaption(_ gesture: UITapGestureRecognizer) {
         //TODO: fix; underline text is not tappable in landscape mode
         /*if gesture.didTapAttributedTextInLabel(label: lblCaption, inRange: NSRange(location: 36, length: 8)) {
@@ -108,7 +108,7 @@ class CreateCounterViewController: UIViewController {
          }*/
         navToExamples()
     }
-    
+
     func navToExamples() {
         if let counterExamplesVC = self.storyboard?
             .instantiateViewController(withIdentifier: "counterExamplesViewController") as? CounterExamplesViewController {
@@ -118,22 +118,22 @@ class CreateCounterViewController: UIViewController {
             }
         }
     }
-    
+
     @IBAction func didTapSave(_ sender: UIBarButtonItem) {
         if tfCounterTitle.text != nil && !viewModel.isLoading {
             viewModel.createCounter(title: tfCounterTitle.text!)
         }
     }
-    
+
     private func enableForm(_ enable: Bool) {
         tfCounterTitle.isEnabled = enable
         navigationItem.rightBarButtonItem?.isEnabled = enable
     }
-    
+
     @IBAction func didTapCancel(_ sender: Any) {
         dismiss(animated: true)
     }
-    
+
 }
 
 extension CreateCounterViewController: CounterExamplesViewDelegate {

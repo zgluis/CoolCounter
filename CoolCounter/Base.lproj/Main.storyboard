@@ -10,17 +10,25 @@
         <!--Home View Controller-->
         <scene sceneID="jMW-dH-1GN">
             <objects>
-                <viewController id="ZhU-BS-P7A" customClass="HomeViewController" customModule="CoolCounter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZhU-BS-P7A" customClass="HomeViewController" customModule="CoolCounter" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="m9v-vz-n4M"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLn-ig-BcQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="287" y="50"/>
         </scene>
+        <!--Welcome View Controller-->
+        <scene sceneID="yhy-l8-aV2">
+            <objects>
+                <viewController id="TYY-Hs-w95" customClass="WelcomeViewController" customModule="CoolCounter" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zg4-th-Z7H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1438" y="360"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="kkE-r1-KJi">
             <objects>
-                <navigationController id="YvI-71-dmZ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="mainNavController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YvI-71-dmZ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="2et-em-dt2">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -85,10 +93,10 @@
     <color key="tintColor" name="AccentColor"/>
     <resources>
         <namedColor name="AccentColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="NavBarColor">
-            <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="0.94623161764705888" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="0.94599997997283936" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

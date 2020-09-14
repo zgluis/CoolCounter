@@ -10,4 +10,5 @@ import Foundation
 
 enum DefaultsKeys: String {
     case hasLocalCounters
+    case launchedBefore
 }

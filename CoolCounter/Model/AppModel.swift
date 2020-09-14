@@ -22,7 +22,7 @@ enum AppErrorId {
 }
 
 struct AppError: Error {
-    
+
     let id: AppErrorId
     /// User frendly message
     private let message: String

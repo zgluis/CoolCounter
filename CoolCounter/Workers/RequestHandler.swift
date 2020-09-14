@@ -11,13 +11,13 @@ import Foundation
 let requestHandler = RequestHandler()
 
 final class RequestHandler {
-    
+
     private var session: URLSession
-    
+
     required public init() {
         self.session = URLSession(configuration: URLSessionConfiguration.default)
     }
-    
+
     func get<T: Decodable>(resource: String, completion: @escaping (Result<T, Error>) -> Void) {
         #if DEBUG
         print("[Request] [get]: \(Config.baseURL + resource)")
@@ -33,7 +33,7 @@ final class RequestHandler {
                     completion(.failure(error))
                     return
                 }
-                
+
                 guard let data = data else {
                     completion(.failure(AppError(message: UIText.loremShort)))
                     #if DEBUG
@@ -41,9 +41,9 @@ final class RequestHandler {
                     #endif
                     return
                 }
-                
+
                 let decodedObject = try JSONDecoder().decode(T.self, from: data)
-                
+
                 completion(.success(decodedObject))
             } catch {
                 #if DEBUG
@@ -53,18 +53,18 @@ final class RequestHandler {
             }
         }.resume()
     }
-    
+
     func post<T: Decodable>(resource: String,
                             parameters: [String: Any],
                             method: String = "POST",
                             completion: @escaping (Result<T, Error>) -> Void) {
         var request = URLRequest(url: URL(string: Config.baseURL + resource)!)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+
         #if DEBUG
         print("[Request] [\(method)]: \(parameters)")
         #endif
-        
+
         guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) else {
             #if DEBUG
             print("[Error] [\(method)]: Unserializable parameters")
@@ -85,7 +85,7 @@ final class RequestHandler {
                     completion(.failure(error))
                     return
                 }
-                
+
                 guard let data = data else {
                     completion(.failure(AppError(message: UIText.loremShort)))
                     #if DEBUG
@@ -93,9 +93,9 @@ final class RequestHandler {
                     #endif
                     return
                 }
-                
+
                 let decodedObject = try JSONDecoder().decode(T.self, from: data)
-                
+
                 completion(.success(decodedObject))
             } catch {
                 #if DEBUG
@@ -105,9 +105,9 @@ final class RequestHandler {
             }
         }.resume()
     }
-    
+
     func delete<T: Decodable>(resource: String, parameters: [String: Any], completion: @escaping (Result<T, Error>) -> Void) {
         self.post(resource: resource, parameters: parameters, method: "DELETE", completion: completion)
     }
-    
+
 }

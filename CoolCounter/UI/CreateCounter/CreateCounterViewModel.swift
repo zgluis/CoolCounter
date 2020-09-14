@@ -10,7 +10,7 @@ import Foundation
 
 class CreateCounterViewModel {
     var counterInteractor: CounterBusinessLogic?
-    
+
     var isLoadingChanged: ((Bool) -> Void)?
     private(set) var isLoading = false {
         didSet {
@@ -19,7 +19,7 @@ class CreateCounterViewModel {
     }
     var createCounterSucceeded: ((CounterModel.Counter) -> Void)?
     var createCounterError: ((AppError) -> Void)?
-    
+
     func createCounter(title: String) {
         isLoading = true
         counterInteractor?.createCounter(title: title) { [weak self] result in

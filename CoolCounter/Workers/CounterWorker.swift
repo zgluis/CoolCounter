@@ -22,11 +22,11 @@ protocol CounterWorkerProtocol {
 }
 
 class CounterWorker: CounterWorkerProtocol {
-    
+
     func getRemoteCounters(_ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void) {
         requestHandler.get(resource: "counters", completion: completion)
     }
-    
+
     func getLocalCounters(_ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void) {
         guard let managedContext = CounterWorker.getManagedContext() else {
             completion(.failure(AppError(id: .coreData)))
@@ -55,28 +55,28 @@ class CounterWorker: CounterWorkerProtocol {
             }
         }
     }
-    
+
     func incrementCount(request: CounterModel.Increment.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void) {
         requestHandler.post(resource: "counter/inc", parameters: request.toParameters(), completion: completion)
     }
-    
+
     func decrementCount(request: CounterModel.Decrement.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void) {
         requestHandler.post(resource: "counter/dec", parameters: request.toParameters(), completion: completion)
     }
-    
+
     func deleteCounter(request: CounterModel.Delete.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void) {
         requestHandler.delete(resource: "counter", parameters: request.toParameters(), completion: completion)
     }
-    
+
     func createCounter(request: CounterModel.Create.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void) {
         requestHandler.post(resource: "counter", parameters: request.toParameters(), completion: completion)
     }
-    
+
     func deleteLocalCounters(countersIds: [String]) {
         guard let managedContext = CounterWorker.getManagedContext() else { return }
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CounterModel.counterEntityName)
         fetchRequest.predicate = NSPredicate(format: "id IN %@", countersIds)
-        
+
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         deleteRequest.resultType = .resultTypeObjectIDs
         do {
@@ -85,7 +85,7 @@ class CounterWorker: CounterWorkerProtocol {
             print("Delete failed \(error.userInfo)")
         }
     }
-    
+
     func storeCounter(counter: CounterModel.Counter) {
         guard let managedContext = CounterWorker.getManagedContext() else { return }
         if let counterEntity = NSEntityDescription.entity(forEntityName: CounterModel.counterEntityName, in: managedContext) {
@@ -101,7 +101,7 @@ class CounterWorker: CounterWorkerProtocol {
             }
         }
     }
-    
+
     func updateLocalCounter(counter: CounterModel.Counter, increment: Bool) {
         guard let managedContext = CounterWorker.getManagedContext() else { return }
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CounterModel.counterEntityName)
@@ -118,12 +118,12 @@ class CounterWorker: CounterWorkerProtocol {
             print("[CoreData error] \(error)")
         }
     }
-        
+
     private class func getManagedContext() -> NSManagedObjectContext? {
         let appDelegate: AppDelegate?
         if Thread.current.isMainThread {
             appDelegate = UIApplication.shared.delegate as? AppDelegate
-            
+
         } else {
             appDelegate = DispatchQueue.main.sync {
                 return UIApplication.shared.delegate as? AppDelegate
@@ -131,5 +131,5 @@ class CounterWorker: CounterWorkerProtocol {
         }
         return appDelegate?.backgroundContext
     }
-    
+
 }

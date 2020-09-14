@@ -9,7 +9,7 @@
 import UIKit
 
 extension UINavigationController {
-    
+
     @IBInspectable var backgroundColor: UIColor {
         get {
             return self.view.backgroundColor ?? UIColor.black
@@ -18,7 +18,7 @@ extension UINavigationController {
             self.view.backgroundColor = newValue
         }
     }
-    
+
     func setStatusBarColor(_ : UIColor) {
         let statusBarFrame: CGRect
         if #available(iOS 13.0, *) {
@@ -30,5 +30,5 @@ extension UINavigationController {
         statusBarView.backgroundColor = backgroundColor
         view.addSubview(statusBarView)
     }
-    
+
 }

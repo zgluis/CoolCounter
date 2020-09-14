@@ -18,7 +18,7 @@ protocol InsetMessageDelegate: class {
 }
 
 class InsetMessageView: UIView {
-    
+
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSubtitle: UILabel!
     @IBOutlet weak var btnAction: UIButton! {
@@ -30,7 +30,7 @@ class InsetMessageView: UIView {
     }
     @IBOutlet var contentView: UIView!
     weak var delegate: InsetMessageDelegate?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -47,7 +47,7 @@ class InsetMessageView: UIView {
             contentView.frame = self.bounds
             contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         }
-    
+
     func setUpView(insetMessage: InsetMessage, delegate: InsetMessageDelegate) {
         self.delegate = delegate
         switch insetMessage {
@@ -61,9 +61,9 @@ class InsetMessageView: UIView {
             self.lblSubtitle.text = UIText.messageErrorCountersSubtitle
         }
     }
-    
+
     @IBAction func didTapActionButton(_ sender: Any) {
         delegate?.didTapActionButton()
     }
-    
+
 }

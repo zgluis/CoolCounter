@@ -26,6 +26,8 @@
 		28861DE92503E375003F0B88 /* CoolCounterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28861DE82503E375003F0B88 /* CoolCounterUITests.swift */; };
 		28A5712D250E8B060040FC3B /* UIActivityViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A5712C250E8B060040FC3B /* UIActivityViewControllerExtensions.swift */; };
 		28A5712F250ED8B50040FC3B /* NSManagedObjectContextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A5712E250ED8B50040FC3B /* NSManagedObjectContextExtension.swift */; };
+		28A57133250EE7AF0040FC3B /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A57131250EE7AF0040FC3B /* WelcomeViewController.swift */; };
+		28A57134250EE7AF0040FC3B /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28A57132250EE7AF0040FC3B /* WelcomeViewController.xib */; };
 		28B5F42A2504016F0031B8FB /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F4292504016F0031B8FB /* CHANGELOG.md */; };
 		28B5F42C250401760031B8FB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F42B250401760031B8FB /* README.md */; };
 		28B5F42F250401F70031B8FB /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F42E250401F70031B8FB /* Config.swift */; };
@@ -98,6 +100,8 @@
 		28861DEA2503E375003F0B88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28A5712C250E8B060040FC3B /* UIActivityViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityViewControllerExtensions.swift; sourceTree = "<group>"; };
 		28A5712E250ED8B50040FC3B /* NSManagedObjectContextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtension.swift; sourceTree = "<group>"; };
+		28A57131250EE7AF0040FC3B /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		28A57132250EE7AF0040FC3B /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		28B5F4292504016F0031B8FB /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		28B5F42B250401760031B8FB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		28B5F42E250401F70031B8FB /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -246,6 +250,15 @@
 			path = CoolCounterUITests;
 			sourceTree = "<group>";
 		};
+		28A57130250EE7880040FC3B /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				28A57131250EE7AF0040FC3B /* WelcomeViewController.swift */,
+				28A57132250EE7AF0040FC3B /* WelcomeViewController.xib */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
 		28B5F42D250401E40031B8FB /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +285,7 @@
 				28B5F43D250418120031B8FB /* Home */,
 				28C144DA2509739F00E3BABB /* InsetMessage */,
 				28171B88250A73C400DE88E6 /* SearchCounterResults */,
+				28A57130250EE7880040FC3B /* Welcome */,
 				28B5F45A250562120031B8FB /* UIText.swift */,
 			);
 			path = UI;
@@ -462,6 +476,7 @@
 				287A9B612505838D00326890 /* CounterCellView.xib in Resources */,
 				28861DD32503E374003F0B88 /* LaunchScreen.storyboard in Resources */,
 				28C144DE2509744800E3BABB /* InsetMessageView.xib in Resources */,
+				28A57134250EE7AF0040FC3B /* WelcomeViewController.xib in Resources */,
 				28861DD02503E374003F0B88 /* Assets.xcassets in Resources */,
 				28C144C12506DD0A00E3BABB /* CreateCounterViewController.xib in Resources */,
 				28C144D22509041700E3BABB /* CounterExamplesViewController.xib in Resources */,
@@ -540,6 +555,7 @@
 				28A5712D250E8B060040FC3B /* UIActivityViewControllerExtensions.swift in Sources */,
 				28B5F45925055C8C0031B8FB /* AppModel.swift in Sources */,
 				28B5F452250421720031B8FB /* RequestHandler.swift in Sources */,
+				28A57133250EE7AF0040FC3B /* WelcomeViewController.swift in Sources */,
 				28861DC62503E372003F0B88 /* SceneDelegate.swift in Sources */,
 				28C144D12509041700E3BABB /* CounterExamplesViewController.swift in Sources */,
 				28C144D42509043600E3BABB /* CounterExamplesViewModel.swift in Sources */,
