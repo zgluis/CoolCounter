@@ -5,12 +5,12 @@ The best app to count **ANYTHING**.
 
 ## Getting Started
 
-1. Run Server
-2. Instal SwiftLint (Optional. For development)
-3. Configure IPs in Config/Config.swift
-4. Inside xcode, Select the scheme you want to run.
-5. Run
-6. Have fun
+1. Run Server.
+2. Instal SwiftLint (Optional. For development).
+3. In Xcode, select the scheme you want to run, CoolCounterProd for production or CoolCounterDev for development.
+4. Configure your IP in Config/Config.swift according to the scheme you selected.
+5. Run.
+6. Have fun.
 
 ## Authors
 
