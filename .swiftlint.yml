@@ -1,0 +1,15 @@
+disabled_rules:
+  - trailing_whitespace
+  - nesting
+excluded:
+  - Carthage
+  - Pods
+identifier_name:
+  excluded:
+    - id
+line_length:
+  warning: 140 #Regular tweet length
+  error: 280 #Max tweet lenght
+  ignores_comments: true
+  ignores_interpolated_strings: true
+  ignores_urls: true

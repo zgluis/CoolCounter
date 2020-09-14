@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YvI-71-dmZ">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="jMW-dH-1GN">
+            <objects>
+                <viewController storyboardIdentifier="homeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZhU-BS-P7A" customClass="HomeViewController" customModule="CoolCounter" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="m9v-vz-n4M"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nLn-ig-BcQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="287" y="50"/>
+        </scene>
+        <!--Welcome View Controller-->
+        <scene sceneID="yhy-l8-aV2">
+            <objects>
+                <viewController id="TYY-Hs-w95" customClass="WelcomeViewController" customModule="CoolCounter" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zg4-th-Z7H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1438" y="360"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kkE-r1-KJi">
+            <objects>
+                <navigationController storyboardIdentifier="mainNavController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YvI-71-dmZ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="2et-em-dt2">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="NavBarColor"/>
+                    </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                            <color key="value" name="NavBarColor"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="ZhU-BS-P7A" kind="relationship" relationship="rootViewController" id="eJB-RT-9cV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Xi-a1-GtS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-529" y="50"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="KbJ-Ii-O6l">
+            <objects>
+                <navigationController storyboardIdentifier="createCounterNavController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BbX-nu-QNV" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6B9-Xl-tLH">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                            <color key="value" name="NavBarColor"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="eEF-df-CmC" kind="relationship" relationship="rootViewController" id="V60-UW-vJr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7ro-a9-g2e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-530" y="751"/>
+        </scene>
+        <!--Create Counter View Controller-->
+        <scene sceneID="5fr-OV-0fP">
+            <objects>
+                <viewController storyboardIdentifier="createCounterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eEF-df-CmC" customClass="CreateCounterViewController" customModule="CoolCounter" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Ra0-kH-qVG"/>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZpG-Up-3lY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="299" y="751"/>
+        </scene>
+        <!--Counter Examples View Controller-->
+        <scene sceneID="apz-Iu-Gp2">
+            <objects>
+                <viewController storyboardIdentifier="counterExamplesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gSc-6E-x2r" customClass="CounterExamplesViewController" customModule="CoolCounter" customModuleProvider="target" sceneMemberID="viewController">
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J00-Yo-fmq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1151" y="751"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" name="AccentColor"/>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="NavBarColor">
+            <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="0.94599997997283936" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
