@@ -35,3 +35,8 @@ struct AppError: Error {
         self.message = message
     }
 }
+
+enum ResultType {
+    case remote
+    case local
+}

@@ -17,7 +17,7 @@ let devBuild = false
 struct Config {
 
     private struct Domains {
-        static let production = "http://192.168.0.0:3000"
+        static let production = "http://192.168.0.8:3000"
         static let dev = "http://192.168.0.8:3000"
     }
 
