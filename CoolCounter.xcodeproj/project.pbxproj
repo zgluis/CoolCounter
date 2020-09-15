@@ -14,6 +14,9 @@
 		28171B92250A7CE800DE88E6 /* SearchCounterResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28171B91250A7CE800DE88E6 /* SearchCounterResultsViewModel.swift */; };
 		28171B94250BE77A00DE88E6 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28171B93250BE77900DE88E6 /* Defaults.swift */; };
 		28171B96250BE7C700DE88E6 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28171B95250BE7C700DE88E6 /* DefaultsKeys.swift */; };
+		2842A18425103AF800C94976 /* DeleteCounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2842A18325103AF800C94976 /* DeleteCounterTests.swift */; };
+		2842A186251053F700C94976 /* CreateCounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2842A185251053F700C94976 /* CreateCounterTests.swift */; };
+		2842A1882510543F00C94976 /* UpdateCounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2842A1872510543F00C94976 /* UpdateCounterTests.swift */; };
 		287A9B602505838D00326890 /* CounterCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287A9B5E2505838D00326890 /* CounterCellView.swift */; };
 		287A9B612505838D00326890 /* CounterCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 287A9B5F2505838D00326890 /* CounterCellView.xib */; };
 		28861DC42503E372003F0B88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28861DC32503E372003F0B88 /* AppDelegate.swift */; };
@@ -22,7 +25,6 @@
 		28861DCE2503E372003F0B88 /* CoolCounter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28861DCC2503E372003F0B88 /* CoolCounter.xcdatamodeld */; };
 		28861DD02503E374003F0B88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28861DCF2503E374003F0B88 /* Assets.xcassets */; };
 		28861DD32503E374003F0B88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28861DD12503E374003F0B88 /* LaunchScreen.storyboard */; };
-		28861DDE2503E375003F0B88 /* CoolCounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28861DDD2503E375003F0B88 /* CoolCounterTests.swift */; };
 		28861DE92503E375003F0B88 /* CoolCounterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28861DE82503E375003F0B88 /* CoolCounterUITests.swift */; };
 		28A5712D250E8B060040FC3B /* UIActivityViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A5712C250E8B060040FC3B /* UIActivityViewControllerExtensions.swift */; };
 		28A5712F250ED8B50040FC3B /* NSManagedObjectContextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A5712E250ED8B50040FC3B /* NSManagedObjectContextExtension.swift */; };
@@ -82,6 +84,9 @@
 		28171B91250A7CE800DE88E6 /* SearchCounterResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCounterResultsViewModel.swift; sourceTree = "<group>"; };
 		28171B93250BE77900DE88E6 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		28171B95250BE7C700DE88E6 /* DefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
+		2842A18325103AF800C94976 /* DeleteCounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCounterTests.swift; sourceTree = "<group>"; };
+		2842A185251053F700C94976 /* CreateCounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCounterTests.swift; sourceTree = "<group>"; };
+		2842A1872510543F00C94976 /* UpdateCounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCounterTests.swift; sourceTree = "<group>"; };
 		287A9B5E2505838D00326890 /* CounterCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterCellView.swift; sourceTree = "<group>"; };
 		287A9B5F2505838D00326890 /* CounterCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CounterCellView.xib; sourceTree = "<group>"; };
 		28861DC02503E372003F0B88 /* CoolCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoolCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,7 +98,6 @@
 		28861DD22503E374003F0B88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		28861DD42503E374003F0B88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28861DD92503E375003F0B88 /* CoolCounterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoolCounterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		28861DDD2503E375003F0B88 /* CoolCounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolCounterTests.swift; sourceTree = "<group>"; };
 		28861DDF2503E375003F0B88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28861DE42503E375003F0B88 /* CoolCounterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoolCounterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28861DE82503E375003F0B88 /* CoolCounterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolCounterUITests.swift; sourceTree = "<group>"; };
@@ -235,7 +239,9 @@
 		28861DDC2503E375003F0B88 /* CoolCounterTests */ = {
 			isa = PBXGroup;
 			children = (
-				28861DDD2503E375003F0B88 /* CoolCounterTests.swift */,
+				2842A185251053F700C94976 /* CreateCounterTests.swift */,
+				2842A18325103AF800C94976 /* DeleteCounterTests.swift */,
+				2842A1872510543F00C94976 /* UpdateCounterTests.swift */,
 				28861DDF2503E375003F0B88 /* Info.plist */,
 			);
 			path = CoolCounterTests;
@@ -571,7 +577,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28861DDE2503E375003F0B88 /* CoolCounterTests.swift in Sources */,
+				2842A1882510543F00C94976 /* UpdateCounterTests.swift in Sources */,
+				2842A186251053F700C94976 /* CreateCounterTests.swift in Sources */,
+				2842A18425103AF800C94976 /* DeleteCounterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

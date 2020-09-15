@@ -15,7 +15,7 @@ protocol CounterWorkerProtocol {
     func incrementCount(request: CounterModel.Increment.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void)
     func decrementCount(request: CounterModel.Decrement.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void)
     func deleteCounter(request: CounterModel.Delete.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void)
-    func deleteLocalCounters(countersIds: [String])
+    func deleteLocalCounters(countersIds: [String], _ completion: @escaping (Result<Void, Error>) -> Void)
     func createCounter(request: CounterModel.Create.Request, _ completion: @escaping (Result<[CounterModel.Counter], Error>) -> Void)
     func storeCounter(counter: CounterModel.Counter)
     func updateLocalCounter(counter: CounterModel.Counter, increment: Bool)
@@ -72,11 +72,28 @@ class CounterWorker: CounterWorkerProtocol {
         requestHandler.post(resource: "counter", parameters: request.toParameters(), completion: completion)
     }
 
-    func deleteLocalCounters(countersIds: [String]) {
-        guard let managedContext = CounterWorker.getManagedContext() else { return }
+    func deleteLocalCounters(countersIds: [String], _ completion: (Result<Void, Error>) -> Void) {
+        guard let managedContext = CounterWorker.getManagedContext() else {
+            completion(.failure(AppError(id: .coreData)))
+            return
+        }
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CounterModel.counterEntityName)
         fetchRequest.predicate = NSPredicate(format: "id IN %@", countersIds)
 
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        deleteRequest.resultType = .resultTypeObjectIDs
+        do {
+            try managedContext.executeAndMergeChanges(using: deleteRequest)
+            completion(.success(()))
+        } catch let error as NSError {
+            print("Delete failed \(error.userInfo)")
+            completion(.failure(error))
+        }
+    }
+
+    func deleteAllLocalCounters() {
+        guard let managedContext = CounterWorker.getManagedContext() else { return }
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CounterModel.counterEntityName)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         deleteRequest.resultType = .resultTypeObjectIDs
         do {

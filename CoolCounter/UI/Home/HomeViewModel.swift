@@ -41,7 +41,7 @@ class HomeViewModel {
     }
 
     func fetchCounters() {
-        counterInteractor.fetchCounters { [weak self] result in
+        counterInteractor.fetchCounters { [weak self] result, _ in
             guard let self = self else { return }
             switch result {
             case .success(let counters):

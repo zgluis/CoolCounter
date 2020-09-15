@@ -9,13 +9,12 @@
 import Foundation
 
 protocol CounterBusinessLogic {
-    func fetchCounters(_ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void)
+    func fetchCounters(_ completion: @escaping (Result<[CounterModel.Counter], AppError>, ResultType) -> Void)
     func incrementCount(counter: CounterModel.Counter, _ completion: @escaping (Result<Void, AppError>) -> Void)
     func decrementCount(counter: CounterModel.Counter, _ completion: @escaping (Result<Void, AppError>) -> Void)
     func deleteCounter(counterId: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void)
     func createCounter(title: String, _ completion: @escaping (Result<CounterModel.Counter, AppError>) -> Void)
-    func searchCounter(term: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void)
-    func deleteLocalCounters(counterIds: [String], _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void)
+    func deleteLocalCounters(counterIds: [String], _ completion: @escaping (Result<Void, AppError>) -> Void)
 }
 
 class CounterInteractor: CounterBusinessLogic {
@@ -24,21 +23,21 @@ class CounterInteractor: CounterBusinessLogic {
     private var userDefaults = Defaults()
     private var hasLocalCounters: Bool?
 
-    func fetchCounters(_ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void) {
+    func fetchCounters(_ completion: @escaping (Result<[CounterModel.Counter], AppError>, ResultType) -> Void) {
         counterWorker.getRemoteCounters { [weak self] result in
             switch result {
             case .success(let counters):
-                completion(.success(counters))
+                completion(.success(counters), .remote)
             case .failure:
 
                 guard let self = self else {
-                    completion(.failure(AppError()))
+                    completion(.failure(AppError()), .remote)
                     return
                 }
 
                 // dosn't have local counter? -> return same error
                 if self.hasLocalCounters != nil && !self.hasLocalCounters! {
-                    completion(.failure(AppError()))
+                    completion(.failure(AppError()), .remote)
                     return
                 }
 
@@ -48,9 +47,9 @@ class CounterInteractor: CounterBusinessLogic {
                         self.userDefaults.set(key: .hasLocalCounters, value: counters.count > 0)
                         self.hasLocalCounters = counters.count > 0
 
-                        completion(.success(counters))
+                        completion(.success(counters), .local)
                     case .failure:
-                        completion(.failure(AppError()))
+                        completion(.failure(AppError()), .local)
                     }
                 }
             }
@@ -121,11 +120,14 @@ class CounterInteractor: CounterBusinessLogic {
         }
     }
 
-    func searchCounter(term: String, _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void) {
-        completion(.success([CounterModel.Counter(id: "123", title: "Prueba", count: 1)]))
-    }
-
-    func deleteLocalCounters(counterIds: [String], _ completion: @escaping (Result<[CounterModel.Counter], AppError>) -> Void) {
-        counterWorker.deleteLocalCounters(countersIds: counterIds)
+    func deleteLocalCounters(counterIds: [String], _ completion: @escaping (Result<Void, AppError>) -> Void) {
+        counterWorker.deleteLocalCounters(countersIds: counterIds) { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure:
+                completion(.failure(AppError(id: .coreData)))
+            }
+        }
     }
 }
