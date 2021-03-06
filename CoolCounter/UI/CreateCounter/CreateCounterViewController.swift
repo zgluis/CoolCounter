@@ -110,12 +110,10 @@ class CreateCounterViewController: UIViewController {
     }
 
     func navToExamples() {
-        if let counterExamplesVC = self.storyboard?
-            .instantiateViewController(withIdentifier: "counterExamplesViewController") as? CounterExamplesViewController {
-            if let navigator = navigationController {
-                counterExamplesVC.delegate = self
-                navigator.pushViewController(counterExamplesVC, animated: true)
-            }
+        let counterExamplesVC = CounterExamplesViewController(nibName: "CounterExamplesViewController", bundle: nil)
+        if let navigator = navigationController {
+            counterExamplesVC.delegate = self
+            navigator.pushViewController(counterExamplesVC, animated: true)
         }
     }
 
