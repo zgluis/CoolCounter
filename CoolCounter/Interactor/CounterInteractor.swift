@@ -20,7 +20,7 @@ protocol CounterBusinessLogic {
 class CounterInteractor: CounterBusinessLogic {
 
     private var counterWorker: CounterWorkerProtocol = CounterWorker()
-    private var userDefaults = Defaults()
+    lazy private var userDefaults = Defaults()
     private var hasLocalCounters: Bool?
 
     func fetchCounters(_ completion: @escaping (Result<[CounterModel.Counter], AppError>, ResultType) -> Void) {
