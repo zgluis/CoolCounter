@@ -12,6 +12,10 @@ The best app to count **ANYTHING**.
 5. Run.
 6. Have fun.
 
+## Screenshots
+
+<img src="https://user-images.githubusercontent.com/16930032/110872581-d9819280-82ae-11eb-92ac-8429f316047a.png" width="300">     <img src="https://user-images.githubusercontent.com/16930032/110872493-adfea800-82ae-11eb-8037-539dcebb45be.png" width="300">
+
 ## Authors
 
 Luis Zapata
