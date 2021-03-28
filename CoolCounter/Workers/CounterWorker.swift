@@ -82,12 +82,14 @@ class CounterWorker: CounterWorkerProtocol {
 
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         deleteRequest.resultType = .resultTypeObjectIDs
-        do {
-            try managedContext.executeAndMergeChanges(using: deleteRequest)
-            completion(.success(()))
-        } catch let error as NSError {
-            print("Delete failed \(error.userInfo)")
-            completion(.failure(error))
+        managedContext.performAndWait {
+            do {
+                try managedContext.executeAndMergeChanges(using: deleteRequest)
+                completion(.success(()))
+            } catch let error as NSError {
+                print("Delete failed \(error.userInfo)")
+                completion(.failure(error))
+            }
         }
     }
 
@@ -96,25 +98,29 @@ class CounterWorker: CounterWorkerProtocol {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CounterModel.counterEntityName)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         deleteRequest.resultType = .resultTypeObjectIDs
-        do {
-            try managedContext.executeAndMergeChanges(using: deleteRequest)
-        } catch let error as NSError {
-            print("Delete failed \(error.userInfo)")
+        managedContext.perform {
+            do {
+                try managedContext.executeAndMergeChanges(using: deleteRequest)
+            } catch let error as NSError {
+                print("Delete failed \(error.userInfo)")
+            }
         }
     }
 
     func storeCounter(counter: CounterModel.Counter) {
         guard let managedContext = CounterWorker.getManagedContext() else { return }
         if let counterEntity = NSEntityDescription.entity(forEntityName: CounterModel.counterEntityName, in: managedContext) {
-            let counterManagedObj = NSManagedObject(entity: counterEntity, insertInto: managedContext)
-            counterManagedObj.setValue(Int64(Date().timeIntervalSince1970 * 1000), forKey: "createdAt")
-            counterManagedObj.setValue(counter.count, forKey: "count")
-            counterManagedObj.setValue(counter.id, forKey: "id")
-            counterManagedObj.setValue(counter.title, forKey: "title")
-            do {
-                try managedContext.save()
-            } catch let error {
-                print("[CoreData error] \(error)")
+            managedContext.perform {
+                let counterManagedObj = NSManagedObject(entity: counterEntity, insertInto: managedContext)
+                counterManagedObj.setValue(Int64(Date().timeIntervalSince1970 * 1000), forKey: "createdAt")
+                counterManagedObj.setValue(counter.count, forKey: "count")
+                counterManagedObj.setValue(counter.id, forKey: "id")
+                counterManagedObj.setValue(counter.title, forKey: "title")
+                do {
+                    try managedContext.save()
+                } catch let error {
+                    print("[CoreData error] \(error)")
+                }
             }
         }
     }
@@ -123,16 +129,18 @@ class CounterWorker: CounterWorkerProtocol {
         guard let managedContext = CounterWorker.getManagedContext() else { return }
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CounterModel.counterEntityName)
         fetchRequest.predicate = NSPredicate(format: "id = %@", counter.id)
-        do {
-            if let result = try managedContext.fetch(fetchRequest) as? [NSManagedObject] {
-                if result.count > 0 {
-                    let counterManagedObj = result[0]
-                    counterManagedObj.setValue(increment ? counter.count + 1 : counter.count - 1, forKey: "count")
-                    try managedContext.save()
+        managedContext.perform {
+            do {
+                if let result = try managedContext.fetch(fetchRequest) as? [NSManagedObject] {
+                    if result.count > 0 {
+                        let counterManagedObj = result[0]
+                        counterManagedObj.setValue(increment ? counter.count + 1 : counter.count - 1, forKey: "count")
+                        try managedContext.save()
+                    }
                 }
+            } catch let error {
+                print("[CoreData error] \(error)")
             }
-        } catch let error {
-            print("[CoreData error] \(error)")
         }
     }
 
