@@ -103,6 +103,7 @@ class HomeViewModel {
     }
 
     func addCounter(counter: CounterModel.Counter) {
+        self.fetchError = nil
         if counters == nil {
             counters = [counter]
         } else {
