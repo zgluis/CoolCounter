@@ -72,7 +72,7 @@ class CounterCellView: UITableViewCell {
         }
     }
 
-    public func setData(indexAt: Int, counter: CounterModel.Counter, interactor: CounterBusinessLogic?) {
+    public func setUp(indexAt: Int, counter: CounterModel.Counter, interactor: CounterBusinessLogic?) {
         self.viewModel = CounterCellViewModel(counter: counter, interactor: interactor)
         lblTitle.text = counter.title
         lblCount.text = counter.count.description

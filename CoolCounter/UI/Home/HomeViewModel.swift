@@ -8,12 +8,28 @@
 
 import Foundation
 
-class HomeViewModel {
-    var counterInteractor: CounterBusinessLogic = CounterInteractor()
+protocol HomeViewModelProtocol: CounterViewModel {
+    var bindCounters: (() -> Void) { get set }
+    var bindFetchCountersError: (() -> Void) { get set }
+    var counters: [CounterModel.Counter]? { get set }
+    func fetchCounters()
+    var fetchError: AppError? { get }
+    var counterSelection: [Bool] { get set }
+    func deleteCounters(selectedIds: [String])
+    func addCounter(counter: CounterModel.Counter)
+}
+
+protocol CounterViewModel: class {
+    func updateCounter(id: String, newValue: Int)
+    var counterInteractor: CounterBusinessLogic? { get set }
+}
+
+class HomeViewModel: HomeViewModelProtocol, SearchCounterViewModelProtocol {
+    var counterInteractor: CounterBusinessLogic? = CounterInteractor()
     var counterSelection: [Bool] = []
 
     var bindCounters: (() -> Void) = {}
-    private(set) var counters: [CounterModel.Counter]? {
+    var counters: [CounterModel.Counter]? {
         didSet {
             self.bindCounters()
         }
@@ -41,7 +57,7 @@ class HomeViewModel {
     }
 
     func fetchCounters() {
-        counterInteractor.fetchCounters { [weak self] result, _ in
+        counterInteractor?.fetchCounters { [weak self] result, _ in
             guard let self = self else { return }
             switch result {
             case .success(let counters):
@@ -70,7 +86,7 @@ class HomeViewModel {
     }
 
     func requestDeleteCounter(id: String) {
-        counterInteractor.deleteCounter(counterId: id) { [weak self] result in
+        counterInteractor?.deleteCounter(counterId: id) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let counters):
@@ -81,7 +97,7 @@ class HomeViewModel {
                     } else {
                         self.fetchError = nil
                         self.counters = counters
-                        self.counterInteractor.deleteLocalCounters(counterIds: self.deletedIds) { _ in
+                        self.counterInteractor?.deleteLocalCounters(counterIds: self.deletedIds) { _ in
                         }
                     }
                 } else {

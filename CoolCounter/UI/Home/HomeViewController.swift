@@ -18,7 +18,7 @@ enum HomeViewState {
 
 class HomeViewController: UIViewController {
 
-    private var viewModel: HomeViewModel!
+    var viewModel: HomeViewModelProtocol!
     private var searchViewController: SearchCounterResultsViewController?
     private var searchController: UISearchController?
     private var refreshControl: UIRefreshControl?
@@ -42,8 +42,8 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.viewModel = HomeViewModel()
+        let countersViewModel = HomeViewModel()
+        self.viewModel = countersViewModel
         self.viewModel.bindCounters = { [weak self] in
             guard let self = self else { return }
             DispatchQueue.main.async {
@@ -77,7 +77,7 @@ class HomeViewController: UIViewController {
 
         //Search
         searchViewController = SearchCounterResultsViewController()
-        searchViewController?.viewModel = self.viewModel
+        searchViewController?.viewModel = countersViewModel
         searchController = UISearchController(searchResultsController: searchViewController)
         searchController?.searchResultsUpdater = searchViewController
         definesPresentationContext = true
@@ -268,36 +268,6 @@ extension HomeViewController {
 extension Collection {
     subscript (safe index: Index) -> Element? {
         return indices.contains(index) ? self[index] : nil
-    }
-}
-
-extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.counters?.count ?? 0
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "counterCell") as? CounterCellView
-        if cell == nil {
-            cell = CounterCellView.createCell()
-        }
-
-        if let counter = viewModel.counters?[safe: indexPath.row] {
-            cell?.setData(indexAt: indexPath.row, counter: counter, interactor: viewModel.counterInteractor)
-            cell?.delegate = self
-        }
-
-        return cell ?? UITableViewCell()
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.counterSelection[indexPath.item] = true
-        refreshEditButtons()
-    }
-
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        viewModel.counterSelection[indexPath.item] = false
-        refreshEditButtons()
     }
 }
 

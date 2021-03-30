@@ -30,6 +30,7 @@
 		28A5712F250ED8B50040FC3B /* NSManagedObjectContextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A5712E250ED8B50040FC3B /* NSManagedObjectContextExtension.swift */; };
 		28A57133250EE7AF0040FC3B /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A57131250EE7AF0040FC3B /* WelcomeViewController.swift */; };
 		28A57134250EE7AF0040FC3B /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28A57132250EE7AF0040FC3B /* WelcomeViewController.xib */; };
+		28AF3F8E26100B8000BDB5F4 /* HomeViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AF3F8D26100B8000BDB5F4 /* HomeViewController+TableView.swift */; };
 		28B5F42A2504016F0031B8FB /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F4292504016F0031B8FB /* CHANGELOG.md */; };
 		28B5F42C250401760031B8FB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 28B5F42B250401760031B8FB /* README.md */; };
 		28B5F42F250401F70031B8FB /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B5F42E250401F70031B8FB /* Config.swift */; };
@@ -106,6 +107,7 @@
 		28A5712E250ED8B50040FC3B /* NSManagedObjectContextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtension.swift; sourceTree = "<group>"; };
 		28A57131250EE7AF0040FC3B /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		28A57132250EE7AF0040FC3B /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
+		28AF3F8D26100B8000BDB5F4 /* HomeViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+TableView.swift"; sourceTree = "<group>"; };
 		28B5F4292504016F0031B8FB /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		28B5F42B250401760031B8FB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		28B5F42E250401F70031B8FB /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				28B5F44925041FB20031B8FB /* HomeViewController.swift */,
+				28AF3F8D26100B8000BDB5F4 /* HomeViewController+TableView.swift */,
 				28B5F44A25041FB20031B8FB /* HomeViewController.xib */,
 				28B5F44D2504212B0031B8FB /* HomeViewModel.swift */,
 			);
@@ -540,6 +543,7 @@
 				28C144CD2507E1B400E3BABB /* UITapGestureRecognizer.swift in Sources */,
 				28B5F4502504215C0031B8FB /* CounterWorker.swift in Sources */,
 				28C144DC2509743D00E3BABB /* InsetMessageView.swift in Sources */,
+				28AF3F8E26100B8000BDB5F4 /* HomeViewController+TableView.swift in Sources */,
 				28861DCE2503E372003F0B88 /* CoolCounter.xcdatamodeld in Sources */,
 				28C144C72507C17C00E3BABB /* UIVIewExtensions.swift in Sources */,
 				2805389A2505D8E300994904 /* UIFontExtensions.swift in Sources */,

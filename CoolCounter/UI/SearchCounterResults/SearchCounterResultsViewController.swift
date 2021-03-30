@@ -14,6 +14,13 @@ enum SearchCounterResultsViewState {
     case noResult
 }
 
+protocol SearchCounterViewModelProtocol: HomeViewModelProtocol {
+    var bindFilteredCounters: (() -> Void) { get set }
+    var bindSearchError: (() -> Void) { get set }
+    var filteredCounters: [CounterModel.Counter] { get }
+    func search(term: String)
+}
+
 class SearchCounterResultsViewController: UIViewController {
 
     private var viewState: SearchCounterResultsViewState = .noContent
@@ -21,8 +28,7 @@ class SearchCounterResultsViewController: UIViewController {
     @IBOutlet weak var lblNoResult: UILabel!
     @IBOutlet weak var constraintCenterYLblNoResult: NSLayoutConstraint!
 
-    //TODO: avoid coupling
-    weak var viewModel: HomeViewModel? {
+    weak var viewModel: SearchCounterViewModelProtocol? {
         didSet {
             viewModel?.bindFilteredCounters = { [weak self] in
                 guard let self = self else { return }
@@ -102,7 +108,7 @@ extension SearchCounterResultsViewController: UITableViewDataSource, UITableView
         }
 
         if let counter = viewModel?.filteredCounters[safe: indexPath.row] {
-            cell?.setData(indexAt: indexPath.row, counter: counter, interactor: viewModel?.counterInteractor)
+            cell?.setUp(indexAt: indexPath.row, counter: counter, interactor: viewModel?.counterInteractor)
             cell?.delegate = self
         }
 
